@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.language3605.MainActivity">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_bx_home"
+        android:title="Home"/>
+    <item
+        android:id="@+id/nav_quiz"
+        android:icon="@drawable/ic_outline_quiz"
+        android:title="Quiz"/>
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="Profile"/>
+</menu>

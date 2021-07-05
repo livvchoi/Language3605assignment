@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void launchGame() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 }

@@ -10,9 +10,10 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class HomeFragment extends Fragment {
-    private Button hmSwitchTest;
+    private Button hmSwitchTest, hmTest;
 
     @Nullable
     @Override
@@ -29,6 +30,16 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
 
+            }
+        });
+
+        hmTest = contentView.findViewById(R.id.btTest);
+        hmTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.fragment_container, new QuizFragment());
+                fr.commit();
             }
         });
 

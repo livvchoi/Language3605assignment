@@ -22,6 +22,7 @@ public class HomeFragment extends Fragment {
 
         View contentView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        //switch from fragment into activity (not useful other than to log out)
         hmSwitchTest = contentView.findViewById(R.id.btFragmentSwitch);
         hmSwitchTest.setText("Fragment Switch Test");
         hmSwitchTest.setOnClickListener(new View.OnClickListener() {
@@ -33,6 +34,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //change between fragments (HomeFragment to QuizFragment)
         hmTest = contentView.findViewById(R.id.btTest);
         hmTest.setOnClickListener(new View.OnClickListener() {
             @Override

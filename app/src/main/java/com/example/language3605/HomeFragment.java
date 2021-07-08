@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
         hmTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                FragmentTransaction fr = getParentFragmentManager().beginTransaction();
                 fr.replace(R.id.fragment_container, new QuizFragment());
                 fr.commit();
             }

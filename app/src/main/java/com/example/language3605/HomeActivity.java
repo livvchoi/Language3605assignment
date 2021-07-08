@@ -3,6 +3,7 @@ package com.example.language3605;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ public class HomeActivity extends AppCompatActivity {
 
         //bottom navigation bar
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         //open HomeFragment on initial start up

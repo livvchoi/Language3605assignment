@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="style_option_answer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="style_answer_quiz_category">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+<!--        <item name="android:layout_gravity">center</item>-->
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="style_option_question">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+<!--        <item name="android:layout_gravity">center</item>-->
+        <item name="android:textColor">@color/oxford_blue</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+</resources>

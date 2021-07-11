@@ -14,6 +14,10 @@ public class TemplateFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_template, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_template, container, false);
+
+        //code here
+
+        return contentView;
     }
 }

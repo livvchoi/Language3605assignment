@@ -14,6 +14,10 @@ public class CategoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_category, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_category, container, false);
+
+        //code here
+
+        return contentView;
     }
 }

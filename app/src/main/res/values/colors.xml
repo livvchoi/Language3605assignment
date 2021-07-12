@@ -8,4 +8,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey_recycler_transparent">#40010000</color>
+    <color name="dark_red">#FF9D0208</color>
+    <color name="selective_yellow">#FFFFBA08</color>
+    <color name="persimmon">#E85D04</color>
+    <color name="yellow_green_colour">#38B000 </color>
+    <color name="oxford_blue">#001D3D </color>
+    <color name="xiketic">#14080E </color>
+    <color name="steel_teal">#799496 </color>
+    <color name="green_yellow_crayola">#E9EB9E </color>
+    <color name="eerie_black">#262626 </color>
+
 </resources>

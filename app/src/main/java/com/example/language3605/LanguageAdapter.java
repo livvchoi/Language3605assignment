@@ -13,11 +13,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.Query;
+
 import java.util.ArrayList;
 
 
 public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHolder>{
     private static final String TAG = "LanguageAdapter";
+
+    TextView language;
+    TextView location;
+    RelativeLayout parentLayout;
+
 
     public static ArrayList<String> languageList = new ArrayList<>();
     private ArrayList<String> locationList = new ArrayList<>();
@@ -25,9 +32,9 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
 
     public static String languagePosition;
 
-    public LanguageAdapter(Context context, ArrayList<String> language, ArrayList<String> location) {
-        languageList = language;
-        locationList = location;
+    public LanguageAdapter(Context context, ArrayList<Query> language, ArrayList<Query> location) {
+//        languageList = language;
+//        locationList = location;
         mContext = context;
     }
 
@@ -44,22 +51,22 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder: called.");
 
-        holder.language.setText(languageList.get(position));
-        holder.location.setText(locationList.get(position));
-
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "onClick: clicked on: " + languageList.get(position));
-                languagePosition = languageList.get(position);
-
-                Toast.makeText(mContext, languageList.get(position), Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(mContext, CategoryActivity.class);
-                intent.putExtra("language_type", languageList.get(position));
-                mContext.startActivity(intent);
-            }
-        });
+//        holder.language.setText(languageList.get(position));
+//        holder.location.setText(locationList.get(position));
+//
+//        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.d(TAG, "onClick: clicked on: " + languageList.get(position));
+//                languagePosition = languageList.get(position);
+//
+//                Toast.makeText(mContext, languageList.get(position), Toast.LENGTH_SHORT).show();
+//
+//                Intent intent = new Intent(mContext, CategoryActivity.class);
+//                intent.putExtra("language_type", languageList.get(position));
+//                mContext.startActivity(intent);
+//            }
+//        });
     }
 
     @Override
@@ -69,9 +76,6 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
 
     public class ViewHolder  extends RecyclerView.ViewHolder{
 
-        TextView language;
-        TextView location;
-        RelativeLayout parentLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);

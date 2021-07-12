@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2898148148148148" />
+        <entry key="app/src/main/res/drawable-v24/layout_rounded_grey_recycler.xml" value="0.2898148148148148" />
+        <entry key="app/src/main/res/drawable/ic_bx_home.xml" value="0.2898148148148148" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2898148148148148" />
+        <entry key="app/src/main/res/drawable/ic_outline_quiz.xml" value="0.2898148148148148" />
+        <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.2898148148148148" />
+        <entry key="app/src/main/res/layout/activity_category.xml" value="0.1503623188405797" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.13437217705510388" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.13179347826086957" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.13179347826086957" />
+        <entry key="app/src/main/res/layout/activity_pictures.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2208029197080292" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.11820652173913043" />
+        <entry key="app/src/main/res/layout/fragment_quiz.xml" value="0.14907407407407408" />
+        <entry key="app/src/main/res/layout/fragment_template.xml" value="0.14907407407407408" />
+        <entry key="app/src/main/res/layout/language_item.xml" value="0.39800246604278994" />
+        <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

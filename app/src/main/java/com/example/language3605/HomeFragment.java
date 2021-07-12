@@ -5,15 +5,33 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class HomeFragment extends Fragment {
     private Button hmSwitchTest, hmTest;
+
+    Spinner languageSpinner;
+
+    DatabaseReference databaseReference;
+
+    List<String> names;
+
 
     @Nullable
     @Override
@@ -44,6 +62,37 @@ public class HomeFragment extends Fragment {
                 fr.commit();
             }
         });
+
+        // showing dropdown list of languages
+
+        languageSpinner = (Spinner) contentView.findViewById(R.id.languageSpinner);
+
+        names = new ArrayList<>();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("LanguagesList").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot childSnapshot:dataSnapshot.getChildren()){
+                    String spinnerName = childSnapshot.child("Name").getValue(String.class);
+                    names.add(spinnerName);
+                }
+
+                final ArrayAdapter arrayAdapter = new ArrayAdapter<String>(contentView.getContext(),android.R.layout.simple_spinner_item, names);
+
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+                languageSpinner.setAdapter(arrayAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         return contentView;
 

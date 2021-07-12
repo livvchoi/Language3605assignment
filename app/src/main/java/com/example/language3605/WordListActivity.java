@@ -133,19 +133,19 @@ public class WordListActivity extends AppCompatActivity {
 
         System.out.println(LanguageAdapter.languagePosition);
 
-        if (LanguageAdapter.languagePosition == "Tiwi") {
-            LanguageAdapter adapter = new LanguageAdapter(this, tiwi_numbers, english_numbers);
-            recyclerView.setAdapter(adapter);
-        } else if (LanguageAdapter.languagePosition == "Kriol") {
-            LanguageAdapter adapter = new LanguageAdapter(this, kriol_numbers, english_numbers);
-            recyclerView.setAdapter(adapter);
-        } else if (LanguageAdapter.languagePosition == "Gurindiji") {
-            LanguageAdapter adapter = new LanguageAdapter(this, gurindiji_numbers, english_numbers);
-            recyclerView.setAdapter(adapter);
-        }else if (LanguageAdapter.languagePosition == "Warlpiri") {
-            LanguageAdapter adapter = new LanguageAdapter(this, warlpiri_numbers, english_numbers);
-            recyclerView.setAdapter(adapter);
-        }
+//        if (LanguageAdapter.languagePosition == "Tiwi") {
+//            LanguageAdapter adapter = new LanguageAdapter(this, tiwi_numbers, english_numbers);
+//            recyclerView.setAdapter(adapter);
+//        } else if (LanguageAdapter.languagePosition == "Kriol") {
+//            LanguageAdapter adapter = new LanguageAdapter(this, kriol_numbers, english_numbers);
+//            recyclerView.setAdapter(adapter);
+//        } else if (LanguageAdapter.languagePosition == "Gurindiji") {
+//            LanguageAdapter adapter = new LanguageAdapter(this, gurindiji_numbers, english_numbers);
+//            recyclerView.setAdapter(adapter);
+//        }else if (LanguageAdapter.languagePosition == "Warlpiri") {
+//            LanguageAdapter adapter = new LanguageAdapter(this, warlpiri_numbers, english_numbers);
+//            recyclerView.setAdapter(adapter);
+//        }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }

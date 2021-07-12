@@ -1,7 +1,5 @@
 package com.example.language3605;
 
-import android.app.ActivityOptions;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,18 +7,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.Spinner;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
     private static final String TAG = "MainActivity";
 
-    private ArrayList<String> mLanguage = new ArrayList<>();
-    private ArrayList<String> mLocation = new ArrayList<>();
+    private ArrayList<Query> mLanguage = new ArrayList<com.google.firebase.database.Query>();
+    private ArrayList<Query> mLocation = new ArrayList<Query>();
+
+
 
 
     @Override
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity{
         Log.d(TAG, "onCreate: started");
 
 
+
         showLanguageNLocation();
 
     }
@@ -38,17 +40,27 @@ public class MainActivity extends AppCompatActivity{
     private void showLanguageNLocation() {
         Log.d(TAG, "showLanguageNLocation: show language n location");
 
-        mLanguage.add("Tiwi");
-        mLocation.add("Tiwi Islands: Northern Australia");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("LanguagesList");
 
-        mLanguage.add("Kriol");
-        mLocation.add("New South Wales");
+//        System.out.println(FirebaseDatabase.getInstance().getReference("LanguagesList").child("0").child("Name"));
 
-        mLanguage.add("Gurindiji");
-        mLocation.add("Northern Territory");
+        System.out.println(reference.child("Name"));
 
-        mLanguage.add("Warlpiri");
-        mLocation.add("Northern Territory");
+        mLanguage.add(reference.orderByChild("Name"));
+        mLocation.add(reference.orderByChild("StateTerritory"));
+
+//
+//        mLanguage.add("Tiwi");
+//        mLocation.add("Tiwi Islands: Northern Australia");
+//
+//        mLanguage.add("Kriol");
+//        mLocation.add("New South Wales");
+//
+//        mLanguage.add("Gurindiji");
+//        mLocation.add("Northern Territory");
+//
+//        mLanguage.add("Warlpiri");
+//        mLocation.add("Northern Territory");
 
         showRecyclerView();
     }

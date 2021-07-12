@@ -45,19 +45,17 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ViewHo
         holder.indig.setText(indigList.get(position));
         holder.english.setText(englishList.get(position));
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+        holder.parentLayout.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
                 Log.d(TAG, "onClick: clicked on: " + englishList.get(position));
-
-                wordPosition = englishList.get(position);
 
                 Toast.makeText(mContext, englishList.get(position), Toast.LENGTH_SHORT).show();
 
+                wordPosition = englishList.get(position);
+
                 Intent intent = new Intent(mContext, PictureActivity.class);
                 intent.putExtra("word_type", englishList.get(position));
-                intent.putExtra("indiword_type", indigList.get(position));
-
                 mContext.startActivity(intent);
             }
         });

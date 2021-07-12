@@ -13,17 +13,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 
 
 public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHolder>{
     private static final String TAG = "LanguageAdapter";
-
-    FirebaseDatabase rootNode;
-    DatabaseReference reference;
 
     public static ArrayList<String> languageList = new ArrayList<>();
     private ArrayList<String> locationList = new ArrayList<>();
@@ -56,11 +50,6 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                reference = FirebaseDatabase.getInstance().getReference("LanguagesList");
-
-
-
                 Log.d(TAG, "onClick: clicked on: " + languageList.get(position));
                 languagePosition = languageList.get(position);
 

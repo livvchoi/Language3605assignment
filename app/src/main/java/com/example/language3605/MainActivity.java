@@ -14,9 +14,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
@@ -33,7 +30,9 @@ public class MainActivity extends AppCompatActivity{
 
         Log.d(TAG, "onCreate: started");
 
+
         showLanguageNLocation();
+
     }
 
     private void showLanguageNLocation() {

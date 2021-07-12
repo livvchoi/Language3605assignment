@@ -1,7 +1,6 @@
 package com.example.language3605;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Words {
 
@@ -95,7 +94,7 @@ public class Words {
 
     }
 
-    public static ArrayList<Words> getWordsnPicture(){
+    public static void getWordsnPicture(){
         ArrayList<Words> tiwiPic = new ArrayList<>();
         tiwiPic.add(new Words("Natinga", "One", R.drawable.one));
         tiwiPic.add(new Words("Ngarrakariki", "Two", R.drawable.two));
@@ -107,43 +106,42 @@ public class Words {
         tiwiPic.add(new Words("Punyipunyinga", "Eight", R.drawable.eight));
         tiwiPic.add(new Words("Punginingita yatawulungirri", "Nine", R.drawable.nine));
         tiwiPic.add(new Words("Wamutirrara", "Ten", R.drawable.ten));
-        return tiwiPic;
 
-//        ArrayList<Words> kriolPic = new ArrayList<>();
-//        kriolPic.add(new Words("Wan", "One", R.drawable.one));
-//        kriolPic.add(new Words("Du / tu", "Two", R.drawable.two));
-//        kriolPic.add(new Words("Dribala ", "Three", R.drawable.three));
-//        kriolPic.add(new Words("Boa / fo", "Four", R.drawable.four));
-//        kriolPic.add(new Words("Baib / faib", "Five", R.drawable.five));
-//        kriolPic.add(new Words("Siks", "Six", R.drawable.six));
-//        kriolPic.add(new Words("Seben", "Seven", R.drawable.seven));
-//        kriolPic.add(new Words("Eit", "Eight", R.drawable.eight));
-//        kriolPic.add(new Words("Nain", "Nine", R.drawable.nine));
-//        kriolPic.add(new Words("Ten / tenbala", "Ten", R.drawable.ten));
-//
-//        ArrayList<Words> gurindijiPic = new ArrayList<>();
-//        gurindijiPic.add(new Words("Panturru", "One", R.drawable.one));
-//        gurindijiPic.add(new Words("Kujarra", "Two", R.drawable.two));
-//        gurindijiPic.add(new Words("Kangunya", "Three", R.drawable.three));
-//        gurindijiPic.add(new Words("Muntupala", "Four", R.drawable.four));
-//        gurindijiPic.add(new Words("Marumpukuyany", "Five", R.drawable.five));
-//        gurindijiPic.add(new Words("Karni", "Six", R.drawable.six));
-//        gurindijiPic.add(new Words("Yama", "Seven", R.drawable.seven));
-//        gurindijiPic.add(new Words("Murru", "Eight", R.drawable.eight));
-//        gurindijiPic.add(new Words("Tulu", "Nine", R.drawable.nine));
-//        gurindijiPic.add(new Words("Ngamirri", "Ten", R.drawable.ten));
-//
-//        ArrayList<Words> warlpiriPic = new ArrayList<>();
-//        warlpiriPic.add(new Words("Jinta", "One", R.drawable.one));
-//        warlpiriPic.add(new Words("Jarra", "Two", R.drawable.two));
-//        warlpiriPic.add(new Words("Marnkurrpa", "Three", R.drawable.three));
-//        warlpiriPic.add(new Words("Matirdiji", "Four", R.drawable.four));
-//        warlpiriPic.add(new Words("Rdaka", "Five", R.drawable.five));
-//        warlpiriPic.add(new Words("Jilkarla", "Six", R.drawable.six));
-//        warlpiriPic.add(new Words("Wirlki", "Seven", R.drawable.seven));
-//        warlpiriPic.add(new Words("Paniya-jarra ", "Eight", R.drawable.eight));
-//        warlpiriPic.add(new Words("Jarukutu", "Nine", R.drawable.nine));
-//        warlpiriPic.add(new Words("Karlarla", "Ten", R.drawable.ten));
+        ArrayList<Words> kriolPic = new ArrayList<>();
+        kriolPic.add(new Words("Wan", "One", R.drawable.one));
+        kriolPic.add(new Words("Du / tu", "Two", R.drawable.two));
+        kriolPic.add(new Words("Dribala ", "Three", R.drawable.three));
+        kriolPic.add(new Words("Boa / fo", "Four", R.drawable.four));
+        kriolPic.add(new Words("Baib / faib", "Five", R.drawable.five));
+        kriolPic.add(new Words("Siks", "Six", R.drawable.six));
+        kriolPic.add(new Words("Seben", "Seven", R.drawable.seven));
+        kriolPic.add(new Words("Eit", "Eight", R.drawable.eight));
+        kriolPic.add(new Words("Nain", "Nine", R.drawable.nine));
+        kriolPic.add(new Words("Ten / tenbala", "Ten", R.drawable.ten));
+
+        ArrayList<Words> gurindijiPic = new ArrayList<>();
+        gurindijiPic.add(new Words("Panturru", "One", R.drawable.one));
+        gurindijiPic.add(new Words("Kujarra", "Two", R.drawable.two));
+        gurindijiPic.add(new Words("Kangunya", "Three", R.drawable.three));
+        gurindijiPic.add(new Words("Muntupala", "Four", R.drawable.four));
+        gurindijiPic.add(new Words("Marumpukuyany", "Five", R.drawable.five));
+        gurindijiPic.add(new Words("Karni", "Six", R.drawable.six));
+        gurindijiPic.add(new Words("Yama", "Seven", R.drawable.seven));
+        gurindijiPic.add(new Words("Murru", "Eight", R.drawable.eight));
+        gurindijiPic.add(new Words("Tulu", "Nine", R.drawable.nine));
+        gurindijiPic.add(new Words("Ngamirri", "Ten", R.drawable.ten));
+
+        ArrayList<Words> warlpiriPic = new ArrayList<>();
+        warlpiriPic.add(new Words("Jinta", "One", R.drawable.one));
+        warlpiriPic.add(new Words("Jarra", "Two", R.drawable.two));
+        warlpiriPic.add(new Words("Marnkurrpa", "Three", R.drawable.three));
+        warlpiriPic.add(new Words("Matirdiji", "Four", R.drawable.four));
+        warlpiriPic.add(new Words("Rdaka", "Five", R.drawable.five));
+        warlpiriPic.add(new Words("Jilkarla", "Six", R.drawable.six));
+        warlpiriPic.add(new Words("Wirlki", "Seven", R.drawable.seven));
+        warlpiriPic.add(new Words("Paniya-jarra ", "Eight", R.drawable.eight));
+        warlpiriPic.add(new Words("Jarukutu", "Nine", R.drawable.nine));
+        warlpiriPic.add(new Words("Karlarla", "Ten", R.drawable.ten));
     }
 
 

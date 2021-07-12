@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvAnswerQuizCategory"
+        android:layout_width="320dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="@color/grey_recycler_transparent"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivAnswerQuizCategory"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:translationX="25dp"
+            android:translationY="25dp" />
+
+        <TextView
+            android:id="@+id/tvAnswerQuizCategory"
+            style="@style/style_answer_quiz_category"
+            android:text="Category"
+            android:textStyle="bold"
+            android:translationX="120dp"
+            android:translationY="35dp" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/tvAnswerQuizQuestion"
+        style="@style/style_option_question"
+        android:layout_width="317dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="30dp"
+        android:text="Question"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvAnswerQuizCategory" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvOptionA"
+        android:layout_width="141dp"
+        android:layout_height="148dp"
+        android:layout_marginTop="30dp"
+        app:cardBackgroundColor="@color/grey_recycler_transparent"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="@+id/cvAnswerQuizCategory"
+        app:layout_constraintTop_toBottomOf="@+id/tvAnswerQuizQuestion">
+
+        <TextView
+            android:id="@+id/tvOptionAnswerA"
+            style="@style/style_option_answer"
+            android:text="Option A Text"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvOptionB"
+        android:layout_width="141dp"
+        android:layout_height="148dp"
+        app:cardBackgroundColor="@color/grey_recycler_transparent"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cvOptionA"
+        app:layout_constraintEnd_toEndOf="@+id/cvOptionD"
+        app:layout_constraintStart_toStartOf="@+id/cvOptionD"
+        app:layout_constraintTop_toTopOf="@+id/cvOptionA">
+
+        <TextView
+            android:id="@+id/tvOptionAnswerB"
+            style="@style/style_option_answer"
+            android:text="Option B Text"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvOptionC"
+        android:layout_width="141dp"
+        android:layout_height="148dp"
+        android:layout_marginTop="35dp"
+        app:cardBackgroundColor="@color/grey_recycler_transparent"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/cvOptionA"
+        app:layout_constraintStart_toStartOf="@+id/cvOptionA"
+        app:layout_constraintTop_toBottomOf="@+id/cvOptionA">
+
+        <TextView
+            android:id="@+id/tvOptionAnswerC"
+            style="@style/style_option_answer"
+            android:text="Option C Text"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/cvOptionC" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvOptionD"
+        android:layout_width="141dp"
+        android:layout_height="148dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        app:cardBackgroundColor="@color/grey_recycler_transparent"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cvOptionC"
+        app:layout_constraintStart_toEndOf="@+id/cvOptionC"
+        app:layout_constraintTop_toTopOf="@+id/cvOptionC">
+
+        <TextView
+            android:id="@+id/tvOptionAnswerD"
+            style="@style/style_option_answer"
+            android:text="Option D Text"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

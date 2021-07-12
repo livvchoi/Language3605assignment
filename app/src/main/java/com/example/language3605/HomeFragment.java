@@ -2,9 +2,11 @@ package com.example.language3605;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -26,11 +28,14 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     private Button hmSwitchTest, hmTest;
 
+    Button buttonToCategory;
+
     Spinner languageSpinner;
 
     DatabaseReference databaseReference;
 
     List<String> names;
+
 
 
     @Nullable
@@ -63,6 +68,17 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        // to category screen
+        buttonToCategory = contentView.findViewById(R.id.languageButton);
+        buttonToCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CategoryActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
         // showing dropdown list of languages
 
         languageSpinner = (Spinner) contentView.findViewById(R.id.languageSpinner);
@@ -90,6 +106,19 @@ public class HomeFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                Log.v("item", (String) parent.getItemAtPosition(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
             }
         });
 

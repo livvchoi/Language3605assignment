@@ -26,7 +26,7 @@ public class WordListActivity extends AppCompatActivity {
 
     public static ArrayList<String> english_numbers = new ArrayList<>();
 
-    Button button;
+    private Button button;
 
 
     @Override
@@ -38,17 +38,14 @@ public class WordListActivity extends AppCompatActivity {
 
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
-            @Override
+        @Override
             public void onClick(View v) {
                 Intent intent = new Intent(WordListActivity.this, CategoryActivity.class);
                 WordListActivity.this.startActivity(intent);
             }
         });
 
-
-
-
-        showWordList();
+        getIncomingIntent();
     }
 
     private void getIncomingIntent() {
@@ -58,6 +55,7 @@ public class WordListActivity extends AppCompatActivity {
 
             String category = getIntent().getStringExtra("category_type");
         }
+        showWordList();
     }
 
     private void showWordList() {
@@ -134,37 +132,39 @@ public class WordListActivity extends AppCompatActivity {
         System.out.println(LanguageAdapter.languagePosition);
 
         if (LanguageAdapter.languagePosition == "Tiwi") {
-            LanguageAdapter adapter = new LanguageAdapter(this, tiwi_numbers, english_numbers);
+            WordListAdapter adapter = new WordListAdapter(this, tiwi_numbers, english_numbers);
             recyclerView.setAdapter(adapter);
         } else if (LanguageAdapter.languagePosition == "Kriol") {
-            LanguageAdapter adapter = new LanguageAdapter(this, kriol_numbers, english_numbers);
+            WordListAdapter adapter = new WordListAdapter(this, kriol_numbers, english_numbers);
             recyclerView.setAdapter(adapter);
         } else if (LanguageAdapter.languagePosition == "Gurindiji") {
-            LanguageAdapter adapter = new LanguageAdapter(this, gurindiji_numbers, english_numbers);
+            WordListAdapter adapter = new WordListAdapter(this, gurindiji_numbers, english_numbers);
             recyclerView.setAdapter(adapter);
         }else if (LanguageAdapter.languagePosition == "Warlpiri") {
-            LanguageAdapter adapter = new LanguageAdapter(this, warlpiri_numbers, english_numbers);
+            WordListAdapter adapter = new WordListAdapter(this, warlpiri_numbers, english_numbers);
             recyclerView.setAdapter(adapter);
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 
-    private void launchDetailActivity(String message) {
-        Intent intent = new Intent(this, PictureActivity.class);
-        intent.putExtra(PictureActivity.INTENT_MESSAGE, message);
-        startActivity(intent);
-    }
 
-    public void onWordClick(Words words, ImageView imageView) {
+//    private void launchDetailActivity(String message) {
+//        Intent intent = new Intent(this, PictureActivity.class);
+//        intent.putExtra(PictureActivity.INTENT_MESSAGE, message);
+//        startActivity(intent);
+//    }
+//
+//    public void onWordClick(Words words, ImageView imageView) {
+//
+//        Intent send = new Intent(this, PictureActivity.class);
+//        send.putExtra("indigenousWord", words.getIndigenousWord());
+//        send.putExtra("englishWord", words.getEnglishWord());
+//        send.putExtra("imageWord", words.getImageView());
+//        startActivity(send);
+//        Toast.makeText(this, "item clicked:" + words.getEnglishWord(), Toast.LENGTH_LONG).show();
+//
+//        startActivity(send);
+//    }
 
-        Intent send = new Intent(this, PictureActivity.class);
-        send.putExtra("indigenousWord", words.getIndigenousWord());
-        send.putExtra("englishWord", words.getEnglishWord());
-        send.putExtra("imageWord", words.getImageView());
-        startActivity(send);
-        Toast.makeText(this, "item clicked:" + words.getEnglishWord(), Toast.LENGTH_LONG).show();
-
-        startActivity(send);
-    }
 }

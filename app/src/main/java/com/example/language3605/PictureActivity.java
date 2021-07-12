@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class PictureActivity extends AppCompatActivity {
@@ -45,65 +47,79 @@ public class PictureActivity extends AppCompatActivity {
             }
         });
 
-        showPictures();
+        getIncomingIntent();
     }
 
     private void getIncomingIntent(){
         Log.d(TAG, "getIncomingIntent: checking for incoming intents");
-        if(getIntent().hasExtra("word_type")){
+
+            if(getIntent().hasExtra("word_type") && getIntent().hasExtra("indiword_type")){
             Log.d(TAG, "getIncomingIntent: fount intent extras");
 
             String language = getIntent().getStringExtra("word_type");
+            String language1 = getIntent().getStringExtra("indiword_type");
+
+            setPicture(language,language1);
         }
-    }
-
-    private void showPictures(){
-        Log.d(TAG, "showPictures: show pictures");
-
-        mPicture.add(R.drawable.one);
-        mPicture.add(R.drawable.two);
-        mPicture.add(R.drawable.three);
-        mPicture.add(R.drawable.four);
-        mPicture.add(R.drawable.five);
-        mPicture.add(R.drawable.six);
-        mPicture.add(R.drawable.seven);
-        mPicture.add(R.drawable.eight);
-        mPicture.add(R.drawable.nine);
-        mPicture.add(R.drawable.ten);
-
-        showEverything();
 
     }
 
-    private void showEverything(){
-        Log.d(TAG, "showEverything: show all on page");
+    private void setPicture(String language, String language1){
+        Log.d(TAG, "setPicture: set picture and words to widgets");
 
-        int position = Integer.parseInt(WordListAdapter.wordPosition);
-
-        String indigWord = getIntent().getExtras().getString("indigenousWord");
-        String engWord = getIntent().getExtras().getString("englishWord");
-        int imgWord = getIntent().getExtras().getInt("imageWord");
-
-        indigPic = findViewById(R.id.indigPic_tv);
-        indigPic.setText(indigWord);
-
-        englishPic = findViewById(R.id.englishPic_tv);
-        indigPic.setText(engWord);
-
-        picture = findViewById(R.id.imageView);
-        picture.setImageResource(imgWord);
-
-
-        while(Integer.valueOf(CategoryAdapter.categoryPosition) < 6){
-            if(Integer.valueOf(LanguageAdapter.languagePosition) == 0){
-
-
-//                Words.getWordsnPicture() == ;
+        TextView englWord = findViewById(R.id.englishPic_tv);
+        englWord.setText(language);
+        TextView indiWord = findViewById(R.id.indigPic_tv);
+        indiWord.setText(language1);
+        ImageView img = findViewById(R.id.imageView);
+        img.setImageResource(R.drawable.one);
 
 
 
-            }
-        }
+//        Log.d(TAG, "showPictures: show pictures");
+//
+//        mPicture.add(R.drawable.one);
+//        mPicture.add(R.drawable.two);
+//        mPicture.add(R.drawable.three);
+//        mPicture.add(R.drawable.four);
+//        mPicture.add(R.drawable.five);
+//        mPicture.add(R.drawable.six);
+//        mPicture.add(R.drawable.seven);
+//        mPicture.add(R.drawable.eight);
+//        mPicture.add(R.drawable.nine);
+//        mPicture.add(R.drawable.ten);
+
+    }
+
+//    private void showEverything(){
+//        Log.d(TAG, "showEverything: show all on page");
+//
+//        int position = Integer.parseInt(WordListAdapter.wordPosition);
+//
+//        String indigWord = getIntent().getExtras().getString("indigenousWord");
+//        String engWord = getIntent().getExtras().getString("englishWord");
+//        int imgWord = getIntent().getExtras().getInt("imageWord");
+//
+//        indigPic = findViewById(R.id.indigPic_tv);
+//        indigPic.setText(indigWord);
+//
+//        englishPic = findViewById(R.id.englishPic_tv);
+//        indigPic.setText(engWord);
+//
+//        picture = findViewById(R.id.imageView);
+//        picture.setImageResource(imgWord);
+//
+//
+//        while(Integer.valueOf(CategoryAdapter.categoryPosition) < 6){
+//            if(Integer.valueOf(LanguageAdapter.languagePosition) == 0){
+//
+//                Words.getWordsnPicture().get(1);
+//                System.out.println(Words.getWordsnPicture().get(1));
+//
+//
+//
+//            }
+//        }
 //            if(Integer.valueOf(LanguageAdapter.categ))
 //
 //        if(movieTitle.equals("Title: Parasite (2019)")){
@@ -131,4 +147,4 @@ public class PictureActivity extends AppCompatActivity {
 
     }
 
-}
+//}

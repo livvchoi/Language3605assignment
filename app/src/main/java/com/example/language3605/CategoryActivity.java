@@ -36,18 +36,19 @@ public class CategoryActivity extends AppCompatActivity {
           }
       });
 
-
-        showCategories();
+        getIncomingIntent();
 
     }
 
     private void getIncomingIntent(){
         Log.d(TAG, "getIncomingIntent: checking for incoming intents");
         if(getIntent().hasExtra("language_type")){
-            Log.d(TAG, "getIncomingIntent: fount intent extras");
+            Log.d(TAG, "getIncomingIntent: found intent extras");
 
             String language = getIntent().getStringExtra("language_type");
         }
+
+        showCategories();
     }
 
     private void showCategories(){

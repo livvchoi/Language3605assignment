@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey_recycler_transparent">#40010000</color>
+    <color name="white_recycler_transparent">#60FFFFFF</color>
     <color name="dark_red">#FF9D0208</color>
     <color name="selective_yellow">#FFFFBA08</color>
     <color name="persimmon">#E85D04</color>

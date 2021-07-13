@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/overlay_light">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvQuizScoreCategory"
+        android:layout_width="320dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="@color/grey_recycler_transparent"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivQuizScoreCategory"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:translationX="25dp"
+            android:translationY="25dp" />
+
+        <TextView
+            android:id="@+id/tvQuizScoreCategory"
+            style="@style/style_answer_quiz_category"
+            android:text="Category"
+            android:textStyle="bold"
+            android:translationX="120dp"
+            android:translationY="35dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvQuizScoreScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Score: /10"
+        android:textColor="@color/white"
+        android:textSize="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvQuizScoreCategory" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvQuizScoreRetry"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:cardBackgroundColor="@color/white_recycler_transparent"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvQuizScoreScore" >
+
+        <TextView
+            android:id="@+id/tvQuizScoreRetry"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:text="Retry"
+            android:textSize="22dp"
+            android:textColor="@color/oxford_blue"
+            android:gravity="center"
+            android:padding="10dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvQuizScoreTakeAnotherQuiz"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:cardBackgroundColor="@color/white_recycler_transparent"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvQuizScoreRetry" >
+
+        <TextView
+            android:id="@+id/tvQuizScoreTakeAnotherQuiz"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:text="Take Another Quiz"
+            android:textSize="22dp"
+            android:textColor="@color/oxford_blue"
+            android:gravity="center"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cvQuizScoreRetry" />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

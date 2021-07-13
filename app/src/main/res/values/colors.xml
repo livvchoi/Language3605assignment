@@ -10,6 +10,7 @@
     <color name="grey_recycler_transparent">#40010000</color>
     <color name="white_recycler_transparent">#60FFFFFF</color>
     <color name="dark_red">#FF9D0208</color>
+    <color name="dark_red_darker">#910207</color>
     <color name="selective_yellow">#FFFFBA08</color>
     <color name="persimmon">#E85D04</color>
     <color name="yellow_green_colour">#38B000 </color>

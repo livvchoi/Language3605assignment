@@ -2,15 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/overlay_dark">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/overlay_light">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoryRecycler"
-        android:layout_width="387dp"
-        android:layout_height="652dp"
-        android:layout_marginTop="200dp"
+        android:id="@+id/recyclerWordList"
+        android:layout_width="392dp"
+        android:layout_height="650dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

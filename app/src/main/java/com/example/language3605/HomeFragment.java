@@ -30,13 +30,13 @@ public class HomeFragment extends Fragment {
 
     Button buttonToCategory;
 
-    Spinner languageSpinner;
+    public static Spinner languageSpinner;
 
     DatabaseReference databaseReference;
 
     List<String> names;
 
-
+    public static String item;
 
     @Nullable
     @Override
@@ -51,8 +51,9 @@ public class HomeFragment extends Fragment {
         hmSwitchTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
+                FragmentTransaction xfr = getParentFragmentManager().beginTransaction();
+                xfr.replace(R.id.fragment_container, new CategoryFragment());
+                xfr.commit();
 
             }
         });
@@ -73,9 +74,9 @@ public class HomeFragment extends Fragment {
         buttonToCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CategoryActivity.class);
-                startActivity(intent);
-
+                FragmentTransaction cFrag = getParentFragmentManager().beginTransaction();
+                cFrag.replace(R.id.fragment_container, new CategoryFragment());
+                cFrag.commit();
             }
         });
 
@@ -113,7 +114,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                Log.v("item", (String) parent.getItemAtPosition(position));
+                item = (String) parent.getItemAtPosition(position);
+                Log.v("item", item);
+
             }
 
             @Override

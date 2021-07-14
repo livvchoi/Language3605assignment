@@ -12,71 +12,76 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.Query;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private static final String TAG = "CategoryAdapter";
 
-    public static ArrayList<String> categoryList = new ArrayList<>();
-    private Context mContext;
+    public static ArrayList<String> categoriesList;
+    public static Context mContext;
 
     public static String categoryPosition;
 
+    private CategoryClickListener clickListener;
 
     public CategoryAdapter(Context context, ArrayList<String> category) {
-        categoryList = category;
         mContext = context;
+        categoriesList = category;
+    }
+
+
+    public CategoryAdapter(Context context, ArrayList<String> category, CategoryClickListener clickListener) {
+        mContext = context;
+        categoriesList = category;
+        this.clickListener = clickListener;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CategoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false);
-        ViewHolder holder = new ViewHolder(view);
+        CategoryAdapter.ViewHolder holder = new CategoryAdapter.ViewHolder(view);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Log.d(TAG, "onBindViewHolder: called.");
-
-        holder.category.setText(categoryList.get(position));
+        holder.categoryType.setText(categoriesList.get(position));
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Log.d(TAG, "onClick: clicked on: " + categoryList.get(position));
-                categoryPosition = categoryList.get(position);
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: clicked on: " + categoriesList.get(position));
+                Toast.makeText(mContext, categoriesList.get(position), Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(mContext, categoryList.get(position), Toast.LENGTH_SHORT).show();
+                categoryPosition = categoriesList.get(position);
 
-                Intent intent = new Intent(mContext, WordListActivity.class);
-                intent.putExtra("category_type", categoryList.get(position));
-                mContext.startActivity(intent);
+                clickListener.onClickData(categoryPosition);
+
             }
         });
     }
 
+
     @Override
     public int getItemCount() {
-        return categoryList.size();
+        return categoriesList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView category;
-        RelativeLayout parentLayout;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public static TextView categoryType;
+        public static RelativeLayout parentLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            category = itemView.findViewById(R.id.category_tv);
+            categoryType = itemView.findViewById(R.id.category_tv);
             parentLayout = itemView.findViewById(R.id.parent_layout);
-
-
         }
     }
 }
-
-

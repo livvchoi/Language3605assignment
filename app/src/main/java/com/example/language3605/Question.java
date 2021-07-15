@@ -9,7 +9,10 @@ public class Question {
     private String Image;
     private String Language;
     private int LanguageID;
-    private String Options;
+    private String OptionA;
+    private String OptionB;
+    private String OptionC;
+    private String OptionD;
     private String Question;
     private String Type;
 
@@ -17,17 +20,22 @@ public class Question {
 
     }
 
-    public Question(String answer, String category, int categoryID, int id, String Image, String language, int languageID,
-                    String options, String question, String type) {
-        this.Answer = answer;
-        this.Category = category;
-        this.CategoryID = categoryID;
-        this.ID = id;
-        this.Language = language;
-        this.LanguageID = languageID;
-        this.Options = options;
-        this.Question = question;
-        this.Type = type;
+    public Question(String answer, String category, int categoryID, int ID, String image,
+                    String language, int languageID, String optionA, String optionB,
+                    String optionC, String optionD, String question, String type) {
+        Answer = answer;
+        Category = category;
+        CategoryID = categoryID;
+        this.ID = ID;
+        Image = image;
+        Language = language;
+        LanguageID = languageID;
+        OptionA = optionA;
+        OptionB = optionB;
+        OptionC = optionC;
+        OptionD = optionD;
+        Question = question;
+        Type = type;
     }
 
     public String getAnswer() {
@@ -35,23 +43,23 @@ public class Question {
     }
 
     public void setAnswer(String answer) {
-        this.Answer = answer;
+        Answer = answer;
     }
 
     public String getCategory() {
         return Category;
     }
 
-    public void setCategory(String Category) {
-        this.Category = Category;
+    public void setCategory(String category) {
+        Category = category;
     }
 
     public int getCategoryID() {
         return CategoryID;
     }
 
-    public void setCategoryID(int CategoryID) {
-        this.CategoryID = CategoryID;
+    public void setCategoryID(int categoryID) {
+        CategoryID = categoryID;
     }
 
     public int getID() {
@@ -66,16 +74,16 @@ public class Question {
         return Image;
     }
 
-    public void setImage(String Image) {
-        this.Image = Image;
+    public void setImage(String image) {
+        Image = image;
     }
 
     public String getLanguage() {
         return Language;
     }
 
-    public void setLanguage(String Language) {
-        this.Language = Language;
+    public void setLanguage(String language) {
+        Language = language;
     }
 
     public int getLanguageID() {
@@ -83,23 +91,47 @@ public class Question {
     }
 
     public void setLanguageID(int languageID) {
-        this.LanguageID = languageID;
+        LanguageID = languageID;
     }
 
-    public String getOptions() {
-        return Options;
+    public String getOptionA() {
+        return OptionA;
     }
 
-    public void setOptions(String Options) {
-        this.Options = Options;
+    public void setOptionA(String optionA) {
+        OptionA = optionA;
+    }
+
+    public String getOptionB() {
+        return OptionB;
+    }
+
+    public void setOptionB(String optionB) {
+        OptionB = optionB;
+    }
+
+    public String getOptionC() {
+        return OptionC;
+    }
+
+    public void setOptionC(String optionC) {
+        OptionC = optionC;
+    }
+
+    public String getOptionD() {
+        return OptionD;
+    }
+
+    public void setOptionD(String optionD) {
+        OptionD = optionD;
     }
 
     public String getQuestion() {
         return Question;
     }
 
-    public void setQuestion(String Question) {
-        this.Question = Question;
+    public void setQuestion(String question) {
+        Question = question;
     }
 
     public String getType() {
@@ -107,7 +139,7 @@ public class Question {
     }
 
     public void setType(String type) {
-        this.Type = type;
+        Type = type;
     }
 
     @Override
@@ -120,7 +152,10 @@ public class Question {
                 "Image='" + Image + '\'' +
                 "Language='" + Language + '\'' +
                 "LanguageID='" + LanguageID + '\'' +
-                "Options='" + Options + '\'' +
+                "OptionA='" + OptionA + '\'' +
+                "OptionB='" + OptionB + '\'' +
+                "OptionC='" + OptionC + '\'' +
+                "OptionD='" + OptionD + '\'' +
                 "Question='" + Question + '\'' +
                 "Type='" + Type + '\'' +
                 '}';

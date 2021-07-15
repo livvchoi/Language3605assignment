@@ -65,9 +65,9 @@ public class AnswerQuizFragment extends Fragment {
         aqCategory = contentView.findViewById(R.id.tvAnswerQuizCategory);
         aqQuestion = contentView.findViewById(R.id.tvAnswerQuizQuestion);
         aqOptionA = contentView.findViewById(R.id.tvOptionAnswerA);
-        aqOptionA = contentView.findViewById(R.id.tvOptionAnswerA);
-        aqOptionA = contentView.findViewById(R.id.tvOptionAnswerA);
-        aqOptionA = contentView.findViewById(R.id.tvOptionAnswerA);
+        aqOptionB = contentView.findViewById(R.id.tvOptionAnswerB);
+        aqOptionC = contentView.findViewById(R.id.tvOptionAnswerC);
+        aqOptionD = contentView.findViewById(R.id.tvOptionAnswerD);
 
         aqCategoryIcon = contentView.findViewById(R.id.ivAnswerQuizCategory);
 
@@ -106,13 +106,11 @@ public class AnswerQuizFragment extends Fragment {
         aqCategory.setText(aqQuestionObject.getCategory());
         aqQuestion.setText(aqQuestionObject.getQuestion());
 //        aqCategoryIcon
-        List<String> questionOptions = Arrays.asList(aqQuestionObject.getOptions().split(","));
-        aqOptionA.setText(questionOptions.get(0));
+        aqOptionA.setText(aqQuestionObject.getOptionA());
+        aqOptionB.setText(aqQuestionObject.getOptionB());
+        aqOptionC.setText(aqQuestionObject.getOptionC());
+        aqOptionD.setText(aqQuestionObject.getOptionD());
 
-        //cannot retrieve second and third option???
-//        aqOptionB.setText(questionOptions.get(1));
-//        aqOptionC.setText(questionOptions.get(2));
-//        aqOptionD.setText(questionOptions.get(3));
     }
 
     //random Integer array generator

@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileFragment extends Fragment {
-    private Button pSignOut;
+    private Button pSignOut, pAnswerQuizTest;
 
     @Nullable
     @Override
@@ -42,6 +42,16 @@ public class ProfileFragment extends Fragment {
                                 startActivity(intent);
                             }
                         });
+            }
+        });
+
+        pAnswerQuizTest = contentView.findViewById(R.id.btTestAnswerQuiz);
+        pAnswerQuizTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new AnswerQuizFragment());
+                fragmentTransaction.commit();
             }
         });
 

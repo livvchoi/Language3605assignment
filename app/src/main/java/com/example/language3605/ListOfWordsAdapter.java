@@ -1,18 +1,19 @@
 package com.example.language3605;
 
-import android.content.Context;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.content.Context;
+        import android.util.Log;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.RelativeLayout;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+        import androidx.annotation.NonNull;
+        import androidx.appcompat.app.AppCompatActivity;
+        import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
 
 public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.ViewHolder> {
     private static final String TAG = "ListOfWordsAdapter";
@@ -51,6 +52,13 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
 
                 englishPosition = englishList.get(position);
                 indigPosition = indigList.get(position);
+
+
+
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                DisplayFragment myFragment = new DisplayFragment();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
+
             }
         });
 

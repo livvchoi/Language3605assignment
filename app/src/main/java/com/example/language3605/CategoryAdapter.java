@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,7 +32,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     public static String categoryPosition;
 
-    private CategoryClickListener clickListener;
 
     public CategoryAdapter(Context context, ArrayList<String> category) {
         mContext = context;
@@ -38,11 +39,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     }
 
 
-    public CategoryAdapter(Context context, ArrayList<String> category, CategoryClickListener clickListener) {
-        mContext = context;
-        categoriesList = category;
-        this.clickListener = clickListener;
-    }
+//    public CategoryAdapter(Context context, ArrayList<String> category, CategoryClickListener clickListener) {
+//        mContext = context;
+//        categoriesList = category;
+//        this.clickListener = clickListener;
+//    }
 
     @NonNull
     @Override
@@ -56,6 +57,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.categoryType.setText(categoriesList.get(position));
 
+
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +66,20 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
                 categoryPosition = categoriesList.get(position);
 
-                clickListener.onClickData(categoryPosition);
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                ListOfWordsFragment myFragment = new ListOfWordsFragment();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
+
+
+
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                // transaction.replace(R.id.frame_container, fragment, "detail_fragment");
+//
+//                transaction.hide(getActivity().getSupportFragmentManager().findFragmentByTag("main_fragment"));
+//                transaction.add(R.id.frame_container, fragment);
+//                transaction.addToBackStack(null);
+//                transaction.commit();
+
 
             }
         });
@@ -80,10 +95,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         public static TextView categoryType;
         public static RelativeLayout parentLayout;
 
+
         public ViewHolder(View itemView) {
             super(itemView);
             categoryType = itemView.findViewById(R.id.category_tv);
             parentLayout = itemView.findViewById(R.id.parent_layout);
+
+//            itemView.setOnClickListener((v -> {
+//                Intent intent = new intent.
+//            }));
         }
     }
 

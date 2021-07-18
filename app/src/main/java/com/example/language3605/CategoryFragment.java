@@ -3,18 +3,14 @@ package com.example.language3605;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 
 import androidx.annotation.ContentView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -32,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryFragment extends Fragment implements CategoryClickListener{
+
     private static final String TAG = "CategoryFragment";
 
     DatabaseReference catDatabaseReference;
@@ -41,8 +38,6 @@ public class CategoryFragment extends Fragment implements CategoryClickListener{
     private ArrayList<String> mLanguages = new ArrayList<>();
     private ArrayList<String> aCategories = new ArrayList<>();
     private ArrayList<String> bCategories = new ArrayList<>();
-
-    private CategoryAdapter mAdapter;
 
     @Nullable
     @Override

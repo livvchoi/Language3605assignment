@@ -30,7 +30,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     public static String categoryPosition;
 
-    private CategoryClickListener clickListener;
 
     public CategoryAdapter(Context context, ArrayList<String> category) {
         mContext = context;

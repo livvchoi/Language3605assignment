@@ -62,14 +62,14 @@ public class MainActivity extends AppCompatActivity{
 //        mLanguage.add("Warlpiri");
 //        mLocation.add("Northern Territory");
 
-//        showRecyclerView();
+        showRecyclerView();
     }
 
-//    private void showRecyclerView() {
-//        Log.d(TAG, "showRecyclerView: show RecyclerView");
-//        RecyclerView recyclerView = findViewById(R.id.rv_languages);
-//        LanguageAdapter adapter = new LanguageAdapter(this, mLanguage, mLocation);
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//    }
+    private void showRecyclerView() {
+        Log.d(TAG, "showRecyclerView: show RecyclerView");
+        RecyclerView recyclerView = findViewById(R.id.rv_languages);
+        LanguageAdapter adapter = new LanguageAdapter(this, mLanguage, mLocation);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
 }

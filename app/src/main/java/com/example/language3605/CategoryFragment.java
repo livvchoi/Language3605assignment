@@ -27,15 +27,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryFragment extends Fragment {
+public class CategoryFragment extends Fragment implements CategoryClickListener{
 
     private static final String TAG = "CategoryFragment";
 
     DatabaseReference catDatabaseReference;
 
     RecyclerView catRecyclerView;
-
-//    private ItemClickListener clickListener;
 
     private ArrayList<String> mLanguages = new ArrayList<>();
     private ArrayList<String> aCategories = new ArrayList<>();
@@ -85,29 +83,15 @@ public class CategoryFragment extends Fragment {
          }
         });
 
-//        initRecyclerView(contentView);
-
         return contentView;
     }
 
-//    private void initRecyclerView(View view){
-//        RecyclerView recyclerView = view.findViewById(R.id.categoryRecycler);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-//
-//        recyclerView.setLayoutManager(layoutManager);
-//        CategoryAdapter adapter = new CategoryAdapter(getContext(), bCategories, this);
-//        recyclerView.setAdapter(adapter);
-//    }
-//    @Override
-//    public void onItemClick(String value) {
-//        Fragment fragment = ListOfWordsFragment.newInstance(bCategories);
-//
-//        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//
-//        transaction.replace(R.id.fragment_container, fragment, "fragment_listofwords");
-//        transaction.addToBackStack(null);
-//        transaction.commit();
-//    }
+    @Override
+    public void onClickData(String value) {
+        FragmentTransaction fr = getParentFragmentManager().beginTransaction();
+        fr.replace(R.id.fragment_container, new ListOfWordsFragment());
+        fr.commit();
+    }
 }
 
 

@@ -28,32 +28,62 @@ public class ListOfWordsFragment extends Fragment {
 
     RecyclerView wordRecyclerView;
 
-    private ArrayList<String> mWords = new ArrayList<>();
+    // categories
+    private ArrayList<String> categories = new ArrayList<>();
+    //  english translate
+    private ArrayList<String> englishTranslate = new ArrayList<>();
+    //  indig word
+    private ArrayList<String> indigWords = new ArrayList<>();
 
-    List<String> words;
-
+    private ArrayList<String> aWords = new ArrayList<>();
+    private ArrayList<String> bWords = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_listofwords, container, false);
 
-        wordRecyclerView = contentView.findViewById(R.id.categoryRecycler);
+        wordRecyclerView = contentView.findViewById(R.id.recyclerWordList);
         wordRecyclerView.setHasFixedSize(true);
         wordRecyclerView.setLayoutManager((new LinearLayoutManager(contentView.getContext())));
 
         wordDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        ValueEventListener valueEventListener = wordDatabaseReference.child("CategoriesList").addValueEventListener(new ValueEventListener() {
+
+        String categoryClicked = HomeFragment.item + "Dictionary";
+
+        ValueEventListener valueEventListener = wordDatabaseReference.child(categoryClicked).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                    String category = childSnapshot.child("Name").getValue(String.class);
-                    mWords.add(category);
+                    String category = childSnapshot.child("CategoryName").getValue(String.class);
+                    categories.add(category);
+
+                    String aCategory = childSnapshot.child("EnglishWord").getValue(String.class);
+                    englishTranslate.add(aCategory);
+
+                    String bCategory = childSnapshot.child("Word").getValue(String.class);
+                    indigWords.add(bCategory);
+
                 }
 
-//                CategoryAdapter recAdapter = new CategoryAdapter(contentView.getContext(), mWords);
+                System.out.println(categories.size());
 
-//                wordRecyclerView.setAdapter(recAdapter);
+                int i = 0;
+                while(i<categories.size()){
+                    if(CategoryAdapter.categoryPosition.equals(categories.get(i))){
+                        aWords.add(englishTranslate.get(i));
+                        bWords.add(indigWords.get(i));
+                    }
+                    i++;
+                }
+
+                System.out.println(aWords);
+                System.out.println(bWords);
+
+
+
+                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(contentView.getContext(), aWords, bWords);
+                wordRecyclerView.setAdapter(recAdapter);
 
             }
 

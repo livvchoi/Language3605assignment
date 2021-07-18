@@ -3,10 +3,13 @@ package com.example.language3605;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Spinner;
 
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +23,8 @@ public class MainActivity extends AppCompatActivity{
 
     private ArrayList<Query> mLanguage = new ArrayList<com.google.firebase.database.Query>();
     private ArrayList<Query> mLocation = new ArrayList<Query>();
+
+    private CategoryAdapter mAdapter;
 
 
 
@@ -72,4 +77,5 @@ public class MainActivity extends AppCompatActivity{
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
 }

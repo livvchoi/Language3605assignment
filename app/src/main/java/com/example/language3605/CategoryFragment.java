@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 
 import androidx.annotation.ContentView;
 import androidx.annotation.NonNull;
@@ -35,6 +36,9 @@ public class CategoryFragment extends Fragment implements CategoryClickListener{
 
     RecyclerView catRecyclerView;
 
+    //to be deleted
+    Button buttonToQuizFragment;
+
     private ArrayList<String> mLanguages = new ArrayList<>();
     private ArrayList<String> aCategories = new ArrayList<>();
     private ArrayList<String> bCategories = new ArrayList<>();
@@ -43,6 +47,17 @@ public class CategoryFragment extends Fragment implements CategoryClickListener{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_category, container, false);
+
+        //to be deleted
+        buttonToQuizFragment = contentView.findViewById(R.id.button2);
+        buttonToQuizFragment.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                FragmentTransaction qFrag = getParentFragmentManager().beginTransaction();
+                qFrag.replace(R.id.fragment_container,new QuizFragment());
+                qFrag.commit();
+            }
+        });
 
         catRecyclerView = contentView.findViewById(R.id.categoryRecycler);
         catRecyclerView.setHasFixedSize(true);

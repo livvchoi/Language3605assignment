@@ -26,8 +26,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-//public class QuizFragment extends Fragment implements SelectQuizAdapter.ItemClickListener, List<SelectQuizData>
-
 public class QuizFragment extends Fragment {
 
     private static final String TAG = "QuizFragment";
@@ -36,9 +34,6 @@ public class QuizFragment extends Fragment {
     DatabaseReference quizDatabaseReference1;
 
     RecyclerView quizRecyclerView;
-
-    //SelectQuizAdapter adapter;
-    //ArrayList<SelectQuizData> list;
 
     private ArrayList<String> IDList = new ArrayList<>();
 
@@ -55,32 +50,6 @@ public class QuizFragment extends Fragment {
     private ArrayList<Integer> questionCount = new ArrayList<>();
 
 
-//    private ArrayList<String> aCategories = new ArrayList<>();
-//    private ArrayList<String> bCategories = new ArrayList<>();
-//    private SelectQuizAdapter.ItemClickListener clickListener;
-
-    //private QuizViewModel quizViewModel;
-
-//    public QuizFragment() {
-//        // constructor - public
-//    }
-//
-//    public static QuizFragment newInstance() {
-//        QuizFragment fragment = new QuizFragment();
-//        return fragment;
-//    }
-
-
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//        }
-//
-//        //initialize QuizViewModel
-//        //quizViewModel = new ViewModelProvider(this).get(QuizViewModel.class);
-//    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -91,10 +60,6 @@ public class QuizFragment extends Fragment {
         quizRecyclerView.setHasFixedSize(true);
         quizRecyclerView.setLayoutManager(new LinearLayoutManager(contentView.getContext()));
 
-
-//        list = new ArrayList<>();
-//        adapter = new SelectQuizAdapter(list, clickListener);
-//        recyclerView.setAdapter(adapter);
 
         // showing categories in recyclerview
         quizDatabaseReference = FirebaseDatabase.getInstance().getReference();
@@ -117,9 +82,7 @@ public class QuizFragment extends Fragment {
                  }
                  i++;
              }
-//             SelectQuizAdapter recAdapter = new SelectQuizAdapter(contentView.getContext(), newCategoryNames);
-//
-//             quizRecyclerView.setAdapter(recAdapter);
+
          }
 
             @Override
@@ -242,27 +205,6 @@ public class QuizFragment extends Fragment {
 
 
 }
-
-
-                //////////////////////
-//        quizDatabaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-//
-//                    SelectQuizData data = dataSnapshot.getValue(SelectQuizData.class);
-//                    list.add(data);
-//                }
-//                adapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-//
-//            }
-//        });
-
-
 
 //    private void buildListData(){
 //        list.add(new SelectQuizData("Greetings 1", "5 questions", R.drawable.one));

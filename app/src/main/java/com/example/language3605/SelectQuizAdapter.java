@@ -25,7 +25,6 @@ public class SelectQuizAdapter extends RecyclerView.Adapter<SelectQuizAdapter.Vi
     private static final String TAG = "SelectQuizAdapter";
 
     Context mContext;
-    //List<SelectQuizData> list;
     ArrayList<String> categoryQuizList;
     ArrayList<Integer> questionCounter;
 
@@ -39,16 +38,11 @@ public class SelectQuizAdapter extends RecyclerView.Adapter<SelectQuizAdapter.Vi
         questionCounter = counting;
     }
 
-//    public SelectQuizAdapter(Context context, ArrayList<String> category) {
-//        mContext = context;
-//        categoryQuizList = category;
-//    }
+
 
     @NonNull
     @Override
     public SelectQuizAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.quiz_item, parent, false);
-        //return new MyViewHolder(view);
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.quiz_item, parent, false);
         SelectQuizAdapter.ViewHolder holder = new SelectQuizAdapter.ViewHolder(view);
@@ -57,14 +51,6 @@ public class SelectQuizAdapter extends RecyclerView.Adapter<SelectQuizAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-//        holder.quizName.setText(list.get(position).getmQuizName());
-//        holder.numQuestion.setText(list.get(position).getmNumQuestion());
-//        holder.quizIcon.setImageResource(list.get(position).getmQuizIcon());
-
-        //String selectQuizData = QuizList.get(position);
-//        holder.ID.setText(selectQuizData.getID());
-//        holder.CategoryName.setText(selectQuizData.getName());
-
 
         //Click listener
         holder.questionCounting.setText(questionCounter.get(position).toString());
@@ -97,11 +83,6 @@ public class SelectQuizAdapter extends RecyclerView.Adapter<SelectQuizAdapter.Vi
         public ViewHolder(View itemView) {
             super(itemView);
 
-//            quizName = view.findViewById(R.id.tv_quiz_name);
-//            numQuestion = view.findViewById(R.id.tv_num_question);
-//            quizIcon = view.findViewById(R.id.iv_quiz_icon);
-
-            //ID = view.findViewById(R.id.);
             questionCounting = itemView.findViewById(R.id.tv_num_question);
             categoryName = itemView.findViewById(R.id.tv_quiz_name);
             parentLayout = itemView.findViewById(R.id.parent_layout);

@@ -4,23 +4,24 @@
     android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/overlay_dark"
     android:padding="15dp">
 
     <TextView
         android:id="@+id/english_tv"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/indig_tv"
         android:layout_marginTop="6dp"
-        android:text="One"
+        tools:text="One"
+        android:textSize="24sp"
         android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/indig_tv"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Natinga"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        tools:text="Natinga" />
 
 </RelativeLayout>

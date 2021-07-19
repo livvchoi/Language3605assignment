@@ -1,5 +1,5 @@
 package com.example.language3605;
 
-public interface CategoryClickListener {
+public interface WordClickListener {
     void onClickData(String value);
 }

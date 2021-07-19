@@ -36,13 +36,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         categoriesList = category;
     }
 
-
-//    public CategoryAdapter(Context context, ArrayList<String> category, CategoryClickListener clickListener) {
-//        mContext = context;
-//        categoriesList = category;
-//        this.clickListener = clickListener;
-//    }
-
     @NonNull
     @Override
     public CategoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -68,17 +61,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 ListOfWordsFragment myFragment = new ListOfWordsFragment();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
 
-
-
-//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                // transaction.replace(R.id.frame_container, fragment, "detail_fragment");
-//
-//                transaction.hide(getActivity().getSupportFragmentManager().findFragmentByTag("main_fragment"));
-//                transaction.add(R.id.frame_container, fragment);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
-
-
             }
         });
     }
@@ -99,9 +81,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             categoryType = itemView.findViewById(R.id.category_tv);
             parentLayout = itemView.findViewById(R.id.parent_layout);
 
-//            itemView.setOnClickListener((v -> {
-//                Intent intent = new intent.
-//            }));
         }
     }
 }

@@ -25,6 +25,7 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
     public static String englishPosition;
     public static String indigPosition;
 
+//    private ArrayList<Words> mExampleList;
 
     public ListOfWordsAdapter(Context context, ArrayList<String> english, ArrayList<String> indig) {
         mContext = context;
@@ -82,4 +83,9 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
+
+//    public void filterList(ArrayList<Words> filteredList) {
+//        mExampleList = filteredList;
+//        notifyDataSetChanged();
+//    }
 }

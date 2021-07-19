@@ -22,7 +22,7 @@ public class StartQuizFragment extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_start_quiz, container, false);
 
         //code here
-        TextView mQuizDesc = contentView.findViewById(R.id.tv_quiz_desc);
+        TextView mQuizDesc = contentView.findViewById(R.id.tv_time_limit);
 
         //mQuizDesc.setText(mQuizDesc);
         return contentView;

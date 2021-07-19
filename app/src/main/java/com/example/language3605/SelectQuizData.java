@@ -4,6 +4,7 @@ public class SelectQuizData {
     static String ID;
     static String Name;
 
+
     public SelectQuizData(String ID, String name) {
         this.ID = ID;
         Name = name;

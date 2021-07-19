@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModel;
 
 public class QuizViewModel extends ViewModel {
 
+    // data here
+
+
     public QuizViewModel() {
         Log.i("QuizViewModel", "QuizViewModel is created");
     }
@@ -13,5 +16,6 @@ public class QuizViewModel extends ViewModel {
     @Override
     protected void onCleared() {
         super.onCleared();
+        Log.i("QuizViewModel", "View model is destroyed");
     }
 }

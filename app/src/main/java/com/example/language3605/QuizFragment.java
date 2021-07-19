@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,11 +50,20 @@ public class QuizFragment extends Fragment {
 
     private ArrayList<Integer> questionCount = new ArrayList<>();
 
+    private QuizViewModel quizViewModel;
+
+//    //QuizIcon
+//    ImageView ivQuizIcon;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_quiz, container, false);
+
+//        // set icon
+//        ivQuizIcon = contentView.findViewById(R.id.iv_quiz_icon);
+//        ivQuizIcon.setImageResource(R.drawable.one);
 
         //code here
         quizRecyclerView = contentView.findViewById(R.id.rvQuizList);
@@ -148,6 +158,8 @@ public class QuizFragment extends Fragment {
             }
         });
 
+        quizViewModel = new ViewModelProvider(this).get(QuizViewModel.class);
+
 
 //             int j = 0;
 //             while (j < category.size()){
@@ -217,6 +229,8 @@ public class QuizFragment extends Fragment {
 //        list.add(new SelectQuizData("Emotions", "5 questions", R.drawable.one));
 //        list.add(new SelectQuizData("Pronouns", "5 questions", R.drawable.one));
 //    }
+
+
 
 
 //    @Override

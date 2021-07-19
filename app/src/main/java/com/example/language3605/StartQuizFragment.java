@@ -12,6 +12,10 @@ import androidx.fragment.app.Fragment;
 
 public class StartQuizFragment extends Fragment {
 
+    public StartQuizFragment() {
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

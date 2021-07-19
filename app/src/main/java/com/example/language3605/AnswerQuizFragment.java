@@ -1,7 +1,11 @@
 package com.example.language3605;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -37,6 +42,14 @@ public class AnswerQuizFragment extends Fragment {
     private Question aqQuestionObject;
     private Context aqContext;
 
+    private ProgressDialogHelper progressDialogHelper;
+
+    private CountDownTimer aqCountDownTimer;
+    private static final long TOTAL_TIME = 15 * 1000;
+    private long aqTimeTaken;
+    private long aqTotalTimeTaken;
+    private int aqCorrectNum;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -47,7 +60,8 @@ public class AnswerQuizFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_answer_quiz, container, false);
 
         //test switch to quizScore frag
@@ -71,8 +85,14 @@ public class AnswerQuizFragment extends Fragment {
 
         aqCategoryIcon = contentView.findViewById(R.id.ivAnswerQuizCategory);
 
+        //loading prompt
+        this.progressDialogHelper = new ProgressDialogHelper(getContext());
+
         //link to database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        //show loading prompt
+        progressDialogHelper.show("loading", "load question data...");
 
         //retrieve questions (not yet checking question categories)
         reference.child("Questions").addValueEventListener(new ValueEventListener() {
@@ -89,12 +109,46 @@ public class AnswerQuizFragment extends Fragment {
                 aqQuestionObject = aqQuestionList.get(aqRanIndexArr != null ? aqRanIndexArr[aqIndex] : 0);
 
                 setQuestionInfo();
+                progressDialogHelper.dismiss();
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        aqOptionA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAnswerResult(TextUtils.equals(aqQuestionObject.getAnswer(),
+                        aqOptionA.getText().toString().trim()),
+                        aqOptionA.getText().toString().trim(),0);
+            }
+        });
+        aqOptionB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAnswerResult(TextUtils.equals(aqQuestionObject.getAnswer(),
+                        aqOptionB.getText().toString().trim()),
+                        aqOptionB.getText().toString().trim(),1);
+            }
+        });
+        aqOptionC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAnswerResult(TextUtils.equals(aqQuestionObject.getAnswer(),
+                        aqOptionC.getText().toString().trim()),
+                        aqOptionC.getText().toString().trim(),2);
+            }
+        });
+        aqOptionD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAnswerResult(TextUtils.equals(aqQuestionObject.getAnswer(),
+                        aqOptionD.getText().toString().trim()),
+                        aqOptionD.getText().toString().trim(),3);
             }
         });
 
@@ -138,5 +192,53 @@ public class AnswerQuizFragment extends Fragment {
             }
         }
         return result;
+    }
+
+    //correct/incorrect answer prompt
+    private void showAnswerResult(boolean isSuccessful, String userAnswer, int answerIndex) {
+        if (isSuccessful) aqCorrectNum++;
+        View dialogView = LayoutInflater.from(aqContext).inflate(R.layout.dialog_question_result, null);
+        TextView tvCorrect = dialogView.findViewById(R.id.tvDialogueCorrect);
+        TextView tvTimeTaken = dialogView.findViewById(R.id.tvDialogueTimeTaken);
+        TextView tvUserAnswer = dialogView.findViewById(R.id.tvDialogueUserAnswer);
+        TextView tvCorrectAnswer = dialogView.findViewById(R.id.tvDialogueCorrectAnswer);
+        TextView tvNext = dialogView.findViewById(R.id.tvNext);
+        tvCorrect.setText(isSuccessful ? "Correct" : "Incorrect");
+        tvCorrect.setCompoundDrawablesWithIntrinsicBounds(null,null,
+                ContextCompat.getDrawable(aqContext, isSuccessful ? R.mipmap.ic_correct : R.mipmap.ic_error), null);
+//        tvTimeTaken.setText("Time taken: " + );
+        tvUserAnswer.setText("Your Answer: " + userAnswer.toLowerCase());
+        tvCorrectAnswer.setText("Correct Answer: " + aqQuestionObject.getAnswer().toLowerCase());
+        tvNext.setText(aqIndex < 2 ? "Next" : "View Results");
+        AlertDialog dialog = new AlertDialog.Builder(aqContext).setView(dialogView).create();
+        tvNext.setOnClickListener(view1 -> {
+            if (aqIndex == 2) {
+                //pass data to quiz result fragment
+
+            } else if (aqIndex < 2) {
+                aqIndex++;
+                aqQuestionObject = aqQuestionList.get(aqRanIndexArr[aqIndex]);
+                setQuestionInfo();
+
+            }
+            dialog.dismiss();
+        });
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+
+    private String getAnswerNum(int index) {
+        switch (index) {
+            case 0:
+                return "A";
+            case 1:
+                return "B";
+            case 2:
+                return "C";
+            case 3:
+                return "D";
+        }
+        return "A";
     }
 }

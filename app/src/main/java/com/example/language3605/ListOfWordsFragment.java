@@ -109,8 +109,6 @@ public class ListOfWordsFragment extends Fragment {
                 System.out.println(aWords);
                 System.out.println(bWords);
 
-
-
                 ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(contentView.getContext(), aWords, bWords);
                 wordRecyclerView.setAdapter(recAdapter);
 

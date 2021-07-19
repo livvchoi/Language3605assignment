@@ -1,9 +1,17 @@
 package com.example.language3605;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,10 +46,31 @@ public class ListOfWordsFragment extends Fragment {
     private ArrayList<String> aWords = new ArrayList<>();
     private ArrayList<String> bWords = new ArrayList<>();
 
+//    private ArrayList<Words> mExampleList;
+//    private ListOfWordsAdapter mAdapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_listofwords, container, false);
+
+//        EditText editText = contentView.findViewById(R.id.editText);
+//        editText.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                filter(s.toString());
+//            }
+//        });
 
         wordRecyclerView = contentView.findViewById(R.id.recyclerWordList);
         wordRecyclerView.setHasFixedSize(true);
@@ -95,4 +124,17 @@ public class ListOfWordsFragment extends Fragment {
 
         return contentView;
     }
+
+//    private void filter(String text) {
+//        ArrayList<Words> filteredList = new ArrayList<>();
+//
+//        for(Words item : mExampleList) {
+//            if(item.getEnglishWord().toLowerCase().contains(text.toLowerCase())) {
+//                filteredList.add(item);
+//            }
+//        }
+//
+//        mAdapter.filterList(filteredList);
+//    }
+
 }

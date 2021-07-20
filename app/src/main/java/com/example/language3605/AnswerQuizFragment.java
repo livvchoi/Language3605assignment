@@ -97,13 +97,15 @@ public class AnswerQuizFragment extends Fragment {
             @Override
             public void onTick(long millisUntilFinished) {
                 aqTimeTaken = TOTAL_TIME/1000 - millisUntilFinished/1000;
-                aqRemainTime.setText("Remain: " + millisUntilFinished/1000);
+                aqRemainTime.setText("Time remaining: " + millisUntilFinished/1000);
             }
 
             @Override
             public void onFinish() {
                 aqTimeTaken = TOTAL_TIME/1000;
-                aqRemainTime.setText("Finished");
+                aqRemainTime.setText("Time's up!");
+                aqCountDownTimer.cancel();
+                aqTotalTimeTaken += aqTimeTaken;
                 showAnswerResult(false,"No answer", -1);
             }
         };

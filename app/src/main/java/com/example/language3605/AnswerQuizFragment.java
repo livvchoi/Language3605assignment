@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,6 +50,8 @@ public class AnswerQuizFragment extends Fragment {
     private long aqTimeTaken;
     private long aqTotalTimeTaken;
     private int aqCorrectNum;
+
+    private MyViewModel myViewModel;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -140,6 +143,7 @@ public class AnswerQuizFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 aqCountDownTimer.cancel();
+                aqTotalTimeTaken += aqTimeTaken;
                 showAnswerResult(TextUtils.equals(aqQuestionObject.getAnswer(),
                         aqOptionA.getText().toString().trim()),
                         aqOptionA.getText().toString().trim(),0);
@@ -149,6 +153,7 @@ public class AnswerQuizFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 aqCountDownTimer.cancel();
+                aqTotalTimeTaken += aqTimeTaken;
                 showAnswerResult(TextUtils.equals(aqQuestionObject.getAnswer(),
                         aqOptionB.getText().toString().trim()),
                         aqOptionB.getText().toString().trim(),1);
@@ -158,6 +163,7 @@ public class AnswerQuizFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 aqCountDownTimer.cancel();
+                aqTotalTimeTaken += aqTimeTaken;
                 showAnswerResult(TextUtils.equals(aqQuestionObject.getAnswer(),
                         aqOptionC.getText().toString().trim()),
                         aqOptionC.getText().toString().trim(),2);
@@ -167,6 +173,7 @@ public class AnswerQuizFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 aqCountDownTimer.cancel();
+                aqTotalTimeTaken += aqTimeTaken;
                 showAnswerResult(TextUtils.equals(aqQuestionObject.getAnswer(),
                         aqOptionD.getText().toString().trim()),
                         aqOptionD.getText().toString().trim(),3);
@@ -235,6 +242,12 @@ public class AnswerQuizFragment extends Fragment {
         tvNext.setOnClickListener(view1 -> {
             if (aqIndex == 2) {
                 //pass data to quiz result fragment
+
+                //initialise viewModel
+                myViewModel = new ViewModelProvider(getActivity()).get(MyViewModel.class);
+                myViewModel.sendQuizScoreCategory("");
+                myViewModel.sendQuizScoreCorrect(Integer.toString(aqCorrectNum));
+                myViewModel.sendQuizScoreTotalTime(Long.toString(aqTotalTimeTaken));
 
                 //start frag
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();

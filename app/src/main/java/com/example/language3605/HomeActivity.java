@@ -3,6 +3,7 @@ package com.example.language3605;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-
+    private MyViewModel myViewModel;
 
 
     @Override
@@ -36,6 +37,8 @@ public class HomeActivity extends AppCompatActivity {
         //open HomeFragment on initial start up
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
+
+        myViewModel = new ViewModelProvider(this).get(MyViewModel.class);
     }
 
 

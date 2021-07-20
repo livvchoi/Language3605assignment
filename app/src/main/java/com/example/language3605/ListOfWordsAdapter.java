@@ -7,7 +7,6 @@ package com.example.language3605;
         import android.view.ViewGroup;
         import android.widget.RelativeLayout;
         import android.widget.TextView;
-        import android.widget.Toast;
 
         import androidx.annotation.NonNull;
         import androidx.appcompat.app.AppCompatActivity;
@@ -57,7 +56,7 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
 
 
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                DisplayFragment myFragment = new DisplayFragment();
+                DictionaryFragment myFragment = new DictionaryFragment();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
 
             }
@@ -78,7 +77,7 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
 
         public ViewHolder(View itemView) {
             super(itemView);
-            englishWord = itemView.findViewById(R.id.english_tv);
+            englishWord = itemView.findViewById(R.id.tv_english_word);
             indigWord = itemView.findViewById(R.id.indig_tv);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }

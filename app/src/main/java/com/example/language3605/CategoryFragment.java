@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 
 import androidx.annotation.ContentView;
 import androidx.annotation.NonNull;
@@ -27,13 +28,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryFragment extends Fragment implements CategoryClickListener{
+public class CategoryFragment extends Fragment {
 
     private static final String TAG = "CategoryFragment";
 
     DatabaseReference catDatabaseReference;
 
     RecyclerView catRecyclerView;
+
+    // to be deleted
+    Button buttonToQuizFragment;
 
     private ArrayList<String> mLanguages = new ArrayList<>();
     private ArrayList<String> aCategories = new ArrayList<>();
@@ -43,6 +47,17 @@ public class CategoryFragment extends Fragment implements CategoryClickListener{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_category, container, false);
+
+        //to be deleted
+        buttonToQuizFragment = contentView.findViewById(R.id.button2);
+        buttonToQuizFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction qFrag = getParentFragmentManager().beginTransaction();
+                qFrag.replace(R.id.fragment_container, new QuizFragment());
+                qFrag.commit();
+            }
+        });
 
         catRecyclerView = contentView.findViewById(R.id.categoryRecycler);
         catRecyclerView.setHasFixedSize(true);
@@ -75,23 +90,15 @@ public class CategoryFragment extends Fragment implements CategoryClickListener{
              CategoryAdapter recAdapter = new CategoryAdapter(contentView.getContext(), bCategories);
              catRecyclerView.setAdapter(recAdapter);
          }
-
-
          @Override
          public void onCancelled(@NonNull DatabaseError error) {
-
          }
+
         });
 
         return contentView;
     }
 
-    @Override
-    public void onClickData(String value) {
-        FragmentTransaction fr = getParentFragmentManager().beginTransaction();
-        fr.replace(R.id.fragment_container, new ListOfWordsFragment());
-        fr.commit();
-    }
 }
 
 

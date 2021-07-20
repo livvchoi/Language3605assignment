@@ -65,34 +65,34 @@ public class CategoryFragment extends Fragment {
 
         catDatabaseReference = FirebaseDatabase.getInstance().getReference();
         ValueEventListener valueEventListener = catDatabaseReference.child("CategoriesLocale").addValueEventListener(new ValueEventListener() {
-         @Override
-         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-             for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                 String category = childSnapshot.child("Language").getValue(String.class);
-                 mLanguages.add(category);
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                    String category = childSnapshot.child("Language").getValue(String.class);
+                    mLanguages.add(category);
 
-                 String aCategory = childSnapshot.child("Category").getValue(String.class);
-                 aCategories.add(aCategory);
-             }
+                    String aCategory = childSnapshot.child("Category").getValue(String.class);
+                    aCategories.add(aCategory);
+                }
 
-             int i = 0;
+                int i = 0;
 
-             while (i < mLanguages.size()){
-                 if (HomeFragment.item.equals(mLanguages.get(i))){
-                     bCategories.add(aCategories.get(i));
-                 }
-                 i++;
-             }
+                while (i < mLanguages.size()){
+                    if (HomeFragment.item.equals(mLanguages.get(i))){
+                        bCategories.add(aCategories.get(i));
+                    }
+                    i++;
+                }
 
-             System.out.println(bCategories);
+                System.out.println(bCategories);
 
 
-             CategoryAdapter recAdapter = new CategoryAdapter(contentView.getContext(), bCategories);
-             catRecyclerView.setAdapter(recAdapter);
-         }
-         @Override
-         public void onCancelled(@NonNull DatabaseError error) {
-         }
+                CategoryAdapter recAdapter = new CategoryAdapter(contentView.getContext(), bCategories);
+                catRecyclerView.setAdapter(recAdapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
 
         });
 

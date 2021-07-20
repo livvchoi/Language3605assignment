@@ -1,18 +1,19 @@
 package com.example.language3605;
 
-        import android.content.Context;
-        import android.util.Log;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.RelativeLayout;
-        import android.widget.TextView;
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import androidx.annotation.NonNull;
-        import androidx.appcompat.app.AppCompatActivity;
-        import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
 public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.ViewHolder> {
     private static final String TAG = "ListOfWordsAdapter";
@@ -76,7 +77,7 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
 
         public ViewHolder(View itemView) {
             super(itemView);
-            englishWord = itemView.findViewById(R.id.tv_english_word);
+            englishWord = itemView.findViewById(R.id.english_textView);
             indigWord = itemView.findViewById(R.id.indig_tv);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }

@@ -49,7 +49,7 @@ public class AnswerQuizFragment extends Fragment {
     private static final long TOTAL_TIME = 15 * 1000;
     private long aqTimeTaken;
     private long aqTotalTimeTaken;
-    private int aqCorrectNum;
+    private int aqCorrectNum = 0;
 
     private MyViewModel myViewModel;
 
@@ -243,7 +243,6 @@ public class AnswerQuizFragment extends Fragment {
             if (aqIndex == 2) {
                 //pass data to quiz result fragment
 
-                //initialise viewModel
                 myViewModel = new ViewModelProvider(getActivity()).get(MyViewModel.class);
                 myViewModel.sendQuizScoreCategory("");
                 myViewModel.sendQuizScoreCorrect(Integer.toString(aqCorrectNum));

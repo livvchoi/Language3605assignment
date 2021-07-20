@@ -14,9 +14,9 @@ public class MyViewModel extends ViewModel {
     public MyViewModel(SavedStateHandle state) {
         this.state = state;
 
-        quizScoreCorrect = state.getLiveData("Default");
-        quizScoreTotalTime = state.getLiveData("Default");
-        quizScoreCategory = state.getLiveData("Default");
+        quizScoreCorrect = state.getLiveData("1");
+        quizScoreTotalTime = state.getLiveData("2");
+        quizScoreCategory = state.getLiveData("3");
     }
 
     public void sendQuizScoreCorrect(String msg) {

@@ -14,7 +14,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 public class QuizScoreFragment extends Fragment {
-    private TextView tvRetry, tvScore, tvCategory, tvTotalTime;
+    private TextView tvRetry, tvChangeQuiz, tvScore, tvCategory, tvTotalTime;
     private MyViewModel myViewModel;
 
     @Nullable
@@ -24,6 +24,7 @@ public class QuizScoreFragment extends Fragment {
 
         //code here
         tvRetry = contentView.findViewById(R.id.tvQuizScoreRetry);
+        tvChangeQuiz = contentView.findViewById(R.id.tvQuizScoreTakeAnotherQuiz);
         tvScore = contentView.findViewById(R.id.tvQuizScoreScore);
         tvTotalTime = contentView.findViewById(R.id.tvQuizScoreTotalTime);
         tvCategory = contentView.findViewById(R.id.tvQuizScoreCategory);
@@ -37,17 +38,26 @@ public class QuizScoreFragment extends Fragment {
             }
         });
 
+        tvChangeQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new QuizFragment());
+                fragmentTransaction.commit();
+            }
+        });
+
         myViewModel = new ViewModelProvider(getActivity()).get(MyViewModel.class);
         myViewModel.getQuizScoreCorrect().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                tvScore.setText("Score: " + s + "/3");
+            public void onChanged(@Nullable String score) {
+                tvScore.setText("Score: " + score + "/3");
             }
         });
         myViewModel.getQuizScoreTotalTime().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
-            public void onChanged(String s) {
-                tvTotalTime.setText("Total Time: " + s + " sec");
+            public void onChanged(@Nullable String totalTime) {
+                tvTotalTime.setText("Total Time: " + totalTime + " sec");
             }
         });
 

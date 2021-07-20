@@ -131,6 +131,20 @@
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/tvAnswerQuizTimer"
+        style="@style/style_option_question"
+        android:layout_width="317dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="timer"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvOptionC" />
+
     <Button
         android:id="@+id/answerQuizTestButton"
         android:layout_width="wrap_content"

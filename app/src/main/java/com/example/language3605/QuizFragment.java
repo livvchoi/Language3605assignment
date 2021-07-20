@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.jetbrains.annotations.NotNull;
+//import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,97 +66,97 @@ public class QuizFragment extends Fragment {
 //        ivQuizIcon.setImageResource(R.drawable.one);
 
         //code here
-        quizRecyclerView = contentView.findViewById(R.id.rvQuizList);
-        quizRecyclerView.setHasFixedSize(true);
-        quizRecyclerView.setLayoutManager(new LinearLayoutManager(contentView.getContext()));
-
-
-        // showing categories in recyclerview
-        quizDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        ValueEventListener valueEventListener = quizDatabaseReference.child("CategoriesLocale").addValueEventListener(new ValueEventListener() {
-         @Override
-         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-             for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                 String languageName = childSnapshot.child("Language").getValue(String.class);
-                 language.add(languageName);
-
-                 String categoryName = childSnapshot.child("Category").getValue(String.class);
-                 category.add(categoryName);
-             }
-
-             int i = 0;
-
-             while (i < language.size()){
-                 if (HomeFragment.item.equals(language.get(i))) {
-                     newCategoryNames.add(category.get(i));
-                 }
-                 i++;
-             }
-
-         }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });
-
-        quizDatabaseReference1 = FirebaseDatabase.getInstance().getReference();
-        ValueEventListener valueEventListener1 = quizDatabaseReference1.child("Questions").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                    String languageName = childSnapshot.child("Language").getValue(String.class);
-                    quizLanguage.add(languageName);
-
-                    String categoryName = childSnapshot.child("Category").getValue(String.class);
-                    quizCategory.add(categoryName);
-                }
-
-                int j = 0;
-                int a = 0;
-                int b = 0;
-                int c = 0;
-                int d = 0;
-
-
-                while (j < quizLanguage.size()) {
-                    if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Numbers"))) {
-                        a++;
-                    } else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Greetings/Exclamations/Interjections"))){
-                        b++;
-                    }else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Kinship and People"))){
-                        c++;
-                    }else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Emotions"))) {
-                        d++;
-                    }
-                    j++;
-                }
-
-
-                questionCount.add(a);
-                questionCount.add(b);
-                questionCount.add(c);
-                questionCount.add(d);
-
-                SelectQuizAdapter recAdapter = new SelectQuizAdapter(contentView.getContext(), newCategoryNames, questionCount);
-
-                quizRecyclerView.setAdapter(recAdapter);
-
-
-
-                System.out.println("aaaaaaa:" + a);
-                System.out.println("aaaaaaa:" + b);
-                System.out.println("aaaaaaa:" + c);
-                System.out.println("aaaaaaa:" + d);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });
+//        quizRecyclerView = contentView.findViewById(R.id.rvQuizList);
+//        quizRecyclerView.setHasFixedSize(true);
+//        quizRecyclerView.setLayoutManager(new LinearLayoutManager(contentView.getContext()));
+//
+//
+//        // showing categories in recyclerview
+//        quizDatabaseReference = FirebaseDatabase.getInstance().getReference();
+//        ValueEventListener valueEventListener = quizDatabaseReference.child("CategoriesLocale").addValueEventListener(new ValueEventListener() {
+//         @Override
+//         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//             for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+//                 String languageName = childSnapshot.child("Language").getValue(String.class);
+//                 language.add(languageName);
+//
+//                 String categoryName = childSnapshot.child("Category").getValue(String.class);
+//                 category.add(categoryName);
+//             }
+//
+//             int i = 0;
+//
+//             while (i < language.size()){
+//                 if (HomeFragment.item.equals(language.get(i))) {
+//                     newCategoryNames.add(category.get(i));
+//                 }
+//                 i++;
+//             }
+//
+//         }
+//
+//            @Override
+//            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+//
+//            }
+//        });
+//
+//        quizDatabaseReference1 = FirebaseDatabase.getInstance().getReference();
+//        ValueEventListener valueEventListener1 = quizDatabaseReference1.child("Questions").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+//                    String languageName = childSnapshot.child("Language").getValue(String.class);
+//                    quizLanguage.add(languageName);
+//
+//                    String categoryName = childSnapshot.child("Category").getValue(String.class);
+//                    quizCategory.add(categoryName);
+//                }
+//
+//                int j = 0;
+//                int a = 0;
+//                int b = 0;
+//                int c = 0;
+//                int d = 0;
+//
+//
+//                while (j < quizLanguage.size()) {
+//                    if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Numbers"))) {
+//                        a++;
+//                    } else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Greetings/Exclamations/Interjections"))){
+//                        b++;
+//                    }else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Kinship and People"))){
+//                        c++;
+//                    }else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Emotions"))) {
+//                        d++;
+//                    }
+//                    j++;
+//                }
+//
+//
+//                questionCount.add(a);
+//                questionCount.add(b);
+//                questionCount.add(c);
+//                questionCount.add(d);
+//
+//                SelectQuizAdapter recAdapter = new SelectQuizAdapter(contentView.getContext(), newCategoryNames, questionCount);
+//
+//                quizRecyclerView.setAdapter(recAdapter);
+//
+//
+//
+//                System.out.println("aaaaaaa:" + a);
+//                System.out.println("aaaaaaa:" + b);
+//                System.out.println("aaaaaaa:" + c);
+//                System.out.println("aaaaaaa:" + d);
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+//
+//            }
+//        });
 
         quizViewModel = new ViewModelProvider(this).get(QuizViewModel.class);
 

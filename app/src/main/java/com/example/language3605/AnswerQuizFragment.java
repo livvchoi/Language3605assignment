@@ -32,7 +32,7 @@ import java.util.List;
 
 public class AnswerQuizFragment extends Fragment {
     private Button aqTestButton;
-    private TextView aqCategory, aqQuestion, aqOptionA, aqOptionB, aqOptionC, aqOptionD;
+    private TextView aqCategory, aqQuestion, aqOptionA, aqOptionB, aqOptionC, aqOptionD, aqRemainTime;
     private ImageView aqCategoryIcon;
 
     private static final String TAG = "";
@@ -82,11 +82,28 @@ public class AnswerQuizFragment extends Fragment {
         aqOptionB = contentView.findViewById(R.id.tvOptionAnswerB);
         aqOptionC = contentView.findViewById(R.id.tvOptionAnswerC);
         aqOptionD = contentView.findViewById(R.id.tvOptionAnswerD);
+        aqRemainTime = contentView.findViewById(R.id.tvAnswerQuizTimer);
 
         aqCategoryIcon = contentView.findViewById(R.id.ivAnswerQuizCategory);
 
         //loading prompt
         this.progressDialogHelper = new ProgressDialogHelper(getContext());
+
+        //timer
+        aqCountDownTimer = new CountDownTimer(TOTAL_TIME, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                aqTimeTaken = TOTAL_TIME/1000 - millisUntilFinished/1000;
+                aqRemainTime.setText("Remain: " + millisUntilFinished/1000);
+            }
+
+            @Override
+            public void onFinish() {
+                aqTimeTaken = TOTAL_TIME/1000;
+                aqRemainTime.setText("Finished");
+                showAnswerResult(false,"No answer", -1);
+            }
+        };
 
         //link to database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
@@ -110,7 +127,7 @@ public class AnswerQuizFragment extends Fragment {
 
                 setQuestionInfo();
                 progressDialogHelper.dismiss();
-
+                aqCountDownTimer.start();
             }
 
             @Override
@@ -122,6 +139,7 @@ public class AnswerQuizFragment extends Fragment {
         aqOptionA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                aqCountDownTimer.cancel();
                 showAnswerResult(TextUtils.equals(aqQuestionObject.getAnswer(),
                         aqOptionA.getText().toString().trim()),
                         aqOptionA.getText().toString().trim(),0);
@@ -130,6 +148,7 @@ public class AnswerQuizFragment extends Fragment {
         aqOptionB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                aqCountDownTimer.cancel();
                 showAnswerResult(TextUtils.equals(aqQuestionObject.getAnswer(),
                         aqOptionB.getText().toString().trim()),
                         aqOptionB.getText().toString().trim(),1);
@@ -138,6 +157,7 @@ public class AnswerQuizFragment extends Fragment {
         aqOptionC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                aqCountDownTimer.cancel();
                 showAnswerResult(TextUtils.equals(aqQuestionObject.getAnswer(),
                         aqOptionC.getText().toString().trim()),
                         aqOptionC.getText().toString().trim(),2);
@@ -146,6 +166,7 @@ public class AnswerQuizFragment extends Fragment {
         aqOptionD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                aqCountDownTimer.cancel();
                 showAnswerResult(TextUtils.equals(aqQuestionObject.getAnswer(),
                         aqOptionD.getText().toString().trim()),
                         aqOptionD.getText().toString().trim(),3);
@@ -206,7 +227,7 @@ public class AnswerQuizFragment extends Fragment {
         tvCorrect.setText(isSuccessful ? "Correct" : "Incorrect");
         tvCorrect.setCompoundDrawablesWithIntrinsicBounds(null,null,
                 ContextCompat.getDrawable(aqContext, isSuccessful ? R.mipmap.ic_correct : R.mipmap.ic_error), null);
-//        tvTimeTaken.setText("Time taken: " + );
+        tvTimeTaken.setText("Time taken: " + aqTimeTaken + " sec");
         tvUserAnswer.setText("Your Answer: " + userAnswer.toLowerCase());
         tvCorrectAnswer.setText("Correct Answer: " + aqQuestionObject.getAnswer().toLowerCase());
         tvNext.setText(aqIndex < 2 ? "Next" : "View Results");
@@ -215,11 +236,16 @@ public class AnswerQuizFragment extends Fragment {
             if (aqIndex == 2) {
                 //pass data to quiz result fragment
 
+                //start frag
+                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new QuizScoreFragment());
+                fragmentTransaction.commit();
+
             } else if (aqIndex < 2) {
                 aqIndex++;
                 aqQuestionObject = aqQuestionList.get(aqRanIndexArr[aqIndex]);
                 setQuestionInfo();
-
+                aqCountDownTimer.start();
             }
             dialog.dismiss();
         });

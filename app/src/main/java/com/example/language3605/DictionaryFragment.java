@@ -57,22 +57,21 @@ public class DictionaryFragment extends Fragment {
         showEnglish = contentView.findViewById(R.id.tvEngWord);
         showIndig = contentView.findViewById(R.id.tvIndigWord);
         showImage = contentView.findViewById(R.id.wordImage);
-
+        showDefinition = contentView.findViewById(R.id.tvDefinition);
+        showRating = contentView.findViewById(R.id.tvRating);
 
         //Firebase storage initialization
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-        //
-        displayDatabaseReference = FirebaseDatabase.getInstance().getReference();
-
+        //Specify which language dictionary to reference in Firebase Realtime Database
         String languageClicked = HomeFragment.item + "Dictionary";
+        displayDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
         ValueEventListener valueEventListener = displayDatabaseReference.child(languageClicked).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //pull from Dictionary entries from Firebase
-                //TODO: specify which dictionary to pull from
                 for (DataSnapshot dictSnapshot : dataSnapshot.getChildren()) {
                     Dictionary dictEntry = dictSnapshot.getValue(Dictionary.class);
                     dictList.add(dictEntry);

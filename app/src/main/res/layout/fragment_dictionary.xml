@@ -6,36 +6,73 @@
     android:layout_height="match_parent"
     android:background="@drawable/overlay_light">
 
-    <TextView
-        android:id="@+id/indig_textView"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvIndig Word"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:text="Natinga"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#FFFFFF"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        app:cardBackgroundColor="#bfffffff"
+        app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wordImage" />
+        app:layout_constraintTop_toBottomOf="@+id/wordImage">
 
-    <TextView
-        android:id="@+id/english_textView"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tvIndigWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Natinga"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvEnglish"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:text="One"
-        android:textColor="#FFFFFF"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        app:cardBackgroundColor="#bfffffff"
+        app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/indig_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/cvIndig Word">
+
+        <TextView
+            android:id="@+id/tvEngWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginRight="100dp"
+            android:text="One"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/tvDefinition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center|center_horizontal"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
+            android:text="Definition" />
+    </androidx.cardview.widget.CardView>
 
     <ImageView
         android:id="@+id/wordImage"
@@ -49,4 +86,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivDownvote"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRating"
+        app:layout_constraintEnd_toStartOf="@+id/tvRating"
+        app:layout_constraintTop_toTopOf="@+id/tvRating"
+        app:srcCompat="@drawable/down_chevron" />
+
+    <ImageView
+        android:id="@+id/ivUpvote"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRating"
+        app:layout_constraintStart_toEndOf="@+id/tvRating"
+        app:layout_constraintTop_toTopOf="@+id/tvRating"
+        app:srcCompat="@drawable/up_chevron" />
+
+    <TextView
+        android:id="@+id/tvRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvEnglish" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

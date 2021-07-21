@@ -55,8 +55,8 @@ public class DictionaryFragment extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_dictionary, container, false);
 
         //Connect to XML
-        showEnglish = contentView.findViewById(R.id.english_textView);
-        showIndig = contentView.findViewById(R.id.indig_textView);
+        showEnglish = contentView.findViewById(R.id.tvEngWord);
+        showIndig = contentView.findViewById(R.id.tvIndigWord);
         showImage = contentView.findViewById(R.id.wordImage);
 
         //Firebase storage initialization

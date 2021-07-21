@@ -1,17 +1,13 @@
 package com.example.language3605;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 //public class QuizFragment extends Fragment implements SelectQuizAdapter.ItemClickListener, List<SelectQuizData>
 
@@ -87,7 +82,7 @@ public class QuizFragment extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_quiz, container, false);
 
         //code here
-        quizRecyclerView = contentView.findViewById(R.id.rvQuizList);
+        //quizRecyclerView = contentView.findViewById(R.id.rvQuizList);
         quizRecyclerView.setHasFixedSize(true);
         quizRecyclerView.setLayoutManager(new LinearLayoutManager(contentView.getContext()));
 

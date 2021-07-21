@@ -30,8 +30,7 @@ public class DictionaryFragment extends Fragment {
     FirebaseStorage storage;
     StorageReference storageRef, imageRef;
 
-    private TextView showEnglish, showIndig;
-
+    private TextView showEnglish, showIndig, showDefinition, showRating;
     private ImageView showImage;
 
     //use the dictionary object
@@ -58,6 +57,7 @@ public class DictionaryFragment extends Fragment {
         showEnglish = contentView.findViewById(R.id.tvEngWord);
         showIndig = contentView.findViewById(R.id.tvIndigWord);
         showImage = contentView.findViewById(R.id.wordImage);
+
 
         //Firebase storage initialization
         storage = FirebaseStorage.getInstance();

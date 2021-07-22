@@ -50,14 +50,20 @@ public class QuizScoreFragment extends Fragment {
         myViewModel = new ViewModelProvider(getActivity()).get(MyViewModel.class);
         myViewModel.getQuizScoreCorrect().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
-            public void onChanged(@Nullable String score) {
-                tvScore.setText("Score: " + score + "/3");
+            public void onChanged(@Nullable String s) {
+                tvScore.setText("Score: " + s + "/3");
             }
         });
         myViewModel.getQuizScoreTotalTime().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
-            public void onChanged(@Nullable String totalTime) {
-                tvTotalTime.setText("Total Time: " + totalTime + " sec");
+            public void onChanged(@Nullable String s) {
+                tvTotalTime.setText("Total Time: " + s + " sec");
+            }
+        });
+        myViewModel.getQuizScoreCategory().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                tvCategory.setText(s);
             }
         });
 

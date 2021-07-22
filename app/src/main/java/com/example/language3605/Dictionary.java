@@ -1,13 +1,15 @@
 package com.example.language3605;
 
 
+import java.util.List;
+
 public class Dictionary {
 
     private Integer categoryID;
     private String categoryName;
     private String englishWord;
     private String entryDate;
-    private Integer id;
+    private String id;
     private String image;
     private String language;
     private Integer languageID;
@@ -16,7 +18,7 @@ public class Dictionary {
     private String word;
     private Integer wordID;
 
-    public Dictionary(Integer categoryID, String categoryName, String englishWord, String entryDate, Integer id, String image, String language, Integer languageID, Double rating, String userID, String word, Integer wordID) {
+    public Dictionary(Integer categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, Integer languageID, Double rating, String userID, String word, Integer wordID) {
         this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.englishWord = englishWord;
@@ -63,11 +65,11 @@ public class Dictionary {
         this.entryDate = entryDate;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -127,64 +129,15 @@ public class Dictionary {
         this.wordID = wordID;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Dictionary.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("categoryID");
-        sb.append('=');
-        sb.append(((this.categoryID == null)?"<null>":this.categoryID));
-        sb.append(',');
-        sb.append("categoryName");
-        sb.append('=');
-        sb.append(((this.categoryName == null)?"<null>":this.categoryName));
-        sb.append(',');
-        sb.append("englishWord");
-        sb.append('=');
-        sb.append(((this.englishWord == null)?"<null>":this.englishWord));
-        sb.append(',');
-        sb.append("entryDate");
-        sb.append('=');
-        sb.append(((this.entryDate == null)?"<null>":this.entryDate));
-        sb.append(',');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
-        sb.append(',');
-        sb.append("image");
-        sb.append('=');
-        sb.append(((this.image == null)?"<null>":this.image));
-        sb.append(',');
-        sb.append("language");
-        sb.append('=');
-        sb.append(((this.language == null)?"<null>":this.language));
-        sb.append(',');
-        sb.append("languageID");
-        sb.append('=');
-        sb.append(((this.languageID == null)?"<null>":this.languageID));
-        sb.append(',');
-        sb.append("rating");
-        sb.append('=');
-        sb.append(((this.rating == null)?"<null>":this.rating));
-        sb.append(',');
-        sb.append("userID");
-        sb.append('=');
-        sb.append(((this.userID == null)?"<null>":this.userID));
-        sb.append(',');
-        sb.append("word");
-        sb.append('=');
-        sb.append(((this.word == null)?"<null>":this.word));
-        sb.append(',');
-        sb.append("wordID");
-        sb.append('=');
-        sb.append(((this.wordID == null)?"<null>":this.wordID));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
+    //after pulling the list, get the particular word in the dictionary
+    public static Dictionary getDictionaryEntry (List<Dictionary> dictionary, String word){
+        for (final Dictionary entries: dictionary){
+            if (entries.getWord().equals(word)){
+                return entries;
+            }
         }
-        return sb.toString();
+        //return last word in the dictionary if not found
+        return dictionary.get(dictionary.size()-1);
     }
 
 }

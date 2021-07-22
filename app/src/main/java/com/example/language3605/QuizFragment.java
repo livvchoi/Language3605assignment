@@ -39,7 +39,6 @@ public class QuizFragment extends Fragment {
 
     RecyclerView quizRecyclerView;
 
-    private QuizViewModel mQuizViewModel;
 
     //SelectQuizAdapter adapter;
     //ArrayList<SelectQuizData> list;

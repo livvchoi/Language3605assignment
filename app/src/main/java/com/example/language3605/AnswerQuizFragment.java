@@ -278,4 +278,11 @@ public class AnswerQuizFragment extends Fragment {
         }
         return "A";
     }
+
+    //cancel timer when changing to another fragment
+    @Override
+    public void onPause() {
+        super.onPause();
+        aqCountDownTimer.cancel();
+    }
 }

@@ -33,17 +33,6 @@ public class StartQuizAdapter extends RecyclerView.Adapter<StartQuizAdapter.View
     @Override
     public void onBindViewHolder(@NonNull @NotNull StartQuizAdapter.ViewHolder holder, int position) {
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-//                AppCompatActivity activity = (AppCompatActivity) v.getContext();
-//                StartQuizFragment goFragment = new StartQuizFragment(categoryName, questionCount);
-//                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, goFragment).addToBackStack(null).commit();
-            }
-        });
-
-
     }
 
     @Override

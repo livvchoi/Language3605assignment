@@ -33,6 +33,7 @@ public class SelectQuizAdapter extends RecyclerView.Adapter<SelectQuizAdapter.Vi
     public static String quizPosition;
     public static Integer countPosition;
 
+
     public SelectQuizAdapter(Context context, ArrayList<String> category, ArrayList<Integer> counting) {
         mContext = context;
         categoryQuizList = category;

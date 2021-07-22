@@ -32,8 +32,9 @@ public class QuizScoreFragment extends Fragment {
         tvRetry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String testCategoryName = "Body Parts";
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new AnswerQuizFragment());
+                fragmentTransaction.replace(R.id.fragment_container, new AnswerQuizFragment(testCategoryName));
                 fragmentTransaction.commit();
             }
         });

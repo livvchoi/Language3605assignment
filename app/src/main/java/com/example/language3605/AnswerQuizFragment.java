@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,10 @@ public class AnswerQuizFragment extends Fragment {
     private int aqCorrectNum = 0;
 
     private MyViewModel myViewModel;
+
+    AnswerQuizFragment(String aqQuizCategory){
+        this.aqQuizCategory = aqQuizCategory;
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -119,6 +124,7 @@ public class AnswerQuizFragment extends Fragment {
         reference.child("Questions").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.d(TAG, "onDataChange: " + aqQuizCategory);
                 for (DataSnapshot questionSnapshot : snapshot.getChildren()) {
                     Question question = questionSnapshot.getValue(Question.class);
                     if (aqQuizCategory.equals(question.getCategory())

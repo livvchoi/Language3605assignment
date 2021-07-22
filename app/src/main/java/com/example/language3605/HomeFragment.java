@@ -1,6 +1,5 @@
 package com.example.language3605;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,12 +37,20 @@ public class HomeFragment extends Fragment {
 
     public static String item;
 
+    private ProgressDialogHelper progressDialogHelper;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
         View contentView = inflater.inflate(R.layout.fragment_home, container, false);
+
+        //loading prompt
+        this.progressDialogHelper = new ProgressDialogHelper(getContext());
+
+        //show loading prompt
+        progressDialogHelper.show("loading", "load languages...");
 
         //switch from fragment into activity (not useful other than to log out)
         hmSwitchTest = contentView.findViewById(R.id.btFragmentSwitch);
@@ -101,6 +108,8 @@ public class HomeFragment extends Fragment {
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 
                 languageSpinner.setAdapter(arrayAdapter);
+
+                progressDialogHelper.dismiss();
 
             }
 

@@ -1,24 +1,49 @@
 package com.example.language3605;
 
 
+import com.google.firebase.database.PropertyName;
+
 import java.util.List;
 
 public class Dictionary {
 
-    private Integer categoryID;
-    private String categoryName;
-    private String englishWord;
-    private String entryDate;
-    private String id;
-    private String image;
-    private String language;
-    private Integer languageID;
-    private Double rating;
-    private String userID;
-    private String word;
-    private Integer wordID;
+    @PropertyName("CategoryID")
+    private String categoryID;
 
-    public Dictionary(Integer categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, Integer languageID, Double rating, String userID, String word, Integer wordID) {
+    @PropertyName("CategoryName")
+    private String categoryName;
+
+    @PropertyName("EnglishWord")
+    private String englishWord;
+
+    @PropertyName("EntryDate")
+    private String entryDate;
+
+    @PropertyName("ID")
+    private String id;
+
+    @PropertyName("Image")
+    private String image;
+
+    @PropertyName("Language")
+    private String language;
+
+    @PropertyName("LanguageID")
+    private String languageID;
+
+    @PropertyName("Rating")
+    private Integer rating;
+
+    @PropertyName("UserID")
+    private String userID;
+
+    @PropertyName("Word")
+    private String word;
+
+    @PropertyName("WordID")
+    private String wordID;
+
+    public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID) {
         this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.englishWord = englishWord;
@@ -33,11 +58,15 @@ public class Dictionary {
         this.wordID = wordID;
     }
 
-    public Integer getCategoryID() {
+    public Dictionary(){
+        System.out.println("default constructor");
+    }
+
+    public String getCategoryID() {
         return categoryID;
     }
 
-    public void setCategoryID(Integer categoryID) {
+    public void setCategoryID(String categoryID) {
         this.categoryID = categoryID;
     }
 
@@ -89,19 +118,19 @@ public class Dictionary {
         this.language = language;
     }
 
-    public Integer getLanguageID() {
+    public String getLanguageID() {
         return languageID;
     }
 
-    public void setLanguageID(Integer languageID) {
+    public void setLanguageID(String languageID) {
         this.languageID = languageID;
     }
 
-    public Double getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 
@@ -121,23 +150,35 @@ public class Dictionary {
         this.word = word;
     }
 
-    public Integer getWordID() {
+    public String getWordID() {
         return wordID;
     }
 
-    public void setWordID(Integer wordID) {
+    public void setWordID(String wordID) {
         this.wordID = wordID;
     }
 
-    //after pulling the list, get the particular word in the dictionary
-    public static Dictionary getDictionaryEntry (List<Dictionary> dictionary, String word){
-        for (final Dictionary entries: dictionary){
-            if (entries.getWord().equals(word)){
+    //Get a particular word in the dictionary
+    public static Dictionary getDictionaryEntry(List<Dictionary> dictionary, String word) {
+        for (final Dictionary entries : dictionary) {
+            if (entries.getWord().equals(word)) {
                 return entries;
             }
         }
         //return last word in the dictionary if not found
-        return dictionary.get(dictionary.size()-1);
+        return dictionary.get(dictionary.size() - 1);
     }
 
+    //get a list of words which match with a category
+    public static List<Dictionary> getCategoriesList(List<Dictionary> dictionary, String categoryName) {
+        List<Dictionary>wordsInCategoryList = null;
+        for (final Dictionary entries : dictionary) {
+            if (entries.getCategoryName().equals(categoryName)) {
+                wordsInCategoryList.add(entries);
+            }
+        }
+        return wordsInCategoryList;
+
+    }
 }
+

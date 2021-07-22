@@ -82,7 +82,7 @@ public class QuizFragment extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_quiz, container, false);
 
         //code here
-        //quizRecyclerView = contentView.findViewById(R.id.rvQuizList);
+        quizRecyclerView = contentView.findViewById(R.id.rvQuizList);
         quizRecyclerView.setHasFixedSize(true);
         quizRecyclerView.setLayoutManager(new LinearLayoutManager(contentView.getContext()));
 

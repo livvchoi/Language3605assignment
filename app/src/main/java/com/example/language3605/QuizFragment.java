@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +39,8 @@ public class QuizFragment extends Fragment {
 
     RecyclerView quizRecyclerView;
 
+    private QuizViewModel mQuizViewModel;
+
     //SelectQuizAdapter adapter;
     //ArrayList<SelectQuizData> list;
 
@@ -55,30 +59,11 @@ public class QuizFragment extends Fragment {
     private ArrayList<Integer> questionCount = new ArrayList<>();
 
 
-//    private ArrayList<String> aCategories = new ArrayList<>();
-//    private ArrayList<String> bCategories = new ArrayList<>();
-//    private SelectQuizAdapter.ItemClickListener clickListener;
-
-    //private QuizViewModel quizViewModel;
-
-//    public QuizFragment() {
-//        // constructor - public
-//    }
-//
-//    public static QuizFragment newInstance() {
-//        QuizFragment fragment = new QuizFragment();
-//        return fragment;
-//    }
-
-
 //    @Override
 //    public void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
 //        if (getArguments() != null) {
 //        }
-//
-//        //initialize QuizViewModel
-//        //quizViewModel = new ViewModelProvider(this).get(QuizViewModel.class);
 //    }
 
     @Nullable
@@ -87,16 +72,24 @@ public class QuizFragment extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_quiz, container, false);
 
         //code here
+
+//        //instantiate ViewModel
+//        mQuizViewModel = ViewModelProviders.of(this).get(QuizViewModel.class);
+//
+//
+//        mQuizViewModel.getQuizData().observe(this, new Observer<List<SelectQuizData>>() {
+//            @Override
+//            public void onChanged(List<SelectQuizData> selectQuizData) {
+//                mAdapter.notify
+//            }
+//        });
+//
         quizRecyclerView = contentView.findViewById(R.id.rvQuizList);
         quizRecyclerView.setHasFixedSize(true);
         quizRecyclerView.setLayoutManager(new LinearLayoutManager(contentView.getContext()));
 
-
-//        list = new ArrayList<>();
-//        adapter = new SelectQuizAdapter(list, clickListener);
-//        recyclerView.setAdapter(adapter);
-
-        // showing categories in recyclerview
+        //comment out 93-240
+//        // showing categories in recyclerview
         quizDatabaseReference = FirebaseDatabase.getInstance().getReference();
         ValueEventListener valueEventListener = quizDatabaseReference.child("CategoriesLocale").addValueEventListener(new ValueEventListener() {
             @Override
@@ -246,11 +239,11 @@ public class QuizFragment extends Fragment {
         return contentView;
     }
 
+    // comment out from 93-240 and move to the viewmodel class?
 
 }
 
 
-//////////////////////
 //        quizDatabaseReference.addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -268,19 +261,6 @@ public class QuizFragment extends Fragment {
 //            }
 //        });
 
-
-
-//    private void buildListData(){
-//        list.add(new SelectQuizData("Greetings 1", "5 questions", R.drawable.one));
-//        list.add(new SelectQuizData("Number", "5 questions", R.drawable.one));
-//        list.add(new SelectQuizData("Animals", "5 questions", R.drawable.one));
-//        list.add(new SelectQuizData("Body Parts", "5 questions", R.drawable.one));
-//        list.add(new SelectQuizData("Kinship", "5 questions", R.drawable.one));
-//        list.add(new SelectQuizData("Weather", "5 questions", R.drawable.one));
-//        list.add(new SelectQuizData("Insects", "5 questions", R.drawable.one));
-//        list.add(new SelectQuizData("Emotions", "5 questions", R.drawable.one));
-//        list.add(new SelectQuizData("Pronouns", "5 questions", R.drawable.one));
-//    }
 
 
 //    @Override

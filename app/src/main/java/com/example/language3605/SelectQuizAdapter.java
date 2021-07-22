@@ -76,10 +76,16 @@ public class SelectQuizAdapter extends RecyclerView.Adapter<SelectQuizAdapter.Vi
                 Log.d(TAG, "onClick: clicked on: " + categoryQuizList.get(position));
                 //clickListener.onItemClick(QuizList.get((position)));
                 quizPosition = categoryQuizList.get(position);
+                Log.d(TAG, "quizPosition: " + quizPosition);
+
                 countPosition = questionCounter.get(position);
+                Log.d(TAG, "countPosition: " + countPosition);
+
+                String categoryName = quizPosition;
+                Integer questionCount = countPosition;
 
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                StartQuizFragment goFragment = new StartQuizFragment();
+                StartQuizFragment goFragment = new StartQuizFragment(categoryName, questionCount);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, goFragment).addToBackStack(null).commit();
             }
         });

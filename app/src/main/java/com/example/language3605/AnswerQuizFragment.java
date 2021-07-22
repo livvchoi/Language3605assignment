@@ -39,6 +39,8 @@ public class AnswerQuizFragment extends Fragment {
     private int aqIndex;
     private Question aqQuestionObject;
     private Context aqContext;
+    private String aqQuizLanguage = "Tiwi";
+    private String aqQuizCategory = "Numbers";
 
     private ProgressDialogHelper progressDialogHelper;
 
@@ -119,11 +121,13 @@ public class AnswerQuizFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot questionSnapshot : snapshot.getChildren()) {
                     Question question = questionSnapshot.getValue(Question.class);
-                    aqQuestionList.add(question);
+                    if (aqQuizCategory.equals(question.getCategory())
+                            && aqQuizLanguage.equals(question.getLanguage())) {
+                        aqQuestionList.add(question);
+                    }
                 }
 
                 aqRanIndexArr = randomNumber(0, aqQuestionList.size(), 3);
-//                Log.i(TAG, "aqRanIndexArr==" + Arrays.toString(aqRanIndexArr));
 
                 aqQuestionObject = aqQuestionList.get(aqRanIndexArr != null ? aqRanIndexArr[aqIndex] : 0);
 
@@ -243,7 +247,7 @@ public class AnswerQuizFragment extends Fragment {
                 //pass data to quiz result fragment
 
                 myViewModel = new ViewModelProvider(getActivity()).get(MyViewModel.class);
-                myViewModel.sendQuizScoreCategory("");
+                myViewModel.sendQuizScoreCategory(aqQuizCategory);
                 myViewModel.sendQuizScoreCorrect(Integer.toString(aqCorrectNum));
                 myViewModel.sendQuizScoreTotalTime(Long.toString(aqTotalTimeTaken));
 
@@ -277,5 +281,12 @@ public class AnswerQuizFragment extends Fragment {
                 return "D";
         }
         return "A";
+    }
+
+    //cancel timer when changing to another fragment
+    @Override
+    public void onPause() {
+        super.onPause();
+        aqCountDownTimer.cancel();
     }
 }

@@ -1,17 +1,9 @@
 package com.example.language3605;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
-import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,9 +24,16 @@ public class ListOfWordsFragment extends Fragment {
 
     private static final String TAG = "ListOfWordsFragment";
 
+    String category = "Numbers";
+
+
     DatabaseReference wordDatabaseReference;
 
     RecyclerView wordRecyclerView;
+    private List<Dictionary> mDictionary = new ArrayList<>();
+    private List<Dictionary> mCategoryDictionary = new ArrayList<>();
+    private ListOfWordsAdapter.Listener mListener;
+
 
     // categories
     private ArrayList<String> categories = new ArrayList<>();
@@ -54,50 +53,34 @@ public class ListOfWordsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_listofwords, container, false);
 
-//        EditText editText = contentView.findViewById(R.id.editText);
-//        editText.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                filter(s.toString());
-//            }
-//        });
+        Bundle bundle = this.getArguments();
+        if (bundle != null){
+            category = bundle.get("category").toString();
+        }
 
+        //Instantiate
         wordRecyclerView = contentView.findViewById(R.id.recyclerWordList);
         wordRecyclerView.setHasFixedSize(true);
         wordRecyclerView.setLayoutManager((new LinearLayoutManager(contentView.getContext())));
 
+        //Select correct dictionary branch from Firebase
         wordDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        String languageClicked = HomeFragment.item + "Dictionary";
 
-        String categoryClicked = HomeFragment.item + "Dictionary";
-
-        ValueEventListener valueEventListener = wordDatabaseReference.child(categoryClicked).addValueEventListener(new ValueEventListener() {
+        ValueEventListener valueEventListener = wordDatabaseReference.child(languageClicked).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                    String category = childSnapshot.child("CategoryName").getValue(String.class);
-                    categories.add(category);
-
-                    String aCategory = childSnapshot.child("EnglishWord").getValue(String.class);
-                    englishTranslate.add(aCategory);
-
-                    String bCategory = childSnapshot.child("Word").getValue(String.class);
-                    indigWords.add(bCategory);
-
+                    Dictionary entry = childSnapshot.getValue(Dictionary.class);
+                    mDictionary.add(entry);
                 }
+                //check that the number of words in dictionary matches number of entries
+                System.out.println(mDictionary.size());
 
+                mCategoryDictionary.addAll(Dictionary.getCategoriesList(mDictionary, category));
                 System.out.println(categories.size());
 
-                int i = 0;
+              /*  int i = 0;
                 while(i<categories.size()){
                     if(CategoryAdapter.categoryPosition.equals(categories.get(i))){
                         aWords.add(englishTranslate.get(i));
@@ -107,9 +90,10 @@ public class ListOfWordsFragment extends Fragment {
                 }
 
                 System.out.println(aWords);
-                System.out.println(bWords);
+                System.out.println(bWords);*/
 
-                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(contentView.getContext(), aWords, bWords);
+//                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(contentView.getContext(), aWords, bWords);
+                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(mDictionary,mCategoryDictionary, mListener);
                 wordRecyclerView.setAdapter(recAdapter);
 
             }

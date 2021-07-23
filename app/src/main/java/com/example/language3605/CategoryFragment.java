@@ -46,7 +46,7 @@ public class CategoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View contentView = inflater.inflate(R.layout.fragment_category, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_categorylist, container, false);
 
         //to be deleted
         buttonToQuizFragment = contentView.findViewById(R.id.button2);

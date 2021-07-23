@@ -7,7 +7,7 @@
     android:background="@drawable/overlay_light">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/tvSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -18,10 +18,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerWordList"
-        android:layout_width="395dp"
-        android:layout_height="616dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

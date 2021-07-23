@@ -1,86 +1,108 @@
 package com.example.language3605;
 
-import android.content.Context;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.squareup.picasso.Picasso;
 
-public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.ViewHolder> {
+import java.util.List;
+
+public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.WordListViewHolder> {
     private static final String TAG = "ListOfWordsAdapter";
 
-    public static ArrayList<String> englishList;
-    public static ArrayList<String> indigList;
-    public static Context mContext;
+    private List<Dictionary> mDictionary;
+    private List<Dictionary> mCategoryDictionary;
+    private Listener mListener;
+    //public static Context mContext;
+    public static String wordPosition;
+    // public static String indigPosition;
 
-    public static String englishPosition;
-    public static String indigPosition;
-
-
-    public ListOfWordsAdapter(Context context, ArrayList<String> english, ArrayList<String> indig) {
-        mContext = context;
-        englishList = english;
-        indigList = indig;
+    public ListOfWordsAdapter(List<Dictionary> dictionary, Listener listener) {
+        //mContext = context;
+        mDictionary = dictionary;
+        mListener = listener;
     }
 
+    public ListOfWordsAdapter(List<Dictionary> mDictionary, List<Dictionary> mCategoryDictionary, Listener mListener) {
+        this.mDictionary = mDictionary;
+        this.mCategoryDictionary = mCategoryDictionary;
+        this.mListener = mListener;
+    }
+
+    public ListOfWordsAdapter(List<Dictionary> dictionary) {
+        mDictionary = dictionary;
+
+    }
+
+    //TODO: Add filtered list functionality
+
+    public interface Listener{
+        void onClick(View view, String id);
+    }
     @NonNull
     @Override
-    public ListOfWordsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public WordListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wordlist_item, parent, false);
-        ListOfWordsAdapter.ViewHolder holder = new ListOfWordsAdapter.ViewHolder(view);
+       WordListViewHolder holder = new WordListViewHolder(view, mListener);
+//        WordListViewHolder holder = new WordListViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.englishWord.setText(englishList.get(position));
-        holder.indigWord.setText(indigList.get(position));
-
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " +englishList.get(position));
-
-                englishPosition = englishList.get(position);
-                indigPosition = indigList.get(position);
-
-
-
-                AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                DictionaryFragment myFragment = new DictionaryFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
-
-            }
-        });
+    public void onBindViewHolder(WordListViewHolder holder, int position) {
+        Dictionary entry = mDictionary.get(position);
+        holder.englishWord.setText(entry.getEnglishWord());
+        holder.indigWord.setText(entry.getWord());
+        holder.itemView.setTag(entry.getId());
+        Picasso.get().load(entry.getImage()).into(holder.wordImage);
 
     }
 
     @Override
     public int getItemCount() {
-        return englishList.size();
+        return mCategoryDictionary.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public static TextView englishWord;
-        public static TextView indigWord;
+    public static class WordListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView englishWord, indigWord;
+        public ImageView wordImage;
+        private Listener listener;
 
-        public static RelativeLayout parentLayout;
-
-        public ViewHolder(View itemView) {
+        public WordListViewHolder(@NonNull View itemView, Listener listener) {
             super(itemView);
-            englishWord = itemView.findViewById(R.id.english_textView);
+            this.listener = listener;
+            itemView.setOnClickListener(this);
+
+            englishWord = itemView.findViewById(R.id.tv_english_word);
             indigWord = itemView.findViewById(R.id.indig_tv);
-            parentLayout = itemView.findViewById(R.id.parent_layout);
+            wordImage = itemView.findViewById(R.id.ivWordIcon);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Bundle bundle = new Bundle();
+            bundle.putString("id", (String) v.getTag());
+
+            DictionaryFragment dictionaryFragment = new DictionaryFragment();
+
+            dictionaryFragment.setArguments(bundle);
+
+            AppCompatActivity activity = (AppCompatActivity) v.getContext();
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, dictionaryFragment).addToBackStack(null).commit();
+
         }
     }
 
+//    public void filterList(ArrayList<Words> filteredList) {
+//        mExampleList = filteredList;
+//        notifyDataSetChanged();
+//    }
 }

@@ -4,11 +4,11 @@ public class Question {
 
     private String Answer;
     private String Category;
-    private int CategoryID;
-    private int ID;
+    private String CategoryID;
+    private String ID;
     private String Image;
     private String Language;
-    private int LanguageID;
+    private String LanguageID;
     private String OptionA;
     private String OptionB;
     private String OptionC;
@@ -20,8 +20,8 @@ public class Question {
 
     }
 
-    public Question(String answer, String category, int categoryID, int ID, String image,
-                    String language, int languageID, String optionA, String optionB,
+    public Question(String answer, String category, String categoryID, String ID, String image,
+                    String language, String languageID, String optionA, String optionB,
                     String optionC, String optionD, String question, String type) {
         Answer = answer;
         Category = category;
@@ -54,19 +54,19 @@ public class Question {
         Category = category;
     }
 
-    public int getCategoryID() {
+    public String getCategoryID() {
         return CategoryID;
     }
 
-    public void setCategoryID(int categoryID) {
+    public void setCategoryID(String categoryID) {
         CategoryID = categoryID;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
@@ -86,11 +86,11 @@ public class Question {
         Language = language;
     }
 
-    public int getLanguageID() {
+    public String getLanguageID() {
         return LanguageID;
     }
 
-    public void setLanguageID(int languageID) {
+    public void setLanguageID(String languageID) {
         LanguageID = languageID;
     }
 

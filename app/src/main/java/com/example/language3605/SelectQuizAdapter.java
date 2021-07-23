@@ -15,8 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,16 +31,21 @@ public class SelectQuizAdapter extends RecyclerView.Adapter<SelectQuizAdapter.Vi
     //List<SelectQuizData> list;
     ArrayList<String> categoryQuizList;
     ArrayList<Integer> questionCounter;
+    //Chi
+    ArrayList<String> quizIconList;
 
     //private ItemClickListener clickListener;
     public static String quizPosition;
     public static Integer countPosition;
+    public static String imagePosition;
 
 
-    public SelectQuizAdapter(Context context, ArrayList<String> category, ArrayList<Integer> counting) {
+
+    public SelectQuizAdapter(Context context, ArrayList<String> category, ArrayList<Integer> counting, ArrayList<String> iconImage) {
         mContext = context;
         categoryQuizList = category;
         questionCounter = counting;
+        quizIconList = iconImage;
     }
 
 //    public SelectQuizAdapter(Context context, ArrayList<String> category) {
@@ -58,18 +66,17 @@ public class SelectQuizAdapter extends RecyclerView.Adapter<SelectQuizAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-//        holder.quizName.setText(list.get(position).getmQuizName());
-//        holder.numQuestion.setText(list.get(position).getmNumQuestion());
-//        holder.quizIcon.setImageResource(list.get(position).getmQuizIcon());
-
-        //String selectQuizData = QuizList.get(position);
-//        holder.ID.setText(selectQuizData.getID());
-//        holder.CategoryName.setText(selectQuizData.getName());
-
 
         //Click listener
         holder.questionCounting.setText(String.valueOf(questionCounter.get(position)));
+        Log.d(TAG, "questionCounter: " + questionCounter.get(position));
+        Log.d(TAG, "position: " + position);
+
         holder.categoryName.setText(categoryQuizList.get(position));
+        //Chi
+        String imageLink = quizIconList.get(position);
+        Picasso.get().load(imageLink).into(holder.iconImage);
+        Log.d(TAG, "imageLink: " + imageLink);
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,11 +89,15 @@ public class SelectQuizAdapter extends RecyclerView.Adapter<SelectQuizAdapter.Vi
                 countPosition = questionCounter.get(position);
                 Log.d(TAG, "countPosition: " + countPosition);
 
+                imagePosition = quizIconList.get(position);
+
+
                 String categoryName = quizPosition;
                 Integer questionCount = countPosition;
+                String quizIcon = imagePosition;
 
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                StartQuizFragment goFragment = new StartQuizFragment(categoryName, questionCount);
+                StartQuizFragment goFragment = new StartQuizFragment(categoryName, questionCount, quizIcon);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, goFragment).addToBackStack(null).commit();
             }
         });
@@ -100,20 +111,21 @@ public class SelectQuizAdapter extends RecyclerView.Adapter<SelectQuizAdapter.Vi
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView questionCounting, categoryName;
         RelativeLayout parentLayout;
+        ImageView iconImage;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-//            quizName = view.findViewById(R.id.tv_quiz_name);
-//            numQuestion = view.findViewById(R.id.tv_num_question);
-//            quizIcon = view.findViewById(R.id.iv_quiz_icon);
 
             //ID = view.findViewById(R.id.);
-            questionCounting = itemView.findViewById(R.id.tv_static_questions);
+            questionCounting = itemView.findViewById(R.id.tv_num_question);
             categoryName = itemView.findViewById(R.id.tv_quiz_name);
             parentLayout = itemView.findViewById(R.id.parent_layout);
             //numQuestion = view.findViewById(R.id.tv_num_question);
-            //quizIcon = view.findViewById(R.id.iv_quiz_icon);
+            //questionCounting = itemView.findViewById(R.id.tv_static_questions);
+
+            //Chi
+            iconImage = itemView.findViewById(R.id.iv_quiz_icon);
         }
     }
 }

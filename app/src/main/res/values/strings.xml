@@ -11,7 +11,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_picture">Picture</string>
     <string name="startQuizDesc">description about the quiz here</string>
-    <string name="tv_time_limit">Time limit</string>
+    <string name="tv_time_limit">Time limit: 15 SECONDS</string>
 
     <string name="sample">sample</string>
 </resources>

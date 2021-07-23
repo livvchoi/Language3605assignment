@@ -1,6 +1,7 @@
 package com.example.language3605;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,9 @@ public class QuizFragment extends Fragment {
 
     private ArrayList<Integer> questionCount = new ArrayList<>();
 
+    //Chi
+    private ArrayList<String> quizIcons = new ArrayList<>();
+
 
 //    @Override
 //    public void onCreate(Bundle savedInstanceState) {
@@ -80,7 +84,7 @@ public class QuizFragment extends Fragment {
         quizRecyclerView.setHasFixedSize(true);
         quizRecyclerView.setLayoutManager(new LinearLayoutManager(contentView.getContext()));
 
-        //comment out 93-240
+
 //        // showing categories in recyclerview
         quizDatabaseReference = FirebaseDatabase.getInstance().getReference();
         ValueEventListener valueEventListener = quizDatabaseReference.child("CategoriesLocale").addValueEventListener(new ValueEventListener() {
@@ -113,6 +117,26 @@ public class QuizFragment extends Fragment {
             }
         });
 
+        //ValueEventListener - for images
+
+        ValueEventListener valueEventListener2 = quizDatabaseReference.child("CategoriesList").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                    String QuizIconImage = childSnapshot.child("Images").getValue(String.class);
+                    quizIcons.add(QuizIconImage);
+                    Log.d(TAG, "QuizIconImage: " + QuizIconImage);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
+
+
         quizDatabaseReference1 = FirebaseDatabase.getInstance().getReference();
         ValueEventListener valueEventListener1 = quizDatabaseReference1.child("Questions").addValueEventListener(new ValueEventListener() {
             @Override
@@ -123,6 +147,7 @@ public class QuizFragment extends Fragment {
 
                     String categoryName = childSnapshot.child("Category").getValue(String.class);
                     quizCategory.add(categoryName);
+
                 }
 
                 int j = 0;
@@ -136,9 +161,9 @@ public class QuizFragment extends Fragment {
                 while (j < quizLanguage.size()) {
                     if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Numbers"))) {
                         a++;
-                    } else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Greetings/Exclamations/Interjections"))){
+                    } else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Greetings"))){
                         b++;
-                    }else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Kinship and People"))){
+                    }else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Family"))){
                         c++;
                     }else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Emotions"))) {
                         d++;
@@ -157,7 +182,7 @@ public class QuizFragment extends Fragment {
                 questionCount.add(e);
 
 
-                SelectQuizAdapter recAdapter = new SelectQuizAdapter(contentView.getContext(), newCategoryNames, questionCount);
+                SelectQuizAdapter recAdapter = new SelectQuizAdapter(contentView.getContext(), newCategoryNames, questionCount, quizIcons);
 
                 quizRecyclerView.setAdapter(recAdapter);
 

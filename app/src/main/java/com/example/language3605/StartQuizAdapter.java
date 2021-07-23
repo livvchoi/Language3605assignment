@@ -33,6 +33,8 @@ public class StartQuizAdapter extends RecyclerView.Adapter<StartQuizAdapter.View
     @Override
     public void onBindViewHolder(@NonNull @NotNull StartQuizAdapter.ViewHolder holder, int position) {
 
+
+
     }
 
     @Override

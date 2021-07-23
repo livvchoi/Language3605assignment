@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.WordListViewHolder> {
@@ -28,6 +30,13 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
         mDictionary = dictionary;
         mListener = listener;
     }
+
+    public ListOfWordsAdapter(List<Dictionary> mDictionary, List<Dictionary> mCategoryDictionary, Listener mListener) {
+        this.mDictionary = mDictionary;
+        this.mCategoryDictionary = mCategoryDictionary;
+        this.mListener = mListener;
+    }
+
     public ListOfWordsAdapter(List<Dictionary> dictionary) {
         mDictionary = dictionary;
 
@@ -59,22 +68,23 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
         holder.englishWord.setText(entry.getEnglishWord());
         holder.indigWord.setText(entry.getWord());
         holder.itemView.setTag(entry.getId());
-        /*holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Log.d(TAG, "onClick: clicked on: " +englishList.get(position));
-
-                wordPosition = englishList.get(position);
-                indigPosition = indigList.get(position);
-
-
-
-                AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                DictionaryFragment myFragment = new DictionaryFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
-
-            }
-        });*/
+        Picasso.get().load(entry.getImage()).into(holder.wordImage);
+//holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View v) {
+//               //Log.d(TAG, "onClick: clicked on: " +englishList.get(position));
+//
+//               wordPosition = englishList.get(position);
+//               indigPosition = indigList.get(position);
+//
+//
+//
+//               AppCompatActivity activity = (AppCompatActivity) v.getContext();
+//               DictionaryFragment myFragment = new DictionaryFragment();
+//               activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
+//
+//           }
+//       });
 
     }
 

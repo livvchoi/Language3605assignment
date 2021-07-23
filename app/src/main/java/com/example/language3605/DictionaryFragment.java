@@ -82,7 +82,7 @@ public class DictionaryFragment extends Fragment {
                 showEnglish.setText(wordClicked.getEnglishWord());
                 showIndig.setText(wordClicked.getWord());
                 showDefinition.setText(wordClicked.getDefinition());
-                showRating.setText(wordClicked.getRating());
+                showRating.setText(wordClicked.getRating().toString());
                 Picasso.get().load(wordClicked.getImage()).into(showImage);
             }
 

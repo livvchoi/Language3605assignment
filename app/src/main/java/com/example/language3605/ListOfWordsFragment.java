@@ -30,8 +30,10 @@ public class ListOfWordsFragment extends Fragment {
     DatabaseReference wordDatabaseReference;
 
     RecyclerView wordRecyclerView;
-    private List<Dictionary> mDictionary;
-    private List<Dictionary> mCategoryDictionary;
+    private List<Dictionary> mDictionary = new ArrayList<>();
+    private List<Dictionary> mCategoryDictionary = new ArrayList<>();
+    private ListOfWordsAdapter.Listener mListener;
+
 
     // categories
     private ArrayList<String> categories = new ArrayList<>();
@@ -91,7 +93,7 @@ public class ListOfWordsFragment extends Fragment {
                 System.out.println(bWords);*/
 
 //                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(contentView.getContext(), aWords, bWords);
-                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(mCategoryDictionary);
+                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(mDictionary,mCategoryDictionary, mListener);
                 wordRecyclerView.setAdapter(recAdapter);
 
             }

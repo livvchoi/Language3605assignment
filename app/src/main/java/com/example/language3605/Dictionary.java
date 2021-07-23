@@ -3,6 +3,7 @@ package com.example.language3605;
 
 import com.google.firebase.database.PropertyName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Dictionary {
@@ -184,7 +185,7 @@ public class Dictionary {
 
     //get a list of words which match with a category
     public static List<Dictionary> getCategoriesList(List<Dictionary> dictionary, String categoryName) {
-        List<Dictionary>wordsInCategoryList = null;
+        List<Dictionary>wordsInCategoryList = new ArrayList<>();
         for (final Dictionary entries : dictionary) {
             if (entries.getCategoryName().equals(categoryName)) {
                 wordsInCategoryList.add(entries);

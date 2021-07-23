@@ -5,7 +5,7 @@
     android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp">
+    android:padding="5dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/wordCardView"
@@ -16,7 +16,6 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="5dp"
         app:cardBackgroundColor="#bfffffff"
         app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +44,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginBottom="15dp"
             android:text="One"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="#000000" />
 
         <TextView
@@ -56,7 +55,7 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="15dp"
             android:text="Natinga"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#000000" />
 
     </androidx.cardview.widget.CardView>

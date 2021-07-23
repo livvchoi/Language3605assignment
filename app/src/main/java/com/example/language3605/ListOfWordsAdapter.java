@@ -42,12 +42,6 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
 
     }
 
-    //ListofWordsAdapter constructor
-    /*public ListOfWordsAdapter(Context context, List<Dictionary> dictionary) {
-        mContext = context;
-        mDictionary = dictionary;
-    }*/
-
     //TODO: Add filtered list functionality
 
     public interface Listener{
@@ -69,22 +63,6 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
         holder.indigWord.setText(entry.getWord());
         holder.itemView.setTag(entry.getId());
         Picasso.get().load(entry.getImage()).into(holder.wordImage);
-//holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-//           @Override
-//           public void onClick(View v) {
-//               //Log.d(TAG, "onClick: clicked on: " +englishList.get(position));
-//
-//               wordPosition = englishList.get(position);
-//               indigPosition = indigList.get(position);
-//
-//
-//
-//               AppCompatActivity activity = (AppCompatActivity) v.getContext();
-//               DictionaryFragment myFragment = new DictionaryFragment();
-//               activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
-//
-//           }
-//       });
 
     }
 
@@ -96,7 +74,6 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
     public static class WordListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView englishWord, indigWord;
         public ImageView wordImage;
-       // public static RelativeLayout parentLayout;
         private Listener listener;
 
         public WordListViewHolder(@NonNull View itemView, Listener listener) {
@@ -107,7 +84,6 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
             englishWord = itemView.findViewById(R.id.tv_english_word);
             indigWord = itemView.findViewById(R.id.indig_tv);
             wordImage = itemView.findViewById(R.id.ivWordIcon);
-            //parentLayout = itemView.findViewById(R.id.parent_layout);
         }
 
         @Override
@@ -121,7 +97,6 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
 
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, dictionaryFragment).addToBackStack(null).commit();
-            //listener.onClick(v, (String) v.getTag());
 
         }
     }

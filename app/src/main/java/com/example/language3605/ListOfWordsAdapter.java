@@ -12,6 +12,7 @@ package com.example.language3605;
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.recyclerview.widget.RecyclerView;
 
+        import java.lang.reflect.Array;
         import java.util.ArrayList;
 
 public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.ViewHolder> {
@@ -23,6 +24,12 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
 
     public static String englishPosition;
     public static String indigPosition;
+
+//    private ArrayList<Dictionary> mExampleList;
+//
+//    public ListOfWordsAdapter(ArrayList<Dictionary> exampleList){
+//        mExampleList = exampleList;
+//    }
 
 
     public ListOfWordsAdapter(Context context, ArrayList<String> english, ArrayList<String> indig) {
@@ -41,6 +48,7 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+//        Dictionary currentItem = mExampleList.get(position);
         holder.englishWord.setText(englishList.get(position));
         holder.indigWord.setText(indigList.get(position));
 
@@ -68,6 +76,12 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
         return englishList.size();
     }
 
+//    @Override
+//    public int getItemCount() {
+//        return mExampleList.size();
+//    }
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public static TextView englishWord;
         public static TextView indigWord;
@@ -81,5 +95,10 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
+
+//    public void filterList(ArrayList<Dictionary>filteredList){
+//        mExampleList = filteredList;
+//        notifyDataSetChanged();
+//    }
 
 }

@@ -48,25 +48,72 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <Button
-                android:layout_width="242dp"
-                android:layout_height="88dp"
-                android:layout_marginRight="5dp"
-                android:text="1" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/story1"
+                android:layout_width="345dp"
+                android:layout_height="91dp"
+                app:cardBackgroundColor="#A0180F"
+                app:cardCornerRadius="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-            <Button
-                android:layout_width="242dp"
-                android:layout_height="88dp"
-                android:layout_marginRight="5dp"
-                android:text="1" />
+                <TextView
+                    android:id="@+id/story1Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:translationX="125dp"
+                    android:translationY="50dp" />
+            </androidx.cardview.widget.CardView>
 
-            <Button
-                android:layout_width="242dp"
-                android:layout_height="88dp"
-                android:layout_marginRight="5dp"
-                android:text="1" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/story2"
+                android:layout_width="345dp"
+                android:layout_height="91dp"
+                app:cardBackgroundColor="#A0180F"
+                app:cardCornerRadius="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+                <TextView
+                    android:id="@+id/story2Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:translationX="125dp"
+                    android:translationY="50dp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/story3"
+                android:layout_width="345dp"
+                android:layout_height="91dp"
+                app:cardBackgroundColor="#A0180F"
+                app:cardCornerRadius="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+                <TextView
+                    android:id="@+id/story3Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:translationX="125dp"
+                    android:translationY="50dp" />
+            </androidx.cardview.widget.CardView>
+
 
         </LinearLayout>
+
 
     </HorizontalScrollView>
 

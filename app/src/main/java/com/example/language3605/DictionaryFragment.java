@@ -48,7 +48,7 @@ public class DictionaryFragment extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_dictionary, container, false);
 
         Bundle bundle = this.getArguments();
-        if(bundle != null){
+        if (bundle != null) {
             id = bundle.get("id").toString();
         }
         //Instantiate view objects
@@ -76,23 +76,22 @@ public class DictionaryFragment extends Fragment {
 
                 }
                 //Search for the word which was clicked
-                for (int i = 0; i < dictList.size(); i++) {
-                    if (ListOfWordsAdapter.wordPosition.equals(dictList.get(i).getEnglishWord())) {
-                        showEnglish.setText(dictList.get(i).getEnglishWord());
-                        showIndig.setText(dictList.get(i).getWord());
-                        Picasso.get().load(dictList.get(i).getImage()).resize(100, 100).centerCrop().into(showImage);
-                    }
+                Dictionary wordClicked = Dictionary.getDictionaryEntry(dictList, id);
 
-                }
-
+                //Display details
+                showEnglish.setText(wordClicked.getEnglishWord());
+                showIndig.setText(wordClicked.getWord());
+                showDefinition.setText(wordClicked.getDefinition());
+                showRating.setText(wordClicked.getRating());
+                Picasso.get().load(wordClicked.getImage()).into(showImage);
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
 
 
         return contentView;

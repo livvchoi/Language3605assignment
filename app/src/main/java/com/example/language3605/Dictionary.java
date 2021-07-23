@@ -43,7 +43,14 @@ public class Dictionary {
     @PropertyName("WordID")
     private String wordID;
 
-    public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID) {
+    @PropertyName("Definition")
+    private String definition;
+
+    public Dictionary(){
+        System.out.println("default constructor");
+    }
+
+    public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID, String definition) {
         this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.englishWord = englishWord;
@@ -56,11 +63,9 @@ public class Dictionary {
         this.userID = userID;
         this.word = word;
         this.wordID = wordID;
+        this.definition = definition;
     }
 
-    public Dictionary(){
-        System.out.println("default constructor");
-    }
 
     public String getCategoryID() {
         return categoryID;
@@ -158,10 +163,18 @@ public class Dictionary {
         this.wordID = wordID;
     }
 
+    public String getDefinition() {
+        return definition;
+    }
+
+    public void setDefinition(String definition) {
+        this.definition = definition;
+    }
+
     //Get a particular word in the dictionary
-    public static Dictionary getDictionaryEntry(List<Dictionary> dictionary, String word) {
+    public static Dictionary getDictionaryEntry(List<Dictionary> dictionary, String id) {
         for (final Dictionary entries : dictionary) {
-            if (entries.getWord().equals(word)) {
+            if (entries.getId().equals(id)) {
                 return entries;
             }
         }

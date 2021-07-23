@@ -48,7 +48,7 @@ public class Dictionary {
     private String definition;
 
     public Dictionary(){
-        System.out.println("default constructor");
+
     }
 
     public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID, String definition) {

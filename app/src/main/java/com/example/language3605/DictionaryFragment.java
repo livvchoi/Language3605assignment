@@ -1,11 +1,13 @@
 package com.example.language3605;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,8 +18,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -27,19 +27,14 @@ public class DictionaryFragment extends Fragment {
 
     DatabaseReference displayDatabaseReference;
 
-    FirebaseStorage storage;
-    StorageReference storageRef, imageRef;
-
     private TextView showEnglish, showIndig, showDefinition, showRating;
-    private ImageView showImage;
+    private ImageView showImage, mUpvote, mDownvote;
     private String id;
+    Context mContext;
 
     //use the dictionary object
     public static ArrayList<Dictionary> dictList = new ArrayList<>();
 
-    String aWords;
-    String bWords;
-    String aimages;
 
 
     @Nullable
@@ -57,10 +52,8 @@ public class DictionaryFragment extends Fragment {
         showImage = contentView.findViewById(R.id.wordImage);
         showDefinition = contentView.findViewById(R.id.tvDefinition);
         showRating = contentView.findViewById(R.id.tvRating);
-
-        //Firebase storage initialization
-        storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
+        mUpvote = contentView.findViewById(R.id.ivUpvote);
+        mDownvote = contentView.findViewById(R.id.ivDownvote);
 
         //Specify which language dictionary to reference in Firebase Realtime Database
         String languageClicked = HomeFragment.item + "Dictionary";
@@ -84,12 +77,28 @@ public class DictionaryFragment extends Fragment {
                 showDefinition.setText(wordClicked.getDefinition());
                 showRating.setText(wordClicked.getRating().toString());
                 Picasso.get().load(wordClicked.getImage()).into(showImage);
+
+                mUpvote.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
+                mDownvote.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
+
             }
 
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(mContext, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -1,23 +1,17 @@
 package com.example.language3605;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +19,8 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private static final String TAG = "CategoryAdapter";
 
+    private List<Dictionary> mDictionary;
+    private List<Dictionary>
     public static ArrayList<String> categoriesList;
     public static Context mContext;
 
@@ -78,8 +74,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-            categoryType = itemView.findViewById(R.id.category_tv);
-            parentLayout = itemView.findViewById(R.id.parent_layout);
+            categoryType = itemView.findViewById(R.id.tvCategory);
+//            parentLayout = itemView.findViewById(R.id.parent_layout);
 
         }
     }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileFragment extends Fragment {
     private Button pSignOut, pAnswerQuizTest;
+    private TextView pShareProgress;
 
     @Nullable
     @Override
@@ -56,6 +58,20 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        //share
+        pShareProgress = contentView.findViewById(R.id.tvShareProgress);
+        pShareProgress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendText = new Intent();
+                sendText.setAction(Intent.ACTION_SEND);
+                sendText.putExtra(Intent.EXTRA_TEXT, "Check out my progress on LexiLearn!");
+                sendText.putExtra(Intent.EXTRA_TITLE, "LexiLearn Progress");
+                sendText.setType("text/plain");
+                Intent shareIntent = Intent.createChooser(sendText, null);
+                startActivity(shareIntent);
+            }
+        });
         return contentView;
     }
 }

@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,14 +75,15 @@ public class AnswerQuizFragment extends Fragment {
 
         //test switch to quizScore frag
         aqTestButton = contentView.findViewById(R.id.answerQuizTestButton);
-        aqTestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new QuizScoreFragment());
-                fragmentTransaction.commit();
-            }
-        });
+        aqTestButton.setVisibility(View.INVISIBLE);
+//        aqTestButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.fragment_container, new QuizScoreFragment());
+//                fragmentTransaction.commit();
+//            }
+//        });
 
         //link with xml
         aqCategory = contentView.findViewById(R.id.tvAnswerQuizCategory);
@@ -115,11 +117,20 @@ public class AnswerQuizFragment extends Fragment {
             }
         };
 
+        //get quiz category
         myViewModel = new ViewModelProvider(getActivity()).get(MyViewModel.class);
         myViewModel.getQuizScoreCategory().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 aqQuizCategory = s;
+            }
+        });
+
+        //get category icon
+        myViewModel.getQuizScoreCategoryIcon().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Picasso.get().load(s).into(aqCategoryIcon);
             }
         });
 

@@ -66,6 +66,9 @@ public class StartQuizFragment extends Fragment {
         myViewModel = new ViewModelProvider(getActivity()).get(MyViewModel.class);
         myViewModel.sendQuizScoreCategory(this.categoryName);
 
+        //pass quiz category icon to answerquiz
+        myViewModel.sendQuizScoreCategoryIcon(this.quizIcon);
+
         return contentView;
     }
 }

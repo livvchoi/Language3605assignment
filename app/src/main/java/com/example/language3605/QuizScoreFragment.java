@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,8 +14,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.squareup.picasso.Picasso;
+
 public class QuizScoreFragment extends Fragment {
     private TextView tvRetry, tvChangeQuiz, tvScore, tvCategory, tvTotalTime;
+    private ImageView ivQuizScoreCategoryIcon;
     private MyViewModel myViewModel;
 
     @Nullable
@@ -28,6 +32,8 @@ public class QuizScoreFragment extends Fragment {
         tvScore = contentView.findViewById(R.id.tvQuizScoreScore);
         tvTotalTime = contentView.findViewById(R.id.tvQuizScoreTotalTime);
         tvCategory = contentView.findViewById(R.id.tvQuizScoreCategory);
+
+        ivQuizScoreCategoryIcon = contentView.findViewById(R.id.ivQuizScoreCategory);
 
         tvRetry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +71,12 @@ public class QuizScoreFragment extends Fragment {
             @Override
             public void onChanged(String s) {
                 tvCategory.setText(s);
+            }
+        });
+        myViewModel.getQuizScoreCategoryIcon().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Picasso.get().load(s).into(ivQuizScoreCategoryIcon);
             }
         });
 

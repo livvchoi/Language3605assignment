@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.squareup.picasso.Picasso;
 
@@ -22,6 +22,8 @@ public class StartQuizFragment extends Fragment {
     Integer questionCount;
     String quizIcon;
     Button btnStartQuiz;
+
+    private MyViewModel myViewModel;
 
     public StartQuizFragment(String categoryName, Integer questionCount, String quizIcon) {
         this.categoryName = categoryName;
@@ -59,6 +61,10 @@ public class StartQuizFragment extends Fragment {
         categoryName.setText(this.categoryName);
         questionCount.setText(this.questionCount + "");
         Picasso.get().load(this.quizIcon).into(quizIcon);
+
+        //pass quiz category to answerquiz
+        myViewModel = new ViewModelProvider(getActivity()).get(MyViewModel.class);
+        myViewModel.sendQuizScoreCategory(this.categoryName);
 
         return contentView;
     }

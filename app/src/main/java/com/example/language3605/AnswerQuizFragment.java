@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.database.DataSnapshot;
@@ -113,6 +114,14 @@ public class AnswerQuizFragment extends Fragment {
                 showAnswerResult(false,"No answer", -1);
             }
         };
+
+        myViewModel = new ViewModelProvider(getActivity()).get(MyViewModel.class);
+        myViewModel.getQuizScoreCategory().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                aqQuizCategory = s;
+            }
+        });
 
         //link to database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
@@ -252,7 +261,7 @@ public class AnswerQuizFragment extends Fragment {
             if (aqIndex == 2) {
                 //pass data to quiz result fragment
 
-                myViewModel = new ViewModelProvider(getActivity()).get(MyViewModel.class);
+
                 myViewModel.sendQuizScoreCategory(aqQuizCategory);
                 myViewModel.sendQuizScoreCorrect(Integer.toString(aqCorrectNum));
                 myViewModel.sendQuizScoreTotalTime(Long.toString(aqTotalTimeTaken));

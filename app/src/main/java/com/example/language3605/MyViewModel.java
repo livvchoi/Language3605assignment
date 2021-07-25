@@ -10,6 +10,7 @@ public class MyViewModel extends ViewModel {
     private final MutableLiveData<String> quizScoreCorrect;
     private final MutableLiveData<String> quizScoreTotalTime;
     private final MutableLiveData<String> quizScoreCategory;
+    private final MutableLiveData<String> quizScoreLanguage;
 
     public MyViewModel(SavedStateHandle state) {
         this.state = state;
@@ -17,6 +18,7 @@ public class MyViewModel extends ViewModel {
         quizScoreCorrect = state.getLiveData("1");
         quizScoreTotalTime = state.getLiveData("2");
         quizScoreCategory = state.getLiveData("3");
+        quizScoreLanguage = state.getLiveData("4");
     }
 
     public void sendQuizScoreCorrect(String msg) {
@@ -34,11 +36,20 @@ public class MyViewModel extends ViewModel {
     public LiveData<String> getQuizScoreTotalTime() {
         return quizScoreTotalTime;
     }
+
     public void sendQuizScoreCategory(String msg) {
         quizScoreCategory.setValue(msg);
     }
 
     public LiveData<String> getQuizScoreCategory() {
         return quizScoreCategory;
+    }
+
+    public void sendQuizScoreLanguage(String msg) {
+        quizScoreLanguage.setValue(msg);
+    }
+
+    public LiveData<String> getQuizScoreLanguage() {
+        return quizScoreLanguage;
     }
 }

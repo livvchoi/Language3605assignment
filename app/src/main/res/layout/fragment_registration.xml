@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Regolayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/overlay_light"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="299dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:paddingRight="8dp"
+                app:srcCompat="@drawable/lexilearn_logo_clear_bg" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/emailImage"
+                        android:layout_width="34dp"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/mail" />
+
+                    <EditText
+                        android:id="@+id/rego_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="47dp"
+
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:ems="15"
+                        android:hint="Email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPersonName"
+                        android:padding="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="8dp"
+                        android:textColor="#17202A "
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="8dp"
+                android:paddingTop="8dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/nameImage"
+                        android:layout_width="34dp"
+                        android:layout_height="47dp"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/rego_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="47dp"
+
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:ems="15"
+                        android:hint="First and Last Name"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPassword"
+                        android:padding="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="8dp"
+                        android:textColor="#17202A "
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="8dp"
+                android:paddingTop="8dp"
+                android:paddingRight="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/passwordImage"
+                        android:layout_width="34dp"
+                        android:layout_height="47dp"
+                        app:srcCompat="@drawable/password" />
+
+                    <EditText
+                        android:id="@+id/rego_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="47dp"
+
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:ems="15"
+                        android:hint="New Password"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:padding="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="8dp"
+                        android:textColor="#17202A "
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <Button
+                android:id="@+id/rego_button"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/round_corners"
+                android:text="Register" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

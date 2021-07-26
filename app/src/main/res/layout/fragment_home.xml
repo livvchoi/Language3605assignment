@@ -90,7 +90,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/story2"
         android:layout_width="345dp"
         android:layout_height="91dp"
         app:cardBackgroundColor="#E37209"
@@ -111,7 +111,7 @@
             android:translationY="10dp" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/story1Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
@@ -128,7 +128,7 @@
         app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+        app:layout_constraintTop_toBottomOf="@+id/story2">
 
         <TextView
             android:id="@+id/textView7"

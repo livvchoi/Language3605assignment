@@ -45,7 +45,7 @@ public class ListOfWordsFragment extends Fragment {
     private ArrayList<String> aWords = new ArrayList<>();
     private ArrayList<String> bWords = new ArrayList<>();
 
-//    private ArrayList<Words> mExampleList;
+//    private ArrayList<Dictionary> mExampleList;
 //    private ListOfWordsAdapter mAdapter;
 
     @Nullable
@@ -108,9 +108,9 @@ public class ListOfWordsFragment extends Fragment {
     }
 
 //    private void filter(String text) {
-//        ArrayList<Words> filteredList = new ArrayList<>();
+//        ArrayList<Dictionary> filteredList = new ArrayList<>();
 //
-//        for(Words item : mExampleList) {
+//        for(Dictionary item : mExampleList) {
 //            if(item.getEnglishWord().toLowerCase().contains(text.toLowerCase())) {
 //                filteredList.add(item);
 //            }

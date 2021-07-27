@@ -118,12 +118,25 @@
         android:id="@+id/tvRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="10"
         android:textColor="@color/oxford_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPronounciation"
+        app:layout_constraintVertical_bias="0.674" />
+
+    <Button
+        android:id="@+id/btnPronounciation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Play Pronounciation"
+        app:layout_constraintEnd_toEndOf="@+id/cvEnglish"
+        app:layout_constraintStart_toStartOf="@+id/cvEnglish"
         app:layout_constraintTop_toBottomOf="@+id/cvEnglish" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,12 @@
 package com.example.language3605;
 
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +23,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DictionaryFragment extends Fragment {
@@ -32,7 +36,10 @@ public class DictionaryFragment extends Fragment {
 
     private TextView showEnglish, showIndig, showDefinition, showRating;
     private ImageView showImage, mUpvote, mDownvote;
+    private Button btnAudio;
     private String id;
+    private MediaPlayer mediaPlayer;
+    private Dictionary wordClicked;
 
     //use the dictionary object
     public static ArrayList<Dictionary> dictList = new ArrayList<>();
@@ -59,6 +66,7 @@ public class DictionaryFragment extends Fragment {
         showRating = contentView.findViewById(R.id.tvRating);
         mUpvote = contentView.findViewById(R.id.ivUpvote);
         mDownvote = contentView.findViewById(R.id.ivDownvote);
+        btnAudio = contentView.findViewById(R.id.btnPronounciation);
 
         //Firebase storage initialization
         storage = FirebaseStorage.getInstance();
@@ -78,7 +86,10 @@ public class DictionaryFragment extends Fragment {
 
                 }
                 //Search for the word which was clicked
-                Dictionary wordClicked = Dictionary.getDictionaryEntry(dictList, id);
+                 wordClicked = Dictionary.getDictionaryEntry(dictList, id);
+                if (wordClicked.getPronounciation() == null){
+                    btnAudio.setVisibility(View.GONE);
+                }
 
                 //Display details
                 showEnglish.setText(wordClicked.getEnglishWord());
@@ -86,6 +97,7 @@ public class DictionaryFragment extends Fragment {
                 showDefinition.setText(wordClicked.getDefinition());
                 showRating.setText(wordClicked.getRating().toString());
                 Picasso.get().load(wordClicked.getImage()).into(showImage);
+
 
 
             }
@@ -115,9 +127,36 @@ public class DictionaryFragment extends Fragment {
             }
         });
 
+        btnAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playAudio(wordClicked);
+            }
+
+
+        });
+
 
         return contentView;
     }
+    private void playAudio(Dictionary wordClicked) {
+        //initialise audio
+        mediaPlayer = new MediaPlayer();
 
+        //set the audio stream type
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        //set player to media URL
+        try {
+            mediaPlayer.setDataSource(wordClicked.getPronounciation());
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
 
 }

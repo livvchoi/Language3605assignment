@@ -49,11 +49,14 @@ public class Dictionary {
     @PropertyName("Definition")
     private String definition;
 
+    @PropertyName("Pronounciation")
+    private String pronounciation;
+
     public Dictionary(){
 
     }
 
-    public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID, String definition) {
+    public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID, String definition, String pronounciation) {
         this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.englishWord = englishWord;
@@ -67,6 +70,7 @@ public class Dictionary {
         this.word = word;
         this.wordID = wordID;
         this.definition = definition;
+        this.pronounciation = pronounciation;
     }
 
 
@@ -172,6 +176,14 @@ public class Dictionary {
 
     public void setDefinition(String definition) {
         this.definition = definition;
+    }
+
+    public String getPronounciation() {
+        return pronounciation;
+    }
+
+    public void setPronounciation(String pronounciation) {
+        this.pronounciation = pronounciation;
     }
 
     //Get a particular word in the dictionary

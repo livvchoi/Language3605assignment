@@ -17,7 +17,7 @@
                 android:thicknessRatio="12"
                 android:useLevel="true">
                 <gradient
-                    android:endColor="@color/persimmon"
+                    android:endColor="@color/dark_red_darker"
                     android:startColor="@color/persimmon"
                     android:type="sweep" />
             </shape>

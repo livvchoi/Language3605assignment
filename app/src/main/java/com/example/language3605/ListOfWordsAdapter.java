@@ -58,7 +58,7 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
 
     @Override
     public void onBindViewHolder(WordListViewHolder holder, int position) {
-        Dictionary entry = mDictionary.get(position);
+        Dictionary entry = mCategoryDictionary.get(position);
         holder.englishWord.setText(entry.getEnglishWord());
         holder.indigWord.setText(entry.getWord());
         holder.itemView.setTag(entry.getId());

@@ -1,39 +1,37 @@
 package com.example.language3605;
 
 import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.Query;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private static final String TAG = "CategoryAdapter";
 
     public static ArrayList<String> categoriesList;
+    public static ArrayList<String> categoryImageList;
     public static Context mContext;
 
     public static String categoryPosition;
 
 
-    public CategoryAdapter(Context context, ArrayList<String> category) {
+    public CategoryAdapter(Context context, ArrayList<String> category, ArrayList<String> images) {
         mContext = context;
         categoriesList = category;
+        categoryImageList = images;
     }
 
     @NonNull
@@ -47,20 +45,21 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.categoryType.setText(categoriesList.get(position));
-
-
+        Picasso.get().load(categoryImageList.get(position)).into(holder.categoryImage);
+        holder.itemView.setTag(categoriesList.get(position));
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + categoriesList.get(position));
-                Toast.makeText(mContext, categoriesList.get(position), Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("category", (String) v.getTag());
+                Log.d("ViewHolderTag", (String) v.getTag());
 
-                categoryPosition = categoriesList.get(position);
+                ListOfWordsFragment listofWordsFragment = new ListOfWordsFragment();
+
+                listofWordsFragment.setArguments(bundle);
 
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                ListOfWordsFragment myFragment = new ListOfWordsFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
-
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, listofWordsFragment).addToBackStack(null).commit();
             }
         });
     }
@@ -73,6 +72,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public static TextView categoryType;
+        public ImageView categoryImage;
         public static RelativeLayout parentLayout;
 
 
@@ -80,7 +80,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             super(itemView);
             categoryType = itemView.findViewById(R.id.category_tv);
             parentLayout = itemView.findViewById(R.id.parent_layout);
+            categoryImage = itemView.findViewById(R.id.ivCategoryIcon);
 
         }
+
+
     }
 }

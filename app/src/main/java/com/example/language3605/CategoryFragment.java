@@ -5,28 +5,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 
-import androidx.annotation.ContentView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.CancellationToken;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class CategoryFragment extends Fragment {
 
@@ -42,6 +38,7 @@ public class CategoryFragment extends Fragment {
     private ArrayList<String> mLanguages = new ArrayList<>();
     private ArrayList<String> aCategories = new ArrayList<>();
     private ArrayList<String> bCategories = new ArrayList<>();
+    private ArrayList<String> catIcons = new ArrayList<>();
 
     @Nullable
     @Override
@@ -87,13 +84,31 @@ public class CategoryFragment extends Fragment {
                 System.out.println(bCategories);
 
 
-                CategoryAdapter recAdapter = new CategoryAdapter(contentView.getContext(), bCategories);
-                catRecyclerView.setAdapter(recAdapter);
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
 
+        });
+
+        ValueEventListener valueEventListener2 = catDatabaseReference.child("CategoriesList").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                    String catIconImage = childSnapshot.child("Images").getValue(String.class);
+                    catIcons.add(catIconImage);
+                    Log.d(TAG, "catIconImage: " + catIconImage);
+                }
+
+                CategoryAdapter recAdapter = new CategoryAdapter(contentView.getContext(), bCategories, catIcons);
+                catRecyclerView.setAdapter(recAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
         });
 
         return contentView;

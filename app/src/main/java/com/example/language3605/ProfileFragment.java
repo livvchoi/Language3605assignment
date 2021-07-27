@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -48,15 +47,16 @@ public class ProfileFragment extends Fragment {
         });
 
         pAnswerQuizTest = contentView.findViewById(R.id.btTestAnswerQuiz);
-        pAnswerQuizTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String testCategoryName = "Body Parts";
-                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new AnswerQuizFragment(testCategoryName));
-                fragmentTransaction.commit();
-            }
-        });
+        pAnswerQuizTest.setVisibility(View.INVISIBLE);
+//        pAnswerQuizTest.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String testCategoryName = "Body Parts";
+//                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.fragment_container, new AnswerQuizFragment(testCategoryName));
+//                fragmentTransaction.commit();
+//            }
+//        });
 
         //share
         pShareProgress = contentView.findViewById(R.id.tvShareProgress);

@@ -31,7 +31,7 @@ public class DictionaryFragment extends Fragment {
     StorageReference storageRef, imageRef;
 
     private TextView showEnglish, showIndig, showDefinition, showRating;
-    private ImageView showImage;
+    private ImageView showImage, mUpvote, mDownvote;
     private String id;
 
     //use the dictionary object
@@ -57,6 +57,8 @@ public class DictionaryFragment extends Fragment {
         showImage = contentView.findViewById(R.id.wordImage);
         showDefinition = contentView.findViewById(R.id.tvDefinition);
         showRating = contentView.findViewById(R.id.tvRating);
+        mUpvote = contentView.findViewById(R.id.ivUpvote);
+        mDownvote = contentView.findViewById(R.id.ivDownvote);
 
         //Firebase storage initialization
         storage = FirebaseStorage.getInstance();
@@ -84,11 +86,31 @@ public class DictionaryFragment extends Fragment {
                 showDefinition.setText(wordClicked.getDefinition());
                 showRating.setText(wordClicked.getRating().toString());
                 Picasso.get().load(wordClicked.getImage()).into(showImage);
+
+
             }
 
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                //change rating displayed
+                //limit to one click
+                //change rating on Firebase
+            }
+        });
+
+        mUpvote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //change rating displayed
+                //limit to one click
+                //change rating on Firebase
+            }
+        });
+
+        mDownvote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });

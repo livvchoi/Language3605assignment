@@ -49,11 +49,19 @@ public class Dictionary {
     @PropertyName("Definition")
     private String definition;
 
-    @PropertyName("Pronounciation")
+    @PropertyName("Audio")
     private String pronounciation;
 
     public Dictionary(){
 
+    }
+
+    public Dictionary(String categoryName, String englishWord, String id, String language, String word) {
+        this.categoryName = categoryName;
+        this.englishWord = englishWord;
+        this.id = id;
+        this.language = language;
+        this.word = word;
     }
 
     public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID, String definition, String pronounciation) {

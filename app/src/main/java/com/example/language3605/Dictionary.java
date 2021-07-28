@@ -50,7 +50,7 @@ public class Dictionary {
     private String definition;
 
     @PropertyName("Audio")
-    private String pronounciation;
+    private String audio;
 
     public Dictionary(){
 
@@ -64,7 +64,7 @@ public class Dictionary {
         this.word = word;
     }
 
-    public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID, String definition, String pronounciation) {
+    public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID, String definition, String audio) {
         this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.englishWord = englishWord;
@@ -78,7 +78,7 @@ public class Dictionary {
         this.word = word;
         this.wordID = wordID;
         this.definition = definition;
-        this.pronounciation = pronounciation;
+        this.audio = audio;
     }
 
 
@@ -186,12 +186,12 @@ public class Dictionary {
         this.definition = definition;
     }
 
-    public String getPronounciation() {
-        return pronounciation;
+    public String getAudio() {
+        return audio;
     }
 
-    public void setPronounciation(String pronounciation) {
-        this.pronounciation = pronounciation;
+    public void setAudio(String audio) {
+        this.audio = audio;
     }
 
     //Get a particular word in the dictionary

@@ -87,7 +87,7 @@ public class DictionaryFragment extends Fragment {
                 }
                 //Search for the word which was clicked
                  wordClicked = Dictionary.getDictionaryEntry(dictList, id);
-                if (wordClicked.getPronounciation() == null){
+                if (wordClicked.getAudio() == null){
                     btnAudio.setVisibility(View.GONE);
                 }
 
@@ -148,7 +148,7 @@ public class DictionaryFragment extends Fragment {
 
         //set player to media URL
         try {
-            mediaPlayer.setDataSource(wordClicked.getPronounciation());
+            mediaPlayer.setDataSource(wordClicked.getAudio());
             mediaPlayer.prepare();
             mediaPlayer.start();
         } catch (IOException e) {

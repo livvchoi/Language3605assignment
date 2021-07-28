@@ -75,6 +75,7 @@ public class CategoryFragment extends Fragment {
                 int i = 0;
 
                 while (i < mLanguages.size()){
+                    //Homefragment.item  = langauge selected
                     if (HomeFragment.item.equals(mLanguages.get(i))){
                         bCategories.add(aCategories.get(i));
                     }

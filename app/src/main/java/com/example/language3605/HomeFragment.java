@@ -46,6 +46,7 @@ public class HomeFragment extends Fragment {
 
         View contentView = inflater.inflate(R.layout.fragment_home, container, false);
 
+
         //loading prompt
         this.progressDialogHelper = new ProgressDialogHelper(getContext());
 

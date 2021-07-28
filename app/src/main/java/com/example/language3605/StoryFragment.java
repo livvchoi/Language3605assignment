@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class StoryFragment extends Fragment {
 
     private TextView mStoryTitle, mStoryBody, mStoryCountry;
     private ImageView mStorySource;
+    private RecyclerView storyRecyclerView;
     private String storyId;
 
 
@@ -37,6 +40,11 @@ public class StoryFragment extends Fragment {
         }
 
         //instantiate view objects
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        storyRecyclerView = contentView.findViewById(R.id.rvStories);
+        storyRecyclerView.setHasFixedSize(true);
+        storyRecyclerView.setLayoutManager(layoutManager);
+
         mStoryTitle = contentView.findViewById(R.id.tvStoryTitle);
         mStorySource = contentView.findViewById(R.id.ivSearch);
         mStoryBody = contentView.findViewById(R.id.tvStoryBody);
@@ -52,6 +60,10 @@ public class StoryFragment extends Fragment {
         mStoryTitle.setText(storyPicked.getTitle());
         mStoryCountry.setText("This story is from "+ storyPicked.getCountry());
         mStoryBody.setText(storyPicked.getStories());
+
+        //Make recyclerView
+        StoryAdapter storyAdapter = new StoryAdapter(storyList);
+        storyRecyclerView.setAdapter(storyAdapter);
 
         return contentView;
     }

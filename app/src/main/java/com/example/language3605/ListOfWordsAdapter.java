@@ -18,40 +18,25 @@ import java.util.List;
 public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.WordListViewHolder> {
     private static final String TAG = "ListOfWordsAdapter";
 
-    private final List<Dictionary> mDictionary;
     private List<Dictionary> mCategoryDictionary;
-    private Listener mListener;
     //public static Context mContext;
     public static String wordPosition;
     // public static String indigPosition;
 
-    public ListOfWordsAdapter(List<Dictionary> dictionary, Listener listener) {
-        //mContext = context;
-        mDictionary = dictionary;
-        mListener = listener;
-    }
 
-    public ListOfWordsAdapter(List<Dictionary> mDictionary, List<Dictionary> mCategoryDictionary, Listener mListener) {
-        this.mDictionary = mDictionary;
+    public ListOfWordsAdapter(List<Dictionary> mCategoryDictionary) {
         this.mCategoryDictionary = mCategoryDictionary;
-        this.mListener = mListener;
     }
 
-    public ListOfWordsAdapter(List<Dictionary> dictionary) {
-        mDictionary = dictionary;
-
-    }
 
     //TODO: Add filtered list functionality
 
-    public interface Listener{
-        void onClick(View view, String id);
-    }
+
     @NonNull
     @Override
     public WordListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wordlist_item, parent, false);
-       WordListViewHolder holder = new WordListViewHolder(view, mListener);
+       WordListViewHolder holder = new WordListViewHolder(view);
 //        WordListViewHolder holder = new WordListViewHolder(view);
         return holder;
     }
@@ -74,11 +59,10 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
     public static class WordListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView englishWord, indigWord;
         public ImageView wordImage;
-        private final Listener listener;
 
-        public WordListViewHolder(@NonNull View itemView, Listener listener) {
+
+        public WordListViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.listener = listener;
             itemView.setOnClickListener(this);
 
             englishWord = itemView.findViewById(R.id.tv_english_word);

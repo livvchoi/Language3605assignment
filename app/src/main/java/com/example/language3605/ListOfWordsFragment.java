@@ -33,7 +33,7 @@ public class ListOfWordsFragment extends Fragment {
     RecyclerView wordRecyclerView;
     private final List<Dictionary> mDictionary = new ArrayList<>();
     private final List<Dictionary> mCategoryDictionary = new ArrayList<>();
-    private ListOfWordsAdapter.Listener mListener;
+
     String category;
 
 
@@ -78,7 +78,6 @@ public class ListOfWordsFragment extends Fragment {
                     mDictionary.add(entry);
                 }
                 //check that the number of words in dictionary matches number of entries
-//                System.out.println(mDictionary.size());
 
                 Log.d("category before check", category);
                 mCategoryDictionary.addAll(Dictionary.getCategoriesList(mDictionary, category));
@@ -86,8 +85,8 @@ public class ListOfWordsFragment extends Fragment {
 
 
 
-//                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(contentView.getContext(), aWords, bWords);
-                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(mDictionary,mCategoryDictionary, mListener);
+
+                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(mCategoryDictionary);
                 wordRecyclerView.setAdapter(recAdapter);
 
             }

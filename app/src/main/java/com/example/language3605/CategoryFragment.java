@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +34,7 @@ public class CategoryFragment extends Fragment {
     RecyclerView catRecyclerView;
 
     // to be deleted
-    Button buttonToQuizFragment;
+    FloatingActionButton buttonToAddCategory;
 
     private ArrayList<String> mLanguages = new ArrayList<>();
     private ArrayList<String> aCategories = new ArrayList<>();
@@ -46,12 +47,12 @@ public class CategoryFragment extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_categorylist, container, false);
 
         //to be deleted
-        buttonToQuizFragment = contentView.findViewById(R.id.button2);
-        buttonToQuizFragment.setOnClickListener(new View.OnClickListener() {
+        buttonToAddCategory = contentView.findViewById(R.id.fltBtnAddCat);
+        buttonToAddCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction qFrag = getParentFragmentManager().beginTransaction();
-                qFrag.replace(R.id.fragment_container, new QuizFragment());
+                qFrag.replace(R.id.fragment_container, new AddCategoryFragment());
                 qFrag.commit();
             }
         });
@@ -66,16 +67,20 @@ public class CategoryFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
                     String category = childSnapshot.child("Language").getValue(String.class);
+                    String categoryA = childSnapshot.child("language").getValue(String.class) ;
                     mLanguages.add(category);
+                    mLanguages.add(categoryA);
 
                     String aCategory = childSnapshot.child("Category").getValue(String.class);
+                    String bCategory = childSnapshot.child("category").getValue(String.class);
                     aCategories.add(aCategory);
+                    aCategories.add(bCategory);
+
                 }
 
                 int i = 0;
 
                 while (i < mLanguages.size()){
-                    //Homefragment.item  = langauge selected
                     if (HomeFragment.languageClicked.equals(mLanguages.get(i))){
                         bCategories.add(aCategories.get(i));
                     }

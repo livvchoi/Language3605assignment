@@ -38,7 +38,6 @@ public class HomeFragment extends Fragment {
     public static Spinner languageSpinner;
     private TextView showWordofDay, showWordofDayEng;
     private CardView btnWordofDay;
-    boolean languageChosen = false;
     public static List<Dictionary> langDict = new ArrayList<>();
 
 
@@ -178,12 +177,13 @@ public class HomeFragment extends Fragment {
                     }
                     //if language is chosen, pick a random word
                     Random r = new Random();
-                    final int wordPos  = r.nextInt(langDict.size() - 1);
+                    int wordPos  = r.nextInt(langDict.size() - 1);
+                    Log.d("langDict size", (String.valueOf(langDict.size())));
                     Log.d("wordPos", (String.valueOf(wordPos)));
                     showWordofDay.setText(langDict.get(wordPos).getWord());
-//                    Log.d("Word of Day", langDict.get(wordPos).getWord());
+                    Log.d("Word of Day", langDict.get(wordPos).getWord());
                     showWordofDayEng.setText(langDict.get(wordPos).getEnglishWord());
-//                    Log.d("Word of Day English", langDict.get(wordPos).getEnglishWord());
+                    Log.d("Word of Day English", langDict.get(wordPos).getEnglishWord());
 
                     //redirect to dictionary if the cardview is clicked
                     btnWordofDay.setOnClickListener(new View.OnClickListener() {
@@ -208,7 +208,10 @@ public class HomeFragment extends Fragment {
                 }
             });
 
+
         }
+        //each time the language is change the list of words should be cleared
+        langDict.clear();
     }
 
 

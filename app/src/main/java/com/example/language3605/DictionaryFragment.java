@@ -3,6 +3,7 @@ package com.example.language3605;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,7 @@ public class DictionaryFragment extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             id = bundle.get("id").toString();
+
         }
         //Instantiate view objects
         showEnglish = contentView.findViewById(R.id.tvEngWord);
@@ -86,7 +88,11 @@ public class DictionaryFragment extends Fragment {
 
                 }
                 //Search for the word which was clicked
-                 wordClicked = Dictionary.getDictionaryEntry(dictList, id);
+
+                wordClicked = Dictionary.getDictionaryEntry(dictList, id);
+                Log.d("id passed", id);
+                Log.d("eng word passed", wordClicked.getEnglishWord());
+                Log.d(TAG, "onDataChange: "+ wordClicked.getWord());
                 if (wordClicked.getAudio() == null){
                     btnAudio.setVisibility(View.GONE);
                 }

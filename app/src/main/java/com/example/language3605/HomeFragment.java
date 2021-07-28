@@ -29,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Executors;
 
 public class HomeFragment extends Fragment {
     private Button hmSwitchTest, hmTest;
@@ -144,7 +145,13 @@ public class HomeFragment extends Fragment {
                                        int position, long id) {
                 languageClicked = (String) parent.getItemAtPosition(position);
                 Log.v("item", languageClicked);
-                setShowWordofDay(languageClicked);
+                Executors.newSingleThreadExecutor().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        setShowWordofDay(languageClicked);
+                    }
+                });
+
 
             }
 
@@ -163,10 +170,12 @@ public class HomeFragment extends Fragment {
     }
 
     public void setShowWordofDay(String languageClicked){
+
         //if no language is chosen show pick a word
         if(languageClicked != null){
             String languageDictionary = languageClicked + "Dictionary";
             wotdDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
             ValueEventListener valueEventListener = wotdDatabaseReference.child(languageDictionary).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {

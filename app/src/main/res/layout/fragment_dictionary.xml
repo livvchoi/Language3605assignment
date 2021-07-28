@@ -47,6 +47,7 @@
         android:layout_marginBottom="50dp"
         app:cardBackgroundColor="#bfffffff"
         app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toTopOf="@id/btnPronounciation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

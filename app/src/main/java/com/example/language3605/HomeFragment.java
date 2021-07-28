@@ -37,13 +37,15 @@ public class HomeFragment extends Fragment {
     Button buttonToCategory;
 
     public static Spinner languageSpinner;
-    private TextView showWordofDay, showWordofDayEng;
-    private CardView btnWordofDay;
+    private TextView showWordofDay, showWordofDayEng, showStoryofDay;
+    private CardView btnWordofDay, btnStoryofDay;
     public static List<Dictionary> langDict = new ArrayList<>();
+    public static List<Story> storyList = new ArrayList<>();
 
 
     DatabaseReference databaseReference;
     DatabaseReference wotdDatabaseReference;
+    DatabaseReference storyDatabaseReference;
 
 
     List<String> names;
@@ -62,8 +64,10 @@ public class HomeFragment extends Fragment {
         // Word of the Day
         //instantiate view object
         btnWordofDay = contentView.findViewById(R.id.cvWordOfDay);
+        btnStoryofDay = contentView.findViewById(R.id.cvStoryofDayHome);
         showWordofDay = contentView.findViewById(R.id.tvWordofDay);
         showWordofDayEng = contentView.findViewById(R.id.tvWordofDayEng);
+        showStoryofDay = contentView.findViewById(R.id.tvHomeStoryTitle);
 
         //loading prompt
         this.progressDialogHelper = new ProgressDialogHelper(getContext());
@@ -105,6 +109,7 @@ public class HomeFragment extends Fragment {
                 cFrag.commit();
             }
         });
+
 
         // showing dropdown list of languages
 
@@ -160,7 +165,7 @@ public class HomeFragment extends Fragment {
                 // TODO Auto-generated method stub
             }
         });
-
+        setShowStoryofDay();
 
 
 
@@ -221,6 +226,49 @@ public class HomeFragment extends Fragment {
         }
         //each time the language is change the list of words should be cleared
         langDict.clear();
+    }
+
+    public void setShowStoryofDay(){
+        storyDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        ValueEventListener valueEventListener = storyDatabaseReference.child("DreamTime").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for (DataSnapshot storySnapshot : snapshot.getChildren()){
+                    Story storyEntry = storySnapshot.getValue(Story.class);
+                    storyList.add(storyEntry);
+
+                }
+
+                Random r = new Random();
+                int storyPos  = r.nextInt(storyList.size() - 1);
+                    Log.d("langDict size", (String.valueOf(storyList.size())));
+                    Log.d("wordPos", (String.valueOf(storyPos)));
+                    showStoryofDay.setText(storyList.get(storyPos).getTitle());
+                    Log.d("Word of Day", storyList.get(storyPos).getTitle());
+
+                btnStoryofDay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id", storyList.get(storyPos).getID());
+
+                        StoryFragment storyFrag = new StoryFragment();
+
+                        storyFrag.setArguments(bundle);
+
+                        AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, storyFrag).addToBackStack(null).commit();
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
     }
 
 

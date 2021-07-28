@@ -1,6 +1,7 @@
 package com.example.language3605;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ public class ListOfWordsFragment extends Fragment {
 
     private static final String TAG = "ListOfWordsFragment";
 
-    String category = "Numbers";
+
 
 
     DatabaseReference wordDatabaseReference;
@@ -33,6 +34,7 @@ public class ListOfWordsFragment extends Fragment {
     private List<Dictionary> mDictionary = new ArrayList<>();
     private List<Dictionary> mCategoryDictionary = new ArrayList<>();
     private ListOfWordsAdapter.Listener mListener;
+    String category;
 
 
     // categories
@@ -56,6 +58,7 @@ public class ListOfWordsFragment extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null){
             category = bundle.get("category").toString();
+            Log.d("Bundle Tag", bundle.get("category").toString());
         }
 
         //Instantiate
@@ -75,22 +78,13 @@ public class ListOfWordsFragment extends Fragment {
                     mDictionary.add(entry);
                 }
                 //check that the number of words in dictionary matches number of entries
-                System.out.println(mDictionary.size());
+//                System.out.println(mDictionary.size());
 
+                Log.d("category before check", category);
                 mCategoryDictionary.addAll(Dictionary.getCategoriesList(mDictionary, category));
-                System.out.println(categories.size());
+                System.out.println("CategoryDictionary size" + mCategoryDictionary.size());
 
-              /*  int i = 0;
-                while(i<categories.size()){
-                    if(CategoryAdapter.categoryPosition.equals(categories.get(i))){
-                        aWords.add(englishTranslate.get(i));
-                        bWords.add(indigWords.get(i));
-                    }
-                    i++;
-                }
 
-                System.out.println(aWords);
-                System.out.println(bWords);*/
 
 //                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(contentView.getContext(), aWords, bWords);
                 ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(mDictionary,mCategoryDictionary, mListener);

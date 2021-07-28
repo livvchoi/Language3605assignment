@@ -1,6 +1,8 @@
 package com.example.language3605;
 
 
+import android.util.Log;
+
 import com.google.firebase.database.PropertyName;
 
 import java.util.ArrayList;
@@ -47,11 +49,22 @@ public class Dictionary {
     @PropertyName("Definition")
     private String definition;
 
+    @PropertyName("Audio")
+    private String pronounciation;
+
     public Dictionary(){
-        System.out.println("default constructor");
+
     }
 
-    public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID, String definition) {
+    public Dictionary(String categoryName, String englishWord, String id, String language, String word) {
+        this.categoryName = categoryName;
+        this.englishWord = englishWord;
+        this.id = id;
+        this.language = language;
+        this.word = word;
+    }
+
+    public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID, String definition, String pronounciation) {
         this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.englishWord = englishWord;
@@ -65,6 +78,7 @@ public class Dictionary {
         this.word = word;
         this.wordID = wordID;
         this.definition = definition;
+        this.pronounciation = pronounciation;
     }
 
 
@@ -172,6 +186,14 @@ public class Dictionary {
         this.definition = definition;
     }
 
+    public String getPronounciation() {
+        return pronounciation;
+    }
+
+    public void setPronounciation(String pronounciation) {
+        this.pronounciation = pronounciation;
+    }
+
     //Get a particular word in the dictionary
     public static Dictionary getDictionaryEntry(List<Dictionary> dictionary, String id) {
         for (final Dictionary entries : dictionary) {
@@ -188,7 +210,9 @@ public class Dictionary {
         List<Dictionary>wordsInCategoryList = new ArrayList<>();
         for (final Dictionary entries : dictionary) {
             if (entries.getCategoryName().equals(categoryName)) {
+                Log.d("getCategoriesList", categoryName);
                 wordsInCategoryList.add(entries);
+                Log.d("getCategories Word", entries.getWord());
             }
         }
         return wordsInCategoryList;

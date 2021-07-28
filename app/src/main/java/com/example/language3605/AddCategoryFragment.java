@@ -28,6 +28,8 @@ public class AddCategoryFragment extends Fragment {
     DatabaseReference databaseCategories = FirebaseDatabase.getInstance().getReference("CategoriesLocale");
     DatabaseReference databaseCategory = FirebaseDatabase.getInstance().getReference("CategoriesList");
 
+    public static String id;
+
 
     @Nullable
     @Override
@@ -55,7 +57,7 @@ public class AddCategoryFragment extends Fragment {
 
         String Category = addCategory.getText().toString().trim();
 
-        String id = databaseCategories.push().getKey();
+        id = databaseCategories.push().getKey();
 
         String Language = HomeFragment.languageClicked;
 

@@ -45,9 +45,6 @@ public class DictionaryFragment extends Fragment {
     //use the dictionary object
     public static ArrayList<Dictionary> dictList = new ArrayList<>();
 
-    String aWords;
-    String bWords;
-    String aimages;
 
 
     @Nullable

@@ -42,7 +42,7 @@ public class AnswerQuizFragment extends Fragment {
     private int aqIndex;
     private Question aqQuestionObject;
     private Context aqContext;
-    private String aqQuizLanguage = "Tiwi";
+    private final String aqQuizLanguage = "Tiwi";
     private String aqQuizCategory = "Numbers";
 
     private ProgressDialogHelper progressDialogHelper;

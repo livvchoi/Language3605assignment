@@ -18,7 +18,7 @@ import java.util.List;
 public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.WordListViewHolder> {
     private static final String TAG = "ListOfWordsAdapter";
 
-    private List<Dictionary> mDictionary;
+    private final List<Dictionary> mDictionary;
     private List<Dictionary> mCategoryDictionary;
     private Listener mListener;
     //public static Context mContext;
@@ -74,7 +74,7 @@ public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.
     public static class WordListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView englishWord, indigWord;
         public ImageView wordImage;
-        private Listener listener;
+        private final Listener listener;
 
         public WordListViewHolder(@NonNull View itemView, Listener listener) {
             super(itemView);

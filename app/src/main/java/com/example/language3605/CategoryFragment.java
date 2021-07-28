@@ -35,10 +35,10 @@ public class CategoryFragment extends Fragment {
     // to be deleted
     Button buttonToQuizFragment;
 
-    private ArrayList<String> mLanguages = new ArrayList<>();
-    private ArrayList<String> aCategories = new ArrayList<>();
-    private ArrayList<String> bCategories = new ArrayList<>();
-    private ArrayList<String> catIcons = new ArrayList<>();
+    private final ArrayList<String> mLanguages = new ArrayList<>();
+    private final ArrayList<String> aCategories = new ArrayList<>();
+    private final ArrayList<String> bCategories = new ArrayList<>();
+    private final ArrayList<String> catIcons = new ArrayList<>();
 
     @Nullable
     @Override

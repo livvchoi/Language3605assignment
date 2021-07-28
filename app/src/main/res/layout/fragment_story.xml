@@ -45,7 +45,8 @@
         <TextView
             android:id="@+id/tvStoryBody"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:scrollbars="vertical"
             android:textColor="@color/white"
             android:textSize="18dp" />
@@ -56,10 +57,16 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="See other similar stories"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Read another story"
         android:textColor="@color/white"
         android:textSize="24dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvStories"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"

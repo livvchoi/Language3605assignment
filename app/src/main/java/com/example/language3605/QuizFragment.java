@@ -37,22 +37,22 @@ public class QuizFragment extends Fragment {
     //SelectQuizAdapter adapter;
     //ArrayList<SelectQuizData> list;
 
-    private ArrayList<String> IDList = new ArrayList<>();
+    private final ArrayList<String> IDList = new ArrayList<>();
 
-    private ArrayList<String> category = new ArrayList<>();
+    private final ArrayList<String> category = new ArrayList<>();
 
-    private ArrayList<String> language = new ArrayList<>();
+    private final ArrayList<String> language = new ArrayList<>();
 
-    private ArrayList<String> quizCategory = new ArrayList<>();
+    private final ArrayList<String> quizCategory = new ArrayList<>();
 
-    private ArrayList<String> quizLanguage = new ArrayList<>();
+    private final ArrayList<String> quizLanguage = new ArrayList<>();
 
-    private ArrayList<String> newCategoryNames = new ArrayList<>();
+    private final ArrayList<String> newCategoryNames = new ArrayList<>();
 
-    private ArrayList<Integer> questionCount = new ArrayList<>();
+    private final ArrayList<Integer> questionCount = new ArrayList<>();
 
     //Chi
-    private ArrayList<String> quizIcons = new ArrayList<>();
+    private final ArrayList<String> quizIcons = new ArrayList<>();
 
 
 //    @Override

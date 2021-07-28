@@ -5,9 +5,9 @@ import android.content.Context;
 
 public class ProgressDialogHelper {
 
-    private ProgressDialog pd;
+    private final ProgressDialog pd;
 
-    private Context context;
+    private final Context context;
 
     public ProgressDialogHelper(Context context) {
         this.context = context;

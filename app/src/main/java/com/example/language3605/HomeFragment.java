@@ -113,7 +113,7 @@ public class HomeFragment extends Fragment {
 
         // showing dropdown list of languages
 
-        languageSpinner = (Spinner) contentView.findViewById(R.id.languageSpinner);
+        languageSpinner = contentView.findViewById(R.id.languageSpinner);
 
         names = new ArrayList<>();
 
@@ -173,6 +173,7 @@ public class HomeFragment extends Fragment {
 
 
     }
+
 
     public void setShowWordofDay(String languageClicked){
 
@@ -241,8 +242,8 @@ public class HomeFragment extends Fragment {
 
                 Random r = new Random();
                 int storyPos  = r.nextInt(storyList.size() - 1);
-                    Log.d("langDict size", (String.valueOf(storyList.size())));
-                    Log.d("wordPos", (String.valueOf(storyPos)));
+                    Log.d("storyDict size", (String.valueOf(storyList.size())));
+                    Log.d("storyPos", (String.valueOf(storyPos)));
                     showStoryofDay.setText(storyList.get(storyPos).getTitle());
                     Log.d("Word of Day", storyList.get(storyPos).getTitle());
 

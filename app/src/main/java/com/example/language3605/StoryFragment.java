@@ -50,7 +50,7 @@ public class StoryFragment extends Fragment {
 
         //show story details
         mStoryTitle.setText(storyPicked.getTitle());
-        mStoryCountry.setText("This story is from  "+ storyPicked.getCountry());
+        mStoryCountry.setText("This story is from "+ storyPicked.getCountry());
         mStoryBody.setText(storyPicked.getStories());
 
         return contentView;

@@ -6,7 +6,7 @@ public class SelectQuizData {
 
 
     public SelectQuizData(String ID, String name) {
-        this.ID = ID;
+        SelectQuizData.ID = ID;
         Name = name;
     }
 
@@ -15,7 +15,7 @@ public class SelectQuizData {
     }
 
     public void setID(String ID) {
-        this.ID = ID;
+        SelectQuizData.ID = ID;
     }
 
     public static String getName() {

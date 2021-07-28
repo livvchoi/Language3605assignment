@@ -31,21 +31,21 @@ public class ListOfWordsFragment extends Fragment {
     DatabaseReference wordDatabaseReference;
 
     RecyclerView wordRecyclerView;
-    private List<Dictionary> mDictionary = new ArrayList<>();
-    private List<Dictionary> mCategoryDictionary = new ArrayList<>();
+    private final List<Dictionary> mDictionary = new ArrayList<>();
+    private final List<Dictionary> mCategoryDictionary = new ArrayList<>();
     private ListOfWordsAdapter.Listener mListener;
     String category;
 
 
     // categories
-    private ArrayList<String> categories = new ArrayList<>();
+    private final ArrayList<String> categories = new ArrayList<>();
     //  english translate
-    private ArrayList<String> englishTranslate = new ArrayList<>();
+    private final ArrayList<String> englishTranslate = new ArrayList<>();
     //  indig word
-    private ArrayList<String> indigWords = new ArrayList<>();
+    private final ArrayList<String> indigWords = new ArrayList<>();
 
-    private ArrayList<String> aWords = new ArrayList<>();
-    private ArrayList<String> bWords = new ArrayList<>();
+    private final ArrayList<String> aWords = new ArrayList<>();
+    private final ArrayList<String> bWords = new ArrayList<>();
 
 //    private ArrayList<Dictionary> mExampleList;
 //    private ListOfWordsAdapter mAdapter;

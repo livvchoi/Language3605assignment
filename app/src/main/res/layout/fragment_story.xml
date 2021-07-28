@@ -11,12 +11,15 @@
     <TextView
         android:id="@+id/tvStoryTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:text="Title"
         android:textColor="@color/white"
-        android:textSize="36dp" />
+        app:autoSizeMaxTextSize="36sp"
+        app:autoSizeMinTextSize="24sp"
+        app:autoSizeTextType="uniform"
+        tools:autoSizeStepGranularity="2sp" />
 
     <TextView
         android:id="@+id/tvStoryCountry"

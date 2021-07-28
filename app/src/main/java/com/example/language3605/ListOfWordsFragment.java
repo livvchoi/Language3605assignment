@@ -68,7 +68,7 @@ public class ListOfWordsFragment extends Fragment {
 
         //Select correct dictionary branch from Firebase
         wordDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        String languageClicked = HomeFragment.item + "Dictionary";
+        String languageClicked = HomeFragment.languageClicked + "Dictionary";
 
         ValueEventListener valueEventListener = wordDatabaseReference.child(languageClicked).addValueEventListener(new ValueEventListener() {
             @Override

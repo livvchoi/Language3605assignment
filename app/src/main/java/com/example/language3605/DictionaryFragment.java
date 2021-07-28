@@ -73,7 +73,7 @@ public class DictionaryFragment extends Fragment {
         storageRef = storage.getReference();
 
         //Specify which language dictionary to reference in Firebase Realtime Database
-        String languageClicked = HomeFragment.item + "Dictionary";
+        String languageClicked = HomeFragment.languageClicked + "Dictionary";
         displayDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
         ValueEventListener valueEventListener = displayDatabaseReference.child(languageClicked).addValueEventListener(new ValueEventListener() {

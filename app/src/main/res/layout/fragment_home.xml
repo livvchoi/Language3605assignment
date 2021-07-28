@@ -91,7 +91,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/cvWordOfDay"
         android:layout_width="345dp"
         android:layout_height="91dp"
         app:cardBackgroundColor="#E37209"
@@ -104,22 +104,31 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginTop="10dp"
             android:text="Word of the Day"
             android:textColor="#FFFFFF"
             android:textSize="18dp"
-            android:textStyle="bold"
-            android:translationX="100dp"
-            android:translationY="10dp" />
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvWordofDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:layout_gravity="center"
+            android:text="Please select a language"
             android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:translationX="125dp"
-            android:translationY="50dp" />
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/tvWordofDayEng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="10dp"
+            android:text="Please select a language"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -131,7 +140,7 @@
         app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+        app:layout_constraintTop_toBottomOf="@+id/cvWordOfDay">
 
         <TextView
             android:id="@+id/textView7"

@@ -101,7 +101,7 @@ public class QuizFragment extends Fragment {
                 int i = 0;
 
                 while (i < language.size()){
-                    if (HomeFragment.item.equals(language.get(i))) {
+                    if (HomeFragment.languageClicked.equals(language.get(i))) {
                         newCategoryNames.add(category.get(i));
                     }
                     i++;
@@ -159,16 +159,16 @@ public class QuizFragment extends Fragment {
 
 
                 while (j < quizLanguage.size()) {
-                    if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Numbers"))) {
+                    if ((HomeFragment.languageClicked.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Numbers"))) {
                         a++;
-                    } else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Greetings"))){
+                    } else if ((HomeFragment.languageClicked.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Greetings"))){
                         b++;
-                    }else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Family"))){
+                    }else if ((HomeFragment.languageClicked.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Family"))){
                         c++;
-                    }else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Emotions"))) {
+                    }else if ((HomeFragment.languageClicked.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Emotions"))) {
                         d++;
                     }
-                    else if ((HomeFragment.item.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Body Parts"))) {
+                    else if ((HomeFragment.languageClicked.equals(quizLanguage.get(j))) && (quizCategory.get(j).equals("Body Parts"))) {
                         e++;
                     }
                     j++;

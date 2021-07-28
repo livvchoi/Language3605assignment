@@ -9,9 +9,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -21,8 +24,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class HomeFragment extends Fragment {
     private Button hmSwitchTest, hmTest;
@@ -30,12 +36,20 @@ public class HomeFragment extends Fragment {
     Button buttonToCategory;
 
     public static Spinner languageSpinner;
+    private TextView showWordofDay, showWordofDayEng;
+    private CardView btnWordofDay;
+    boolean languageChosen = false;
+    public static List<Dictionary> langDict = new ArrayList<>();
+
 
     DatabaseReference databaseReference;
+    DatabaseReference wotdDatabaseReference;
+
 
     List<String> names;
 
-    public static String item;
+    public static String languageClicked;
+
 
     private ProgressDialogHelper progressDialogHelper;
 
@@ -45,7 +59,11 @@ public class HomeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         View contentView = inflater.inflate(R.layout.fragment_home, container, false);
-
+        // Word of the Day
+        //instantiate view object
+        btnWordofDay = contentView.findViewById(R.id.cvWordOfDay);
+        showWordofDay = contentView.findViewById(R.id.tvWordofDay);
+        showWordofDayEng = contentView.findViewById(R.id.tvWordofDayEng);
 
         //loading prompt
         this.progressDialogHelper = new ProgressDialogHelper(getContext());
@@ -103,7 +121,8 @@ public class HomeFragment extends Fragment {
                     String spinnerName = childSnapshot.child("Name").getValue(String.class);
                     names.add(spinnerName);
                 }
-
+                //remove the English option
+                names.remove(0);
                 final ArrayAdapter arrayAdapter = new ArrayAdapter<String>(contentView.getContext(),android.R.layout.simple_spinner_item, names);
 
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -124,8 +143,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                item = (String) parent.getItemAtPosition(position);
-                Log.v("item", item);
+                languageClicked = (String) parent.getItemAtPosition(position);
+                Log.v("item", languageClicked);
+                setShowWordofDay(languageClicked);
 
             }
 
@@ -136,9 +156,59 @@ public class HomeFragment extends Fragment {
         });
 
 
+
+
         return contentView;
 
 
+    }
+
+    public void setShowWordofDay(String languageClicked){
+        //if no language is chosen show pick a word
+        if(languageClicked != null){
+            String languageDictionary = languageClicked + "Dictionary";
+            wotdDatabaseReference = FirebaseDatabase.getInstance().getReference();
+            ValueEventListener valueEventListener = wotdDatabaseReference.child(languageDictionary).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    for (DataSnapshot dictSnapshot : snapshot.getChildren()){
+                        Dictionary dictEntry = dictSnapshot.getValue(Dictionary.class);
+                        langDict.add(dictEntry);
+
+                    }
+                    //if language is chosen, pick a random word
+                    Random r = new Random();
+                    final int wordPos  = r.nextInt(langDict.size() - 1);
+                    Log.d("wordPos", (String.valueOf(wordPos)));
+                    showWordofDay.setText(langDict.get(wordPos).getWord());
+//                    Log.d("Word of Day", langDict.get(wordPos).getWord());
+                    showWordofDayEng.setText(langDict.get(wordPos).getEnglishWord());
+//                    Log.d("Word of Day English", langDict.get(wordPos).getEnglishWord());
+
+                    //redirect to dictionary if the cardview is clicked
+                    btnWordofDay.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Bundle bundle = new Bundle();
+                            bundle.putString("id", langDict.get(wordPos).getId());
+
+                            DictionaryFragment dictionaryFragment = new DictionaryFragment();
+
+                            dictionaryFragment.setArguments(bundle);
+
+                            AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                            activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, dictionaryFragment).addToBackStack(null).commit();
+                        }
+                    });
+                }
+
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                }
+            });
+
+        }
     }
 
 

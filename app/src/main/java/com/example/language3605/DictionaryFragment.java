@@ -46,6 +46,13 @@ public class DictionaryFragment extends Fragment {
     public static ArrayList<Dictionary> dictList = new ArrayList<>();
 
 
+    Integer num;
+    Integer upMaxClicks = 1;
+    Integer downMaxClicks = 1;
+
+    Integer upCurrentNumber = 0;
+    Integer downCurrentNumber = 0;
+
 
     @Nullable
     @Override
@@ -101,7 +108,7 @@ public class DictionaryFragment extends Fragment {
                 showRating.setText(wordClicked.getRating().toString());
                 Picasso.get().load(wordClicked.getImage()).into(showImage);
 
-
+                num = wordClicked.getRating().intValue();
 
             }
 
@@ -117,16 +124,26 @@ public class DictionaryFragment extends Fragment {
         mUpvote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //change rating displayed
-                //limit to one click
-                //change rating on Firebase
+                if(upCurrentNumber == upMaxClicks){
+                    mUpvote.setEnabled(false);
+                } else if(mUpvote.isPressed()){
+                    num = num + 1;
+                    showRating.setText(num.toString());
+                    upCurrentNumber = upCurrentNumber + 1;
+                }
             }
         });
 
         mDownvote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(downCurrentNumber == downMaxClicks){
+                    mDownvote.setEnabled(false);
+                } else if(mDownvote.isPressed()){
+                    num = num - 1;
+                    showRating.setText(num.toString());
+                    downCurrentNumber = downCurrentNumber + 1;
+                }
             }
         });
 
@@ -135,8 +152,6 @@ public class DictionaryFragment extends Fragment {
             public void onClick(View v) {
                 playAudio(wordClicked);
             }
-
-
         });
 
 

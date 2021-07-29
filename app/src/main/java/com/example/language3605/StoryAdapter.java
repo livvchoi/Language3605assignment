@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryListHolder> {
-    private List<Story> mStoryList;
+    private final List<Story> mStoryList;
 
     public StoryAdapter(List<Story> mStoryList) {
         this.mStoryList = mStoryList;

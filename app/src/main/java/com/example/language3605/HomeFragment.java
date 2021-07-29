@@ -118,31 +118,38 @@ public class HomeFragment extends Fragment {
         names = new ArrayList<>();
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("LanguagesList").addValueEventListener(new ValueEventListener() {
+
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void run() {
+                databaseReference.child("LanguagesList").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot childSnapshot:dataSnapshot.getChildren()){
-                    String spinnerName = childSnapshot.child("Name").getValue(String.class);
-                    names.add(spinnerName);
-                }
-                //remove the English option
-                names.remove(0);
-                final ArrayAdapter arrayAdapter = new ArrayAdapter<String>(contentView.getContext(),android.R.layout.simple_spinner_item, names);
+                        for(DataSnapshot childSnapshot:dataSnapshot.getChildren()){
+                            String spinnerName = childSnapshot.child("Name").getValue(String.class);
+                            names.add(spinnerName);
+                        }
+                        //remove the English option
+                        names.remove(0);
+                        final ArrayAdapter arrayAdapter = new ArrayAdapter<String>(contentView.getContext(),android.R.layout.simple_spinner_item, names);
 
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 
-                languageSpinner.setAdapter(arrayAdapter);
+                        languageSpinner.setAdapter(arrayAdapter);
 
-                progressDialogHelper.dismiss();
+                        progressDialogHelper.dismiss();
 
-            }
+                    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                    }
+                });
             }
         });
+
 
         languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -165,9 +172,12 @@ public class HomeFragment extends Fragment {
                 // TODO Auto-generated method stub
             }
         });
-        setShowStoryofDay();
-
-
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                setShowStoryofDay();
+            }
+        });
 
         return contentView;
 
@@ -180,9 +190,7 @@ public class HomeFragment extends Fragment {
         //if no language is chosen show pick a word
         if(languageClicked != null){
             String languageDictionary = languageClicked + "Dictionary";
-            wotdDatabaseReference = FirebaseDatabase.getInstance().getReference();
-
-            ValueEventListener valueEventListener = wotdDatabaseReference.child(languageDictionary).addValueEventListener(new ValueEventListener() {
+             databaseReference.child(languageDictionary).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                     for (DataSnapshot dictSnapshot : snapshot.getChildren()){
@@ -230,8 +238,8 @@ public class HomeFragment extends Fragment {
     }
 
     public void setShowStoryofDay(){
-        storyDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        ValueEventListener valueEventListener = storyDatabaseReference.child("DreamTime").addValueEventListener(new ValueEventListener() {
+
+        databaseReference.child("DreamTime").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 for (DataSnapshot storySnapshot : snapshot.getChildren()){

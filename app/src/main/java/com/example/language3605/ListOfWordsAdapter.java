@@ -18,7 +18,7 @@ import java.util.List;
 public class ListOfWordsAdapter extends RecyclerView.Adapter<ListOfWordsAdapter.WordListViewHolder> {
     private static final String TAG = "ListOfWordsAdapter";
 
-    private List<Dictionary> mCategoryDictionary;
+    private final List<Dictionary> mCategoryDictionary;
     //public static Context mContext;
     public static String wordPosition;
     // public static String indigPosition;

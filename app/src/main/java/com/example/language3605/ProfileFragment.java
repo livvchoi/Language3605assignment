@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,8 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
     private Button pSignOut, pAnswerQuizTest;
     private TextView pShareProgress;
+    private ImageView pProgress1Quiz, pProgress10Quiz, pProgress20Quiz, pProgress1Language,
+            pProgress3Language, pProgress5Language, pProgressShare, pProgress10LB, pProgress1LB;
 
     private Profile profile;
     private List<Profile> pProfileList = new ArrayList<>();
@@ -85,6 +88,17 @@ public class ProfileFragment extends Fragment {
                 startActivity(shareIntent);
             }
         });
+
+        //link imageview references
+        pProgress1Quiz = contentView.findViewById(R.id.ivProgress1Quiz);
+        pProgress10Quiz = contentView.findViewById(R.id.ivProgress10Quiz);
+        pProgress20Quiz = contentView.findViewById(R.id.ivProgress20Quiz);
+        pProgress1Language = contentView.findViewById(R.id.ivProgress1Language);
+        pProgress3Language = contentView.findViewById(R.id.ivProgress3Language);
+        pProgress5Language = contentView.findViewById(R.id.ivProgress5Language);
+        pProgressShare = contentView.findViewById(R.id.ivProgressShare);
+        pProgress10LB = contentView.findViewById(R.id.ivProgress1LB);
+        pProgress1LB = contentView.findViewById(R.id.ivProgress10LB);
 
         //link to database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();

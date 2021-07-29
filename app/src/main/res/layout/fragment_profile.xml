@@ -137,7 +137,7 @@
         app:srcCompat="@drawable/badge_advanced" />
 
     <ImageView
-        android:id="@+id/ivProgress10Quiz"
+        android:id="@+id/ivProgress5Quiz"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="32dp"
@@ -152,7 +152,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        app:layout_constraintStart_toEndOf="@+id/ivProgress10Quiz"
+        app:layout_constraintStart_toEndOf="@+id/ivProgress5Quiz"
         app:layout_constraintTop_toBottomOf="@+id/tvMyBadges"
         app:srcCompat="@drawable/badge_advanced" />
 

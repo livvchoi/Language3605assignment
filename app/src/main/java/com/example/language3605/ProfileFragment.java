@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -31,11 +33,17 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
     private Button pSignOut, pAnswerQuizTest;
     private TextView pShareProgress;
-    private ImageView pProgress1Quiz, pProgress10Quiz, pProgress20Quiz, pProgress1Language,
+    private ImageView pProgress1Quiz, pProgress5Quiz, pProgress20Quiz, pProgress1Language,
             pProgress3Language, pProgress5Language, pProgressShare, pProgress10LB, pProgress1LB;
+    private ProgressBar pProgressBar;
 
     private Profile profile;
     private List<Profile> pProfileList = new ArrayList<>();
+    private int progressNum;
+    private int quizNum;
+    private int languageNum;
+
+    private ProgressDialogHelper progressDialogHelper;
 
     @Nullable
     @Override
@@ -43,6 +51,13 @@ public class ProfileFragment extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_profile, container, false);
 
         //code here
+
+        //loading prompt
+        this.progressDialogHelper = new ProgressDialogHelper(getContext());
+
+        //show loading prompt
+        progressDialogHelper.show("loading", "loading badges...");
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         pSignOut = contentView.findViewById(R.id.btSignOut);
@@ -86,19 +101,31 @@ public class ProfileFragment extends Fragment {
                 sendText.setType("text/plain");
                 Intent shareIntent = Intent.createChooser(sendText, null);
                 startActivity(shareIntent);
+                pProgressShare.setVisibility(View.VISIBLE);
             }
         });
 
         //link imageview references
         pProgress1Quiz = contentView.findViewById(R.id.ivProgress1Quiz);
-        pProgress10Quiz = contentView.findViewById(R.id.ivProgress10Quiz);
+        pProgress1Quiz.setVisibility(View.INVISIBLE);
+        pProgress5Quiz = contentView.findViewById(R.id.ivProgress5Quiz);
+        pProgress5Quiz.setVisibility(View.INVISIBLE);
         pProgress20Quiz = contentView.findViewById(R.id.ivProgress20Quiz);
+        pProgress20Quiz.setVisibility(View.INVISIBLE);
         pProgress1Language = contentView.findViewById(R.id.ivProgress1Language);
+        pProgress1Language.setVisibility(View.INVISIBLE);
         pProgress3Language = contentView.findViewById(R.id.ivProgress3Language);
+        pProgress3Language.setVisibility(View.INVISIBLE);
         pProgress5Language = contentView.findViewById(R.id.ivProgress5Language);
+        pProgress5Language.setVisibility(View.INVISIBLE);
         pProgressShare = contentView.findViewById(R.id.ivProgressShare);
-        pProgress10LB = contentView.findViewById(R.id.ivProgress1LB);
-        pProgress1LB = contentView.findViewById(R.id.ivProgress10LB);
+        pProgressShare.setVisibility(View.INVISIBLE);
+        pProgress10LB = contentView.findViewById(R.id.ivProgress10LB);
+        pProgress10LB.setVisibility(View.INVISIBLE);
+        pProgress1LB = contentView.findViewById(R.id.ivProgress1LB);
+        pProgress1LB.setVisibility(View.INVISIBLE);
+
+        pProgressBar = contentView.findViewById(R.id.progressBar);
 
         //link to database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
@@ -112,6 +139,55 @@ public class ProfileFragment extends Fragment {
                 }
 
                 profile = pProfileList.get(0);
+
+                //change image icons
+                Picasso.get().load(profile.getBadge1QuizImage()).into(pProgress1Quiz);
+                Picasso.get().load(profile.getBadge5QuizImage()).into(pProgress5Quiz);
+                Picasso.get().load(profile.getBadge20QuizImage()).into(pProgress20Quiz);
+                Picasso.get().load(profile.getBadge1LanguageImage()).into(pProgress1Language);
+                Picasso.get().load(profile.getBadge3LanguageImage()).into(pProgress3Language);
+                Picasso.get().load(profile.getBadge5LanguageImage()).into(pProgress5Language);
+                Picasso.get().load(profile.getBadgeShareImage()).into(pProgressShare);
+                Picasso.get().load(profile.getBadge10LBImage()).into(pProgress10LB);
+                Picasso.get().load(profile.getBadge1LBImage()).into(pProgress1LB);
+
+                //retrieve data
+                progressNum = profile.getProgress();
+                pProgressBar.setProgress(progressNum);
+                quizNum = profile.getQuestionCount();
+                languageNum = profile.getLanguageCount();
+
+                //badge display criteria
+                if (profile.isBadge1Quiz() || quizNum >= 1) {
+                    pProgress1Quiz.setVisibility(View.VISIBLE);
+                }
+                if (profile.isBadge5Quiz() || quizNum >= 5) {
+                    pProgress5Quiz.setVisibility(View.VISIBLE);
+                }
+                if (profile.isBadge20Quiz() || quizNum >= 20) {
+                    pProgress20Quiz.setVisibility(View.VISIBLE);
+                }
+                if (profile.isBadge1Language() || languageNum >= 1) {
+                    pProgress1Language.setVisibility(View.VISIBLE);
+                }
+                if (profile.isBadge3Language() || languageNum >= 3) {
+                    pProgress3Language.setVisibility(View.VISIBLE);
+                }
+                if (profile.isBadge5Language() || languageNum >= 5) {
+                    pProgress5Language.setVisibility(View.VISIBLE);
+                }
+                if (profile.isBadgeShare()) {
+                    pProgressShare.setVisibility(View.VISIBLE);
+                }
+                if (profile.isBadge10LB()) {
+                    pProgress10LB.setVisibility(View.VISIBLE);
+                }
+                if (profile.isBadge1LB()) {
+                    pProgress1LB.setVisibility(View.VISIBLE);
+                }
+
+
+                progressDialogHelper.dismiss();
             }
 
             @Override

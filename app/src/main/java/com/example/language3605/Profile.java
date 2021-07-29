@@ -1,35 +1,33 @@
 package com.example.language3605;
 
 public class Profile {
-    private String Badge10LB;
+    private boolean Badge10LB;
     private String Badge10LBImage;
-    private String Badge1LB;
+    private boolean Badge1LB;
     private String Badge1LBImage;
-    private String Badge1Language;
+    private boolean Badge1Language;
     private String Badge1LanguageImage;
-    private String Badge1Quiz;
+    private boolean Badge1Quiz;
     private String Badge1QuizImage;
-    private String Badge20Quiz;
+    private boolean Badge20Quiz;
     private String Badge20QuizImage;
-    private String Badge3Language;
+    private boolean Badge3Language;
     private String Badge3LanguageImage;
-    private String Badge5Language;
+    private boolean Badge5Language;
     private String Badge5LanguageImage;
-    private String Badge5Quiz;
+    private boolean Badge5Quiz;
     private String Badge5QuizImage;
-    private String BadgeShare;
+    private boolean BadgeShare;
     private String BadgeShareImage;
     private int LanguageCount;
     private int Progress;
     private int QuestionCount;
 
-    public Profile(String badge10LB, String badge10LBImage, String badge1LB, String badge1LBImage,
-                   String badge1Language, String badge1LanguageImage, String badge1Quiz,
-                   String badge1QuizImage, String badge20Quiz, String badge20QuizImage,
-                   String badge3Language, String badge3LanguageImage, String badge5Language,
-                   String badge5LanguageImage, String badge5Quiz, String badge5QuizImage,
-                   String badgeShare, String badgeShareImage, int languageCount, int progress,
-                   int questionCount) {
+    public Profile() {
+
+    }
+
+    public Profile(boolean badge10LB, String badge10LBImage, boolean badge1LB, String badge1LBImage, boolean badge1Language, String badge1LanguageImage, boolean badge1Quiz, String badge1QuizImage, boolean badge20Quiz, String badge20QuizImage, boolean badge3Language, String badge3LanguageImage, boolean badge5Language, String badge5LanguageImage, boolean badge5Quiz, String badge5QuizImage, boolean badgeShare, String badgeShareImage, int languageCount, int progress, int questionCount) {
         Badge10LB = badge10LB;
         Badge10LBImage = badge10LBImage;
         Badge1LB = badge1LB;
@@ -53,11 +51,11 @@ public class Profile {
         QuestionCount = questionCount;
     }
 
-    public String getBadge10LB() {
+    public boolean isBadge10LB() {
         return Badge10LB;
     }
 
-    public void setBadge10LB(String badge10LB) {
+    public void setBadge10LB(boolean badge10LB) {
         Badge10LB = badge10LB;
     }
 
@@ -69,11 +67,11 @@ public class Profile {
         Badge10LBImage = badge10LBImage;
     }
 
-    public String getBadge1LB() {
+    public boolean isBadge1LB() {
         return Badge1LB;
     }
 
-    public void setBadge1LB(String badge1LB) {
+    public void setBadge1LB(boolean badge1LB) {
         Badge1LB = badge1LB;
     }
 
@@ -85,11 +83,11 @@ public class Profile {
         Badge1LBImage = badge1LBImage;
     }
 
-    public String getBadge1Language() {
+    public boolean isBadge1Language() {
         return Badge1Language;
     }
 
-    public void setBadge1Language(String badge1Language) {
+    public void setBadge1Language(boolean badge1Language) {
         Badge1Language = badge1Language;
     }
 
@@ -101,11 +99,11 @@ public class Profile {
         Badge1LanguageImage = badge1LanguageImage;
     }
 
-    public String getBadge1Quiz() {
+    public boolean isBadge1Quiz() {
         return Badge1Quiz;
     }
 
-    public void setBadge1Quiz(String badge1Quiz) {
+    public void setBadge1Quiz(boolean badge1Quiz) {
         Badge1Quiz = badge1Quiz;
     }
 
@@ -117,11 +115,11 @@ public class Profile {
         Badge1QuizImage = badge1QuizImage;
     }
 
-    public String getBadge20Quiz() {
+    public boolean isBadge20Quiz() {
         return Badge20Quiz;
     }
 
-    public void setBadge20Quiz(String badge20Quiz) {
+    public void setBadge20Quiz(boolean badge20Quiz) {
         Badge20Quiz = badge20Quiz;
     }
 
@@ -133,11 +131,11 @@ public class Profile {
         Badge20QuizImage = badge20QuizImage;
     }
 
-    public String getBadge3Language() {
+    public boolean isBadge3Language() {
         return Badge3Language;
     }
 
-    public void setBadge3Language(String badge3Language) {
+    public void setBadge3Language(boolean badge3Language) {
         Badge3Language = badge3Language;
     }
 
@@ -149,11 +147,11 @@ public class Profile {
         Badge3LanguageImage = badge3LanguageImage;
     }
 
-    public String getBadge5Language() {
+    public boolean isBadge5Language() {
         return Badge5Language;
     }
 
-    public void setBadge5Language(String badge5Language) {
+    public void setBadge5Language(boolean badge5Language) {
         Badge5Language = badge5Language;
     }
 
@@ -165,11 +163,11 @@ public class Profile {
         Badge5LanguageImage = badge5LanguageImage;
     }
 
-    public String getBadge5Quiz() {
+    public boolean isBadge5Quiz() {
         return Badge5Quiz;
     }
 
-    public void setBadge5Quiz(String badge5Quiz) {
+    public void setBadge5Quiz(boolean badge5Quiz) {
         Badge5Quiz = badge5Quiz;
     }
 
@@ -181,11 +179,11 @@ public class Profile {
         Badge5QuizImage = badge5QuizImage;
     }
 
-    public String getBadgeShare() {
+    public boolean isBadgeShare() {
         return BadgeShare;
     }
 
-    public void setBadgeShare(String badgeShare) {
+    public void setBadgeShare(boolean badgeShare) {
         BadgeShare = badgeShare;
     }
 

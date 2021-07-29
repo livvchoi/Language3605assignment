@@ -33,6 +33,7 @@ public class CategoryFragment extends Fragment {
 
     RecyclerView catRecyclerView;
 
+    // to be deleted
     FloatingActionButton buttonToAddCategory;
 
     private ArrayList<String> mLanguages = new ArrayList<>();
@@ -45,6 +46,7 @@ public class CategoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_categorylist, container, false);
 
+        //to be deleted
         buttonToAddCategory = contentView.findViewById(R.id.fltBtnAddCat);
         buttonToAddCategory.setOnClickListener(new View.OnClickListener() {
             @Override

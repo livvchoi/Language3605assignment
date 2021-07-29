@@ -45,6 +45,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.categoryType.setText(categoriesList.get(position));
+
         Picasso.get().load(categoryImageList.get(position)).into(holder.categoryImage);
         holder.itemView.setTag(categoriesList.get(position));
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {

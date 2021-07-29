@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,22 +40,35 @@ public class ListOfWordsFragment extends Fragment {
 
 
     // categories
-    private final ArrayList<String> categories = new ArrayList<>();
+    private ArrayList<String> categories = new ArrayList<>();
     //  english translate
-    private final ArrayList<String> englishTranslate = new ArrayList<>();
+    private ArrayList<String> englishTranslate = new ArrayList<>();
     //  indig word
-    private final ArrayList<String> indigWords = new ArrayList<>();
+    private ArrayList<String> indigWords = new ArrayList<>();
 
-    private final ArrayList<String> aWords = new ArrayList<>();
-    private final ArrayList<String> bWords = new ArrayList<>();
+    private ArrayList<String> aWords = new ArrayList<>();
+    private ArrayList<String> bWords = new ArrayList<>();
 
 //    private ArrayList<Dictionary> mExampleList;
 //    private ListOfWordsAdapter mAdapter;
+
+    FloatingActionButton buttonToAddWord;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_listofwords, container, false);
+
+        buttonToAddWord = contentView.findViewById(R.id.fltBtnAddWord);
+        buttonToAddWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction qFrag = getParentFragmentManager().beginTransaction();
+                qFrag.replace(R.id.fragment_container, new AddWordFragment());
+                qFrag.commit();
+            }
+        });
 
         Bundle bundle = this.getArguments();
         if (bundle != null){
@@ -78,6 +93,7 @@ public class ListOfWordsFragment extends Fragment {
                     mDictionary.add(entry);
                 }
                 //check that the number of words in dictionary matches number of entries
+//                System.out.println(mDictionary.size());
 
                 Log.d("category before check", category);
                 mCategoryDictionary.addAll(Dictionary.getCategoriesList(mDictionary, category));
@@ -85,8 +101,8 @@ public class ListOfWordsFragment extends Fragment {
 
 
 
-
-                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(mCategoryDictionary);
+//                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(contentView.getContext(), aWords, bWords);
+                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(mDictionary,mCategoryDictionary, mListener);
                 wordRecyclerView.setAdapter(recAdapter);
 
             }

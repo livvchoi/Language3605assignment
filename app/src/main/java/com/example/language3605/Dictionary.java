@@ -4,6 +4,7 @@ package com.example.language3605;
 import android.util.Log;
 
 import com.google.firebase.database.PropertyName;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,13 +57,18 @@ public class Dictionary {
 
     }
 
-    public Dictionary(String categoryName, String englishWord, String id, String language, String word) {
+    public Dictionary(String categoryID, String categoryName, String englishWord, String id, String image, String language, Integer rating, String word, String definition) {
+        this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.englishWord = englishWord;
         this.id = id;
+        this.image = image;
         this.language = language;
+        this.rating = rating;
         this.word = word;
+        this.definition = definition;
     }
+
 
     public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID, String definition, String audio) {
         this.categoryID = categoryID;

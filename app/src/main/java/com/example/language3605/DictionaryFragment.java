@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -30,6 +32,9 @@ public class DictionaryFragment extends Fragment {
 
     DatabaseReference displayDatabaseReference;
 
+    FirebaseStorage storage;
+    StorageReference storageRef, imageRef;
+
     private TextView showEnglish, showIndig, showDefinition, showRating;
     private ImageView showImage, mUpvote, mDownvote;
     private Button btnAudio;
@@ -39,6 +44,15 @@ public class DictionaryFragment extends Fragment {
 
     //use the dictionary object
     public static ArrayList<Dictionary> dictList = new ArrayList<>();
+
+
+    Integer num;
+    Integer upMaxClicks = 1;
+    Integer downMaxClicks = 1;
+
+    Integer upCurrentNumber = 0;
+    Integer downCurrentNumber = 0;
+
 
     @Nullable
     @Override
@@ -59,6 +73,10 @@ public class DictionaryFragment extends Fragment {
         mUpvote = contentView.findViewById(R.id.ivUpvote);
         mDownvote = contentView.findViewById(R.id.ivDownvote);
         btnAudio = contentView.findViewById(R.id.btnPronounciation);
+
+        //Firebase storage initialization
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
 
         //Specify which language dictionary to reference in Firebase Realtime Database
         String languageClicked = HomeFragment.languageClicked + "Dictionary";
@@ -90,6 +108,8 @@ public class DictionaryFragment extends Fragment {
                 showRating.setText(wordClicked.getRating().toString());
                 Picasso.get().load(wordClicked.getImage()).into(showImage);
 
+                num = wordClicked.getRating().intValue();
+
             }
 
 
@@ -104,29 +124,34 @@ public class DictionaryFragment extends Fragment {
         mUpvote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //change rating displayed
-                //limit to one click
-                //change rating on Firebase
+                if(upCurrentNumber == upMaxClicks){
+                    mUpvote.setEnabled(false);
+                } else if(mUpvote.isPressed()){
+                    num = num + 1;
+                    showRating.setText(num.toString());
+                    upCurrentNumber = upCurrentNumber + 1;
+                }
             }
         });
 
         mDownvote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //change rating displayed
-                //limit to one click
-                //change rating on Firebase
+                if(downCurrentNumber == downMaxClicks){
+                    mDownvote.setEnabled(false);
+                } else if(mDownvote.isPressed()){
+                    num = num - 1;
+                    showRating.setText(num.toString());
+                    downCurrentNumber = downCurrentNumber + 1;
+                }
             }
         });
 
-        //play pronunciation audio
         btnAudio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 playAudio(wordClicked);
             }
-
-
         });
 
 

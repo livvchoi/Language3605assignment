@@ -96,40 +96,38 @@
         android:id="@+id/ivDownvote"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvRating"
-        app:layout_constraintEnd_toStartOf="@+id/tvRating"
-        app:layout_constraintStart_toStartOf="@+id/btnPronounciation"
-        app:layout_constraintTop_toTopOf="@+id/tvRating"
+        android:layout_marginStart="109dp"
+        android:layout_marginLeft="109dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPronounciation"
         app:srcCompat="@drawable/down_chevron" />
 
     <ImageView
         android:id="@+id/ivUpvote"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvRating"
-        app:layout_constraintEnd_toEndOf="@+id/btnPronounciation"
-        app:layout_constraintStart_toEndOf="@+id/tvRating"
-        app:layout_constraintTop_toTopOf="@+id/tvRating"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginRight="108dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPronounciation"
         app:srcCompat="@drawable/up_chevron" />
 
     <TextView
         android:id="@+id/tvRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:text="10"
         android:textColor="@color/oxford_blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnPronounciation"
-        app:layout_constraintVertical_bias="0.674" />
+        app:layout_constraintEnd_toStartOf="@+id/ivUpvote"
+        app:layout_constraintStart_toEndOf="@+id/ivDownvote"
+        app:layout_constraintTop_toBottomOf="@+id/btnPronounciation" />
 
     <Button
         android:id="@+id/btnPronounciation"

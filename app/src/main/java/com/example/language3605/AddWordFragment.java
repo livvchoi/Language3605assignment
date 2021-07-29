@@ -29,6 +29,7 @@ public class AddWordFragment extends Fragment {
 
     DatabaseReference databaseWords = FirebaseDatabase.getInstance().getReference(languageClicked);
 
+    String category;
 
     @Nullable
     @Override

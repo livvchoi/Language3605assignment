@@ -36,7 +36,7 @@ public class ListOfWordsFragment extends Fragment {
     private final List<Dictionary> mDictionary = new ArrayList<>();
     private final List<Dictionary> mCategoryDictionary = new ArrayList<>();
 
-    String category;
+    public static String category;
 
 
     // categories
@@ -102,7 +102,7 @@ public class ListOfWordsFragment extends Fragment {
 
 
 //                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(contentView.getContext(), aWords, bWords);
-                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(mDictionary,mCategoryDictionary, mListener);
+                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(mCategoryDictionary);
                 wordRecyclerView.setAdapter(recAdapter);
 
             }

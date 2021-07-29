@@ -1,6 +1,7 @@
 package com.example.language3605;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,15 +27,16 @@ public class ListOfWordsFragment extends Fragment {
 
     private static final String TAG = "ListOfWordsFragment";
 
-    String category = "Numbers";
+
 
 
     DatabaseReference wordDatabaseReference;
 
     RecyclerView wordRecyclerView;
-    private List<Dictionary> mDictionary = new ArrayList<>();
-    private List<Dictionary> mCategoryDictionary = new ArrayList<>();
-    private ListOfWordsAdapter.Listener mListener;
+    private final List<Dictionary> mDictionary = new ArrayList<>();
+    private final List<Dictionary> mCategoryDictionary = new ArrayList<>();
+
+    public static String category;
 
 
     // categories
@@ -48,14 +52,28 @@ public class ListOfWordsFragment extends Fragment {
 //    private ArrayList<Dictionary> mExampleList;
 //    private ListOfWordsAdapter mAdapter;
 
+    FloatingActionButton buttonToAddWord;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_listofwords, container, false);
 
+        buttonToAddWord = contentView.findViewById(R.id.fltBtnAddWord);
+        buttonToAddWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction qFrag = getParentFragmentManager().beginTransaction();
+                qFrag.replace(R.id.fragment_container, new AddWordFragment());
+                qFrag.commit();
+            }
+        });
+
         Bundle bundle = this.getArguments();
         if (bundle != null){
             category = bundle.get("category").toString();
+            Log.d("Bundle Tag", bundle.get("category").toString());
         }
 
         //Instantiate
@@ -65,7 +83,7 @@ public class ListOfWordsFragment extends Fragment {
 
         //Select correct dictionary branch from Firebase
         wordDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        String languageClicked = HomeFragment.item + "Dictionary";
+        String languageClicked = HomeFragment.languageClicked + "Dictionary";
 
         ValueEventListener valueEventListener = wordDatabaseReference.child(languageClicked).addValueEventListener(new ValueEventListener() {
             @Override
@@ -75,25 +93,16 @@ public class ListOfWordsFragment extends Fragment {
                     mDictionary.add(entry);
                 }
                 //check that the number of words in dictionary matches number of entries
-                System.out.println(mDictionary.size());
+//                System.out.println(mDictionary.size());
 
+                Log.d("category before check", category);
                 mCategoryDictionary.addAll(Dictionary.getCategoriesList(mDictionary, category));
-                System.out.println(categories.size());
+                System.out.println("CategoryDictionary size" + mCategoryDictionary.size());
 
-              /*  int i = 0;
-                while(i<categories.size()){
-                    if(CategoryAdapter.categoryPosition.equals(categories.get(i))){
-                        aWords.add(englishTranslate.get(i));
-                        bWords.add(indigWords.get(i));
-                    }
-                    i++;
-                }
 
-                System.out.println(aWords);
-                System.out.println(bWords);*/
 
 //                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(contentView.getContext(), aWords, bWords);
-                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(mDictionary,mCategoryDictionary, mListener);
+                ListOfWordsAdapter recAdapter = new ListOfWordsAdapter(mCategoryDictionary);
                 wordRecyclerView.setAdapter(recAdapter);
 
             }

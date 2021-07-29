@@ -1,7 +1,10 @@
 package com.example.language3605;
 
 
+import android.util.Log;
+
 import com.google.firebase.database.PropertyName;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +50,27 @@ public class Dictionary {
     @PropertyName("Definition")
     private String definition;
 
+    @PropertyName("Audio")
+    private String audio;
+
     public Dictionary(){
-        System.out.println("default constructor");
+
     }
 
-    public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID, String definition) {
+    public Dictionary(String categoryID, String categoryName, String englishWord, String id, String image, String language, Integer rating, String word, String definition) {
+        this.categoryID = categoryID;
+        this.categoryName = categoryName;
+        this.englishWord = englishWord;
+        this.id = id;
+        this.image = image;
+        this.language = language;
+        this.rating = rating;
+        this.word = word;
+        this.definition = definition;
+    }
+
+
+    public Dictionary(String categoryID, String categoryName, String englishWord, String entryDate, String id, String image, String language, String languageID, Integer rating, String userID, String word, String wordID, String definition, String audio) {
         this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.englishWord = englishWord;
@@ -65,6 +84,7 @@ public class Dictionary {
         this.word = word;
         this.wordID = wordID;
         this.definition = definition;
+        this.audio = audio;
     }
 
 
@@ -172,6 +192,14 @@ public class Dictionary {
         this.definition = definition;
     }
 
+    public String getAudio() {
+        return audio;
+    }
+
+    public void setAudio(String audio) {
+        this.audio = audio;
+    }
+
     //Get a particular word in the dictionary
     public static Dictionary getDictionaryEntry(List<Dictionary> dictionary, String id) {
         for (final Dictionary entries : dictionary) {
@@ -188,7 +216,9 @@ public class Dictionary {
         List<Dictionary>wordsInCategoryList = new ArrayList<>();
         for (final Dictionary entries : dictionary) {
             if (entries.getCategoryName().equals(categoryName)) {
+                Log.d("getCategoriesList", categoryName);
                 wordsInCategoryList.add(entries);
+                Log.d("getCategories Word", entries.getWord());
             }
         }
         return wordsInCategoryList;

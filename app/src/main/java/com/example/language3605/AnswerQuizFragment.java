@@ -31,6 +31,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.language3605.HomeFragment.languageClicked;
+
 public class AnswerQuizFragment extends Fragment {
     private Button aqTestButton;
     private TextView aqCategory, aqQuestion, aqOptionA, aqOptionB, aqOptionC, aqOptionD, aqRemainTime;
@@ -42,7 +44,7 @@ public class AnswerQuizFragment extends Fragment {
     private int aqIndex;
     private Question aqQuestionObject;
     private Context aqContext;
-    private String aqQuizLanguage = "Tiwi";
+    private final String aqQuizLanguage = languageClicked;
     private String aqQuizCategory = "Numbers";
 
     private ProgressDialogHelper progressDialogHelper;

@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity{
     private static final String TAG = "MainActivity";
 
-    private ArrayList<Query> mLanguage = new ArrayList<com.google.firebase.database.Query>();
-    private ArrayList<Query> mLocation = new ArrayList<Query>();
+    private final ArrayList<Query> mLanguage = new ArrayList<com.google.firebase.database.Query>();
+    private final ArrayList<Query> mLocation = new ArrayList<Query>();
 
 
 

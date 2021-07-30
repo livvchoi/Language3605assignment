@@ -97,11 +97,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:clickable="true"
-        app:backgroundTint="#D3CACA"
+        app:backgroundTint="#FFFFBA08"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="#FFFFFF"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -82,22 +82,21 @@
             android:id="@+id/tv_num_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginLeft="100dp"
+
+            android:layout_marginStart="230dp"
+            android:layout_marginLeft="230dp"
             android:layout_marginTop="50dp"
-            android:layout_marginEnd="78dp"
-            android:layout_marginRight="78dp"
-            android:layout_marginBottom="15dp"
-            android:text="#" />
+            android:text="Question" />
 
         <TextView
             android:id="@+id/tv_static_questions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginLeft="120dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
             android:layout_marginTop="50dp"
-            android:text="Questions" />
+            android:text="Questions available:" />
+
     </androidx.cardview.widget.CardView>
 
     <!--                card_view:layout_constraintStart_toStartOf="@+id/tv_quiz_name"-->

@@ -36,7 +36,7 @@ import static com.example.language3605.HomeFragment.languageClicked;
 public class AnswerQuizFragment extends Fragment {
     private Button aqTestButton;
     private TextView aqCategory, aqQuestion, aqOptionA, aqOptionB, aqOptionC, aqOptionD, aqRemainTime;
-    private ImageView aqCategoryIcon;
+    private ImageView aqCategoryIcon, aqQuestionImage;
 
     private static final String TAG = "";
     private List<Question> aqQuestionList;
@@ -46,6 +46,8 @@ public class AnswerQuizFragment extends Fragment {
     private Context aqContext;
     private final String aqQuizLanguage = languageClicked;
     private String aqQuizCategory = "Numbers";
+
+    private String questionImageUrl = null;
 
     private ProgressDialogHelper progressDialogHelper;
 
@@ -97,6 +99,7 @@ public class AnswerQuizFragment extends Fragment {
         aqRemainTime = contentView.findViewById(R.id.tvAnswerQuizTimer);
 
         aqCategoryIcon = contentView.findViewById(R.id.ivAnswerQuizCategory);
+        aqQuestionImage = contentView.findViewById(R.id.ivAnswerQuizQuestionImage);
 
         //loading prompt
         this.progressDialogHelper = new ProgressDialogHelper(getContext());
@@ -224,6 +227,13 @@ public class AnswerQuizFragment extends Fragment {
         aqOptionC.setText(aqQuestionObject.getOptionC());
         aqOptionD.setText(aqQuestionObject.getOptionD());
 
+        questionImageUrl = aqQuestionObject.getImage();
+        if (questionImageUrl != null) {
+            aqQuestionImage.setVisibility(View.VISIBLE);
+            Picasso.get().load(questionImageUrl).into(aqQuestionImage);
+        } else {
+            aqQuestionImage.setVisibility(View.INVISIBLE);
+        }
     }
 
     //random Integer array generator

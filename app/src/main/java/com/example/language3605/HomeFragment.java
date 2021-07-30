@@ -77,6 +77,7 @@ public class HomeFragment extends Fragment {
 
         //switch from fragment into activity (not useful other than to log out)
         hmSwitchTest = contentView.findViewById(R.id.btFragmentSwitch);
+        hmSwitchTest.setVisibility(View.INVISIBLE);
         hmSwitchTest.setText("Fragment Switch Test");
         hmSwitchTest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +91,7 @@ public class HomeFragment extends Fragment {
 
         //change between fragments (HomeFragment to QuizFragment)
         hmTest = contentView.findViewById(R.id.btTest);
+        hmTest.setVisibility(View.INVISIBLE);
         hmTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
@@ -138,7 +140,7 @@ public class HomeFragment extends Fragment {
 
                         languageSpinner.setAdapter(arrayAdapter);
 
-                        progressDialogHelper.dismiss();
+
 
                     }
 
@@ -207,6 +209,8 @@ public class HomeFragment extends Fragment {
                     Log.d("Word of Day", langDict.get(wordPos).getWord());
                     showWordofDayEng.setText(langDict.get(wordPos).getEnglishWord());
                     Log.d("Word of Day English", langDict.get(wordPos).getEnglishWord());
+
+                    progressDialogHelper.dismiss();
 
                     //redirect to dictionary if the cardview is clicked
                     btnWordofDay.setOnClickListener(new View.OnClickListener() {

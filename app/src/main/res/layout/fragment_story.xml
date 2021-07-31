@@ -50,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:justificationMode="inter_word"
             android:scrollbars="vertical"
             android:textColor="@color/white"
             android:textSize="18dp" />

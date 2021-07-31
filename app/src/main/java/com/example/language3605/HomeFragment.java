@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
     public static String languageClicked;
 
 
-    private ProgressDialogHelper progressDialogHelper;
+   ProgressDialogHelper progressDialogHelper;
 
     @Nullable
     @Override
@@ -69,11 +69,7 @@ public class HomeFragment extends Fragment {
         showWordofDayEng = contentView.findViewById(R.id.tvWordofDayEng);
         showStoryofDay = contentView.findViewById(R.id.tvHomeStoryTitle);
 
-        //loading prompt
-        this.progressDialogHelper = new ProgressDialogHelper(getContext());
 
-        //show loading prompt
-        progressDialogHelper.show("loading", "load languages...");
 
         //switch from fragment into activity (not useful other than to log out)
         hmSwitchTest = contentView.findViewById(R.id.btFragmentSwitch);
@@ -164,9 +160,8 @@ public class HomeFragment extends Fragment {
                     public void run() {
                         setShowWordofDay(languageClicked);
                     }
+
                 });
-
-
             }
 
             @Override
@@ -174,6 +169,13 @@ public class HomeFragment extends Fragment {
                 // TODO Auto-generated method stub
             }
         });
+
+        //loading prompt
+        this.progressDialogHelper = new ProgressDialogHelper(getContext());
+
+        //show loading prompt
+        progressDialogHelper.show("Please wait", "Loading languages...");
+
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {

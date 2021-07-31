@@ -1,11 +1,13 @@
 package com.example.language3605;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
 
 public class CategoryFragment extends Fragment {
 
@@ -32,6 +37,7 @@ public class CategoryFragment extends Fragment {
     DatabaseReference catDatabaseReference;
 
     RecyclerView catRecyclerView;
+    private TextView mSpeaker, mLanguage, mCountry, mStateTerritory,mDescription;
 
     // to be deleted
     FloatingActionButton buttonToAddCategory;
@@ -40,6 +46,7 @@ public class CategoryFragment extends Fragment {
     private ArrayList<String> aCategories = new ArrayList<>();
     private ArrayList<String> bCategories = new ArrayList<>();
     private ArrayList<String> catIcons = new ArrayList<>();
+    public static List<Language> langDetailsList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -57,6 +64,12 @@ public class CategoryFragment extends Fragment {
             }
         });
 
+        //Instantiate view objects
+        mCountry = contentView.findViewById(R.id.tvTraditionalLand);
+        mLanguage = contentView.findViewById(R.id.tvLanguageName);
+        mDescription = contentView.findViewById(R.id.tvLangDescription);
+        mSpeaker = contentView.findViewById(R.id.tvSpeakers);
+        mStateTerritory = contentView.findViewById(R.id.tvLangState);
         catRecyclerView = contentView.findViewById(R.id.categoryRecycler);
         catRecyclerView.setHasFixedSize(true);
         catRecyclerView.setLayoutManager((new LinearLayoutManager(contentView.getContext())));
@@ -114,6 +127,38 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
+            }
+        });
+
+        //set language details
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                ValueEventListener valueEventListener3 = catDatabaseReference.child("LanguagesList").addValueEventListener(new ValueEventListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot languageSnapshot : dataSnapshot.getChildren()) {
+                            Language lang = languageSnapshot.getValue(Language.class);
+                            langDetailsList.add(lang);
+//                    Log.d(TAG, "catIconImage: " + catIconImage);
+                        }
+
+                        Language langDisplay = Language.getLanguage(langDetailsList, HomeFragment.languageClicked);
+                        mLanguage.setText(langDisplay.getName());
+                        mCountry.setText("Traditional Land: " + langDisplay.getCountry());
+                        DecimalFormat df = new DecimalFormat("#,###,###,###");
+                        mSpeaker.setText("Active Speakers: "+df.format(langDisplay.getSpeakers()));
+                        mStateTerritory.setText("State or Territory: "+langDisplay.getStateTerritory());
+                        mDescription.setMovementMethod(new ScrollingMovementMethod());
+                        mDescription.setText(langDisplay.getDescription());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 

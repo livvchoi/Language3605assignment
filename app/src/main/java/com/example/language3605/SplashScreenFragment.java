@@ -1,6 +1,7 @@
 package com.example.language3605;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class SplashScreenFragment extends Fragment {
-    private TextView ssUnderstand;
+    private TextView ssUnderstand, mDisclaimer;
 
     @Nullable
     @Override
@@ -21,6 +22,9 @@ public class SplashScreenFragment extends Fragment {
 
         //code here
         ssUnderstand = contentView.findViewById(R.id.tv_IUnderstand);
+        mDisclaimer = contentView.findViewById(R.id.tv_disclaimer);
+        mDisclaimer.setMovementMethod(new ScrollingMovementMethod());
+
         ssUnderstand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

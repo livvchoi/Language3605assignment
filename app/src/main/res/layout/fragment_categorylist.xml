@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/overlay_light">
+    android:background="@drawable/overlay_dark">
 
     <TextView
         android:id="@+id/tvLanguageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:text="TextView"
-        android:textColor="@color/oxford_blue"
+        android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,11 +23,12 @@
         android:id="@+id/cvLanguageDetails"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_margin="20dp"
-        app:cardBackgroundColor="@color/grey_recycler_transparent"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/white_recycler_transparent"
         app:cardCornerRadius="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/tvLanguageName"
-        tools:layout_editor_absoluteX="10dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLanguageName">
 
         <TextView
             android:id="@+id/tvTraditionalLand"
@@ -75,6 +76,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
+            android:justificationMode="inter_word"
             android:scrollbars="vertical"
             android:text="TextView"
             android:textColor="@color/white" />
@@ -83,13 +85,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecycler"
-        android:layout_width="397dp"
-        android:layout_height="354dp"
-        android:layout_marginTop="200dp"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cvLanguageDetails"
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fltBtnAddCat"

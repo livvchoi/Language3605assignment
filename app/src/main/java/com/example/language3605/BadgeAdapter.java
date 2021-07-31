@@ -1,5 +1,6 @@
 package com.example.language3605;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -8,35 +9,47 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import org.jetbrains.annotations.NotNull;
 
-public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.BadgeViewHolder> {
+import java.util.List;
 
+public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.BadgeViewHolder> {
+    private List<Badge> mBadgeList;
+
+    public BadgeAdapter(List<Badge> mBadgeList) {
+        this.mBadgeList = mBadgeList;
+    }
 
     @NonNull
     @NotNull
     @Override
     public BadgeViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.badge_item, parent, false);
+        BadgeAdapter.BadgeViewHolder holder = new BadgeAdapter.BadgeViewHolder(view);
+        return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull BadgeAdapter.BadgeViewHolder holder, int position) {
-
+        Badge mBadge = mBadgeList.get(position);
+        holder.mBadgeName.setText(mBadge.getName());
+        Picasso.get().load(mBadge.getImage()).into(holder.mBadgeImage);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mBadgeList.size();
     }
 
     public static class BadgeViewHolder extends RecyclerView.ViewHolder{
         TextView mBadgeName;
-        ImageView mBadge;
+        ImageView mBadgeImage;
 
         public BadgeViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            mBadge = itemView.findViewById(R.id.ivBadge);
+            mBadgeImage = itemView.findViewById(R.id.ivBadge);
             mBadgeName = itemView.findViewById(R.id.ivBadge);
 
 

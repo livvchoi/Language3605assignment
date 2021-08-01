@@ -64,4 +64,10 @@ public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.BadgeViewHol
 
         }
     }
+
+    public void setData(List<Badge> data){
+        mBadgeList.clear();
+        mBadgeList.addAll(data);
+        notifyDataSetChanged();
+    }
 }

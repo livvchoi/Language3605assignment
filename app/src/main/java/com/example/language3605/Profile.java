@@ -1,56 +1,62 @@
 package com.example.language3605;
 
+import com.google.firebase.database.PropertyName;
+
 public class Profile {
 
-    private int LanguageCount;
-    private int Progress;
-    private int QuestionCount;
-    private int QuizProgress;
+    @PropertyName("LanguageCount")
+    private Integer LanguageCount;
+
+    @PropertyName("Progress")
+    private Integer Progress;
+
+    @PropertyName("QuizCompleted")
+    private Integer QuizCompleted;
+
+    @PropertyName("QuizCount")
+    private Integer QuizCount;
 
 
     public Profile() {
 
     }
 
-    public Profile(int languageCount, int progress, int questionCount, int quizProgress) {
+    public Profile(Integer languageCount, Integer progress, Integer quizCompleted, Integer quizCount) {
         LanguageCount = languageCount;
         Progress = progress;
-        QuestionCount = questionCount;
-        QuizProgress = quizProgress;
+        QuizCompleted = quizCompleted;
+        QuizCount = quizCount;
     }
 
-    public int getLanguageCount() {
+    public Integer getLanguageCount() {
         return LanguageCount;
     }
 
-    public void setLanguageCount(int languageCount) {
+    public void setLanguageCount(Integer languageCount) {
         LanguageCount = languageCount;
     }
 
-    public int getProgress() {
+    public Integer getProgress() {
         return Progress;
     }
 
-    public void setProgress(int progress) {
+    public void setProgress(Integer progress) {
         Progress = progress;
     }
 
-    public int getQuestionCount() {
-        return QuestionCount;
+    public Integer getQuizCompleted() {
+        return QuizCompleted;
     }
 
-    public void setQuestionCount(int questionCount) {
-        QuestionCount = questionCount;
+    public void setQuizCompleted(Integer quizCompleted) {
+        QuizCompleted = quizCompleted;
     }
 
-    public int getQuizProgress() {
-        return QuizProgress;
+    public Integer getQuizCount() {
+        return QuizCount;
     }
 
-    public void setQuizProgress(int quizProgress) {
-        QuizProgress = quizProgress;
+    public void setQuizCount(Integer quizCount) {
+        QuizCount = quizCount;
     }
-
-
-
 }

@@ -1,5 +1,6 @@
 package com.example.language3605;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,20 +33,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileFragment extends Fragment {
-    private Button pSignOut, pAnswerQuizTest;
-    private TextView pShareProgress;
-//    private ImageView pProgressShare;
-////    private ImageView pProgress1Quiz, pProgress5Quiz, pProgress20Quiz, pProgress1Language,
-////            pProgress3Language, pProgress5Language, pProgressShare, pProgress10LB, pProgress1LB;
+    private Button pSignOut;
+    private TextView pShareProgress, pQuizProgress, pTotalProgress;
+
     private ProgressBar pProgressBar;
     RecyclerView badgeRecyclerView;
     private final List<Badge> mBadgeList = new ArrayList<>();
 
     private Profile profile;
     private final List<Profile> pProfileList = new ArrayList<>();
-    private int progressNum;
-    private int quizNum;
-    private int languageNum;
+
+    public String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
 
     private ProgressDialogHelper progressDialogHelper;
 
@@ -54,14 +53,11 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        //code here
-
         //loading prompt
         this.progressDialogHelper = new ProgressDialogHelper(getContext());
 
         //show loading prompt
         progressDialogHelper.show("Please wait", "Loading badges...");
-
 
         //Logout button
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -83,18 +79,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        pAnswerQuizTest = contentView.findViewById(R.id.btTestAnswerQuiz);
-        pAnswerQuizTest.setVisibility(View.GONE);
-//        pAnswerQuizTest.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String testCategoryName = "Body Parts";
-//                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(R.id.fragment_container, new AnswerQuizFragment(testCategoryName));
-//                fragmentTransaction.commit();
-//            }
-//        });
-
         //share
         pShareProgress = contentView.findViewById(R.id.tvShareProgress);
         pShareProgress.setOnClickListener(new View.OnClickListener() {
@@ -108,92 +92,36 @@ public class ProfileFragment extends Fragment {
                 Intent shareIntent = Intent.createChooser(sendText, null);
                 startActivity(shareIntent);
                 updateShareProgress();
-                getBadges();
-//                pProgressShare.setVisibility(View.VISIBLE);
+
             }
         });
-//
-//        //link imageview references
-//        pProgress1Quiz = contentView.findViewById(R.id.ivProgress1Quiz);
-//        pProgress1Quiz.setVisibility(View.INVISIBLE);
-//        pProgress5Quiz = contentView.findViewById(R.id.ivProgress5Quiz);
-//        pProgress5Quiz.setVisibility(View.INVISIBLE);
-//        pProgress20Quiz = contentView.findViewById(R.id.ivProgress20Quiz);
-//        pProgress20Quiz.setVisibility(View.INVISIBLE);
-//        pProgress1Language = contentView.findViewById(R.id.ivProgress1Language);
-//        pProgress1Language.setVisibility(View.INVISIBLE);
-//        pProgress3Language = contentView.findViewById(R.id.ivProgress3Language);
-//        pProgress3Language.setVisibility(View.INVISIBLE);
-//        pProgress5Language = contentView.findViewById(R.id.ivProgress5Language);
-//        pProgress5Language.setVisibility(View.INVISIBLE);
-//        pProgressShare = contentView.findViewById(R.id.ivProgressShare);
-//        pProgressShare.setVisibility(View.INVISIBLE);
-//        pProgress10LB = contentView.findViewById(R.id.ivProgress10LB);
-//        pProgress10LB.setVisibility(View.INVISIBLE);
-//        pProgress1LB = contentView.findViewById(R.id.ivProgress1LB);
-//        pProgress1LB.setVisibility(View.INVISIBLE);
 
+        //Instantiate view objects
         pProgressBar = contentView.findViewById(R.id.progressBar);
+        pQuizProgress = contentView.findViewById(R.id.tvQuizPercVal);
+        pTotalProgress = contentView.findViewById(R.id.tvProgressCompletedVal);
+
 
         //link to database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
-        reference.child("Profile").addValueEventListener(new ValueEventListener() {
+        reference.child("Profile").child(UID).addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                for (DataSnapshot profileSnapshot : snapshot.getChildren()) {
-                    Profile profile = profileSnapshot.getValue(Profile.class);
-                    pProfileList.add(profile);
-                }
+                    Profile profile = snapshot.getValue(Profile.class);
 
-                profile = pProfileList.get(0);
+//                profile = pProfileList.get(0);
 
-//                //change image icons
-//                Picasso.get().load(profile.getBadge1QuizImage()).into(pProgress1Quiz);
-//                Picasso.get().load(profile.getBadge5QuizImage()).into(pProgress5Quiz);
-//                Picasso.get().load(profile.getBadge20QuizImage()).into(pProgress20Quiz);
-//                Picasso.get().load(profile.getBadge1LanguageImage()).into(pProgress1Language);
-//                Picasso.get().load(profile.getBadge3LanguageImage()).into(pProgress3Language);
-//                Picasso.get().load(profile.getBadge5LanguageImage()).into(pProgress5Language);
-//                Picasso.get().load(profile.getBadgeShareImage()).into(pProgressShare);
-//                Picasso.get().load(profile.getBadge10LBImage()).into(pProgress10LB);
-//                Picasso.get().load(profile.getBadge1LBImage()).into(pProgress1LB);
+                //set data to view objects
+                pProgressBar.setProgress((int) profile.getProgress());
+                pQuizProgress.setText(profile.getQuizCompleted()+ "%");
+                pTotalProgress.setText(profile.getProgress() + "%");
 
-                //retrieve data
-                progressNum = profile.getProgress();
-                pProgressBar.setProgress(progressNum);
-                quizNum = profile.getQuestionCount();
-                languageNum = profile.getLanguageCount();
+//
+//                quizNum = profile.getQuizCount();
+//                languageNum = profile.getLanguageCount();
 
-               /* //badge display criteria
-                if (profile.isBadge1Quiz() || quizNum >= 1) {
-                    pProgress1Quiz.setVisibility(View.VISIBLE);
-                }
-                if (profile.isBadge5Quiz() || quizNum >= 5) {
-                    pProgress5Quiz.setVisibility(View.VISIBLE);
-                }
-                if (profile.isBadge20Quiz() || quizNum >= 20) {
-                    pProgress20Quiz.setVisibility(View.VISIBLE);
-                }
-                if (profile.isBadge1Language() || languageNum >= 1) {
-                    pProgress1Language.setVisibility(View.VISIBLE);
-                }
-                if (profile.isBadge3Language() || languageNum >= 3) {
-                    pProgress3Language.setVisibility(View.VISIBLE);
-                }
-                if (profile.isBadge5Language() || languageNum >= 5) {
-                    pProgress5Language.setVisibility(View.VISIBLE);
-                }
-                if (profile.isBadgeShare()) {
-                    pProgressShare.setVisibility(View.VISIBLE);
-                }
-                if (profile.isBadge10LB()) {
-                    pProgress10LB.setVisibility(View.VISIBLE);
-                }
-                if (profile.isBadge1LB()) {
-                    pProgress1LB.setVisibility(View.VISIBLE);
-                }
-*/
 
                 progressDialogHelper.dismiss();
             }
@@ -216,11 +144,12 @@ public class ProfileFragment extends Fragment {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         ref.child("Profile").child(UID).child("Badges").child("BadgeShare").child("Achieved").setValue(true);
+
     }
 
     private void getBadges(){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         Log.d("User ID", UID);
 
         ref.child("Profile").child(UID).child("Badges").addValueEventListener(new ValueEventListener() {

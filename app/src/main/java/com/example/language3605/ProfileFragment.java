@@ -2,17 +2,18 @@ package com.example.language3605;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.auth.AuthUI;
@@ -33,14 +34,15 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
     private Button pSignOut, pAnswerQuizTest;
     private TextView pShareProgress;
-    private ImageView pProgressShare;
-//    private ImageView pProgress1Quiz, pProgress5Quiz, pProgress20Quiz, pProgress1Language,
-//            pProgress3Language, pProgress5Language, pProgressShare, pProgress10LB, pProgress1LB;
+//    private ImageView pProgressShare;
+////    private ImageView pProgress1Quiz, pProgress5Quiz, pProgress20Quiz, pProgress1Language,
+////            pProgress3Language, pProgress5Language, pProgressShare, pProgress10LB, pProgress1LB;
     private ProgressBar pProgressBar;
     RecyclerView badgeRecyclerView;
+    private final List<Badge> mBadgeList = new ArrayList<>();
 
     private Profile profile;
-    private List<Profile> pProfileList = new ArrayList<>();
+    private final List<Profile> pProfileList = new ArrayList<>();
     private int progressNum;
     private int quizNum;
     private int languageNum;
@@ -60,6 +62,8 @@ public class ProfileFragment extends Fragment {
         //show loading prompt
         progressDialogHelper.show("Please wait", "Loading badges...");
 
+
+        //Logout button
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         pSignOut = contentView.findViewById(R.id.btSignOut);
@@ -80,7 +84,7 @@ public class ProfileFragment extends Fragment {
         });
 
         pAnswerQuizTest = contentView.findViewById(R.id.btTestAnswerQuiz);
-        pAnswerQuizTest.setVisibility(View.INVISIBLE);
+        pAnswerQuizTest.setVisibility(View.GONE);
 //        pAnswerQuizTest.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -103,7 +107,9 @@ public class ProfileFragment extends Fragment {
                 sendText.setType("text/plain");
                 Intent shareIntent = Intent.createChooser(sendText, null);
                 startActivity(shareIntent);
-                pProgressShare.setVisibility(View.VISIBLE);
+                updateShareProgress();
+                getBadges();
+//                pProgressShare.setVisibility(View.VISIBLE);
             }
         });
 //
@@ -198,6 +204,43 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        badgeRecyclerView = contentView.findViewById(R.id.rvBadge);
+        badgeRecyclerView.setHasFixedSize(true);
+        badgeRecyclerView.setLayoutManager(layoutManager);
+        getBadges();
         return contentView;
+    }
+
+    private void updateShareProgress(){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        ref.child("Profile").child(UID).child("Badges").child("BadgeShare").child("Achieved").setValue(true);
+    }
+
+    private void getBadges(){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Log.d("User ID", UID);
+
+        ref.child("Profile").child(UID).child("Badges").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for (DataSnapshot badgeSnapshot : snapshot.getChildren()){
+                    Badge newBadge = badgeSnapshot.getValue(Badge.class);
+                    mBadgeList.add(newBadge);
+                   Log.d("Badge collected", newBadge.getName());
+                   Log.d("Badge achieved", String.valueOf(newBadge.isAchieved()));
+                }
+                BadgeAdapter badgeAdapter = new BadgeAdapter(mBadgeList);
+                badgeRecyclerView.setAdapter(badgeAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
     }
 }

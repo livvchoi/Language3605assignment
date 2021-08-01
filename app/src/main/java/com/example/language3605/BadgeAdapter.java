@@ -42,7 +42,7 @@ public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.BadgeViewHol
         Log.d("Achieved", String.valueOf(mBadge.isAchieved()));
         if(mBadge.isAchieved() == false){
             holder.mBadgeImage.setColorFilter(Color.GRAY);
-            holder.mBadgeName.setTextColor(Color.DKGRAY);
+            holder.mBadgeName.setTextColor(Color.GRAY);
         }
     }
 
@@ -65,9 +65,5 @@ public class BadgeAdapter extends RecyclerView.Adapter<BadgeAdapter.BadgeViewHol
         }
     }
 
-    public void setData(List<Badge> data){
-        mBadgeList.clear();
-        mBadgeList.addAll(data);
-        notifyDataSetChanged();
-    }
+
 }

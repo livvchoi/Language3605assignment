@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +45,7 @@ public class ProfileFragment extends Fragment {
     private final List<Profile> pProfileList = new ArrayList<>();
 
     public String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    BadgeAdapter badgeAdapter;
 
 
     private ProgressDialogHelper progressDialogHelper;
@@ -93,6 +95,14 @@ public class ProfileFragment extends Fragment {
                 startActivity(shareIntent);
                 updateShareProgress();
 
+                //refresh fragment
+                ProfileFragment profileFragment= new ProfileFragment();
+
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, profileFragment).addToBackStack(null).commit();
+
+
+
             }
         });
 
@@ -111,16 +121,12 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                     Profile profile = snapshot.getValue(Profile.class);
 
-//                profile = pProfileList.get(0);
 
                 //set data to view objects
                 pProgressBar.setProgress((int) profile.getProgress());
                 pQuizProgress.setText(profile.getQuizCompleted()+ "%");
                 pTotalProgress.setText(profile.getProgress() + "%");
 
-//
-//                quizNum = profile.getQuizCount();
-//                languageNum = profile.getLanguageCount();
 
 
                 progressDialogHelper.dismiss();
@@ -145,9 +151,12 @@ public class ProfileFragment extends Fragment {
         String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         ref.child("Profile").child(UID).child("Badges").child("BadgeShare").child("Achieved").setValue(true);
 
+
+
+
     }
 
-    private void getBadges(){
+    public void getBadges(){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
         Log.d("User ID", UID);
@@ -161,7 +170,7 @@ public class ProfileFragment extends Fragment {
                    Log.d("Badge collected", newBadge.getName());
                    Log.d("Badge achieved", String.valueOf(newBadge.isAchieved()));
                 }
-                BadgeAdapter badgeAdapter = new BadgeAdapter(mBadgeList);
+                badgeAdapter = new BadgeAdapter(mBadgeList);
                 badgeRecyclerView.setAdapter(badgeAdapter);
 
             }

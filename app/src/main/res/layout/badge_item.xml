@@ -16,6 +16,7 @@
         android:layout_marginBottom="353dp"
         app:cardBackgroundColor="@color/white_recycler_transparent"
         app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
